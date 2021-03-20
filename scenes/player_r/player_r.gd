@@ -16,8 +16,11 @@ var movement: Vector3 = Vector3.ZERO;
 var movement_force: Vector3 = Vector3.ZERO;
 var jump_impulse: Vector3 = Vector3.ZERO;
 var hook_force: Vector3 = Vector3.ZERO;
+var tension_impulse: Vector3 = Vector3.ZERO;
+
 
 # Movement stuff
+const GRAVITY: float = 9.8
 const MAX_GROUND_SPEED: float = 5.0
 const MAX_MOVEMENT_ACCELERATION: float = 200000.0;
 var movement_acceleration: float = MAX_MOVEMENT_ACCELERATION;
@@ -37,6 +40,7 @@ enum HOOK_STATES{
 	REWINDING
 }
 onready  var rope_prefab = preload("res://scenes/rope/rope.tscn");
+var activate_motor: bool = false;
 
 var hook_1_interaction:bool = false;
 var hook_1_release:bool = false;
@@ -123,7 +127,23 @@ func _integrate_forces(state):
 	# Limit the linear speed of the body
 	if (state.linear_velocity.length() > MAX_GRAPPLE_SPEED):
 		state.linear_velocity = state.linear_velocity.normalized() * MAX_GRAPPLE_SPEED;
-
+	
+	# Add rope tension impulse
+	tension_impulse = Vector3.ZERO;
+	
+	if((hook_1 == HOOK_STATES.GRAPPLED || hook_1 == HOOK_STATES.REWINDING) && activate_motor):
+		var dir: Vector3 = (hook_1_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
+		var partial_tension_impulse: Vector3 = dir.dot(state.linear_velocity) * (-dir);
+		if(partial_tension_impulse.normalized().dot(dir) > 0):
+			tension_impulse += partial_tension_impulse;
+	
+	if((hook_2 == HOOK_STATES.GRAPPLED || hook_2 == HOOK_STATES.REWINDING) && activate_motor):
+		var dir: Vector3 = (hook_2_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
+		var partial_tension_impulse: Vector3 = dir.dot(state.linear_velocity) * (-dir);
+		if(partial_tension_impulse.normalized().dot(dir) > 0):
+			tension_impulse += partial_tension_impulse;
+	
+	self.apply_central_impulse(tension_impulse * self.mass);
 
 func _ready() -> void :
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
@@ -134,7 +154,9 @@ func _ready() -> void :
 	self.physics_material_override = physics_material;
 
 
-func _physics_process(delta) -> void :
+func _physics_process(delta) -> void:
+	print(hook_1);
+	
 	# Handle input
 	get_input();
 	
@@ -157,7 +179,7 @@ func _physics_process(delta) -> void :
 		can_jump = false;
 	
 	jump_impulse = Vector3.ZERO;
-	if (input.y > 0 and can_jump):
+	if (input.y > 0 && can_jump):
 		can_jump = false;
 		jump_impulse = Vector3.UP * jump_magnitude;
 	
@@ -190,38 +212,59 @@ func get_input() -> void:
 	movement = movement.normalized();
 	
 	# Hook input
-	# Hook 1
-	if (Input.is_action_pressed("hook_1") and Input.is_action_just_pressed("release_hook") or Input.is_action_pressed("release_hook") and Input.is_action_just_pressed("hook_1")):
-		hook_1_release = true;
+	activate_motor = Input.is_action_pressed("activate_motor");
 	
-	if (Input.is_action_just_pressed("hook_1")):
-		hook_1_interaction = true;
-	elif (Input.is_action_just_released("hook_1")):
-		hook_1_interaction = false;
+	# Hook 1
+	var hook_1_just_pressed: bool = Input.is_action_just_pressed("hook_1");
+	var hook_1_just_released: bool = Input.is_action_just_released("hook_1")
+	
+	if(activate_motor):
+		if(hook_1_just_pressed):
+			hook_1_interaction = true;
+		elif(hook_1_just_released):
+			hook_1_interaction = false;
+	else:
+		if(hook_1_just_pressed):
+			hook_1_interaction = true;
+			if(hook_1 == HOOK_STATES.GRAPPLED):
+				hook_1_release = true;
+				hook_1_interaction = false;
+		elif(hook_1_just_released):
+			hook_1_interaction = false;
 	
 	# Hook 2
-	if (Input.is_action_pressed("hook_2") and Input.is_action_just_pressed("release_hook") or Input.is_action_pressed("release_hook") and Input.is_action_just_pressed("hook_2")):
-		hook_2_release = true;
+	var hook_2_just_pressed: bool = Input.is_action_just_pressed("hook_2");
+	var hook_2_just_released: bool = Input.is_action_just_released("hook_2")
 	
-	if (Input.is_action_just_pressed("hook_2")):
-		hook_2_interaction = true;
-	if (Input.is_action_just_released("hook_2")):
-		hook_2_interaction = false;
+	if(activate_motor):
+		if(hook_2_just_pressed):
+			hook_2_interaction = true;
+		elif(hook_2_just_released):
+			hook_2_interaction = false;
+	else:
+		if(hook_2_just_pressed):
+			hook_2_interaction = true;
+			if(hook_2 == HOOK_STATES.GRAPPLED):
+				hook_2_release = true;
+				hook_2_interaction = false;
+		elif(hook_2_just_released):
+			hook_2_interaction = false;
 
 
-func hook(delta:float)->void :
+func hook(delta:float) -> void :
 	hook_force = Vector3.ZERO;
 	
 	# Hook 1
-	if (hook_1 == HOOK_STATES.READY):
-		if (hook_1_interaction):
-			hook_1 = HOOK_STATES.SHOOT;
-	elif (hook_1_release):
+	if (hook_1_release):
 		hook_1_grapple_position.queue_free();
 		hook_1_rope.queue_free();
 		hook_1_interaction = false;
 		hook_1_release = false;
 		hook_1 = HOOK_STATES.READY;
+	
+	if (hook_1 == HOOK_STATES.READY):
+		if (hook_1_interaction):
+			hook_1 = HOOK_STATES.SHOOT;
 	
 	if (hook_1 == HOOK_STATES.SHOOT):
 		var collision:Dictionary = scan_hook_hit();
@@ -244,7 +287,7 @@ func hook(delta:float)->void :
 	elif (hook_1 == HOOK_STATES.GRAPPLED):
 		if (hook_1_interaction):
 			hook_1 = HOOK_STATES.REWINDING;
-
+	
 	elif (hook_1 == HOOK_STATES.REWINDING):
 		if (hook_1_interaction):
 			var direction:Vector3 = (hook_1_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
