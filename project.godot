@@ -19,6 +19,10 @@ config/name="Totaly accurate Attack on Titan simulator"
 run/main_scene="res://scenes/world/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameEvents="*res://singletons/game_events.gd"
+
 [input]
 
 forward={
@@ -64,6 +68,11 @@ activate_motor={
 bullet_time={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
+attack={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
  ]
 }
 

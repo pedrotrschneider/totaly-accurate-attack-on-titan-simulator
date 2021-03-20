@@ -14,6 +14,9 @@ var mouse_sensitivity: float = 0.08;
 const BULLET_TIME_SCALE: float = 0.02;
 var bullet_time: bool = false;
 
+# Attack stuff
+var attack: bool = false;
+
 # Player physics stuff
 var input: Vector3 = Vector3.ZERO;
 var movement: Vector3 = Vector3.ZERO;
@@ -168,6 +171,10 @@ func _physics_process(delta) -> void:
 	else:
 		Engine.time_scale = 1.0;
 	
+	# Handle attack
+	if(attack):
+		GameEvents.emit_attack_signal();
+	
 	# Handle movement
 	var is_on_ground:bool = is_grounded();
 	
@@ -232,6 +239,7 @@ func get_input() -> void:
 		elif(hook_1_just_released):
 			hook_1_interaction = false;
 	else:
+		hook_1_interaction = false;
 		if(hook_1_just_pressed):
 			hook_1_interaction = true;
 			if(hook_1 == HOOK_STATES.GRAPPLED):
@@ -260,6 +268,9 @@ func get_input() -> void:
 	
 	# Bullet time input
 	bullet_time = Input.is_action_pressed("bullet_time");
+	
+	# Attack Input
+	attack = Input.is_action_just_pressed("attack");
 
 
 func hook(delta:float) -> void :

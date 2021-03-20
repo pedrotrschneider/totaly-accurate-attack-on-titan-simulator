@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/sword/sword.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.0177152, 0.959576, 0.0842422 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "AttackGo"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mesh:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -45, -50, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "AttackGo2"
+
+[sub_resource type="Animation" id=3]
+resource_name = "AttackReturn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mesh:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -90, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="Sword" type="Spatial"]
+script = ExtResource( 1 )
+_animation_player = NodePath("AnimationPlayer")
+
+[node name="Mesh" type="Spatial" parent="."]
+transform = Transform( 0.922398, 0.386035, -0.0125822, -0.348487, 0.845844, 0.403862, 0.166548, -0.368137, 0.914733, 0, 0, 0 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="Mesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="Mesh/CSGCombiner"]
+width = 0.0763402
+height = 0.659453
+depth = 0.208756
+
+[node name="CSGBox2" type="CSGBox" parent="Mesh/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10985, 0 )
+width = 0.0250317
+height = 2.1268
+depth = 0.165372
+
+[node name="CSGBox3" type="CSGBox" parent="Mesh/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 0.559192, 0.829037, 0, -0.829037, 0.559192, 0, 2.22891, -0.0556745 )
+operation = 2
+width = 0.358368
+height = 0.636238
+depth = 0.165372
+material = SubResource( 4 )
+
+[node name="Hitbox" type="Area" parent="Mesh"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Mesh/Hitbox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19018, 0 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AttackGo = SubResource( 2 )
+anims/AttackGo2 = SubResource( 5 )
+anims/AttackReturn = SubResource( 3 )
