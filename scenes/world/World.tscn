@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/materials/grid_material_dark.tres" type="Material" id=1]
+[ext_resource path="res://scenes/player_r/player_r.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/materials/grid_material_orange.tres" type="Material" id=3]
+[ext_resource path="res://scenes/world/label.gd" type="Script" id=4]
+
+[node name="World" type="Spatial"]
+
+[node name="PlayerR" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -16.5018 )
+can_sleep = false
+
+[node name="Gemoemtry" type="CSGCombiner" parent="."]
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="Gemoemtry"]
+width = 50.0
+depth = 50.0
+material = ExtResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 2, -9 )
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, -16 )
+material = ExtResource( 3 )
+
+[node name="CSGBox4" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2, -5 )
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3461, 2, -21 )
+material = ExtResource( 3 )
+
+[node name="CSGBox6" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 2, 1 )
+material = ExtResource( 3 )
+
+[node name="CSGBox7" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -5 )
+height = 32.0
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 10 )
+height = 32.0
+material = ExtResource( 3 )
+
+[node name="CSGBox9" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 13 )
+height = 32.0
+material = ExtResource( 3 )
+
+[node name="CSGBox10" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 0 )
+height = 32.0
+material = ExtResource( 3 )
+
+[node name="CSGBox11" type="CSGBox" parent="Gemoemtry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -10 )
+height = 32.0
+material = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 40.0
+margin_bottom = 14.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
