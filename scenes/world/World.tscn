@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resources/materials/grid_material_dark.tres" type="Material" id=1]
-[ext_resource path="res://scenes/player_r/player_r.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/materials/grid_material_orange.tres" type="Material" id=3]
 [ext_resource path="res://scenes/world/label.gd" type="Script" id=4]
 
