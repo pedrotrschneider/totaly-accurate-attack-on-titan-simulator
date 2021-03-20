@@ -10,6 +10,10 @@ export (NodePath) onready  var hook_2_origin = get_node(hook_2_origin) as Positi
 # Mouse stuff
 var mouse_sensitivity: float = 0.08;
 
+# Bullet time stuff
+const BULLET_TIME_SCALE: float = 0.02;
+var bullet_time: bool = false;
+
 # Player physics stuff
 var input: Vector3 = Vector3.ZERO;
 var movement: Vector3 = Vector3.ZERO;
@@ -155,10 +159,14 @@ func _ready() -> void :
 
 
 func _physics_process(delta) -> void:
-	print(hook_1);
-	
 	# Handle input
 	get_input();
+	
+	# Handle bullet time
+	if(bullet_time):
+		Engine.time_scale = BULLET_TIME_SCALE;
+	else:
+		Engine.time_scale = 1.0;
 	
 	# Handle movement
 	var is_on_ground:bool = is_grounded();
@@ -249,6 +257,9 @@ func get_input() -> void:
 				hook_2_interaction = false;
 		elif(hook_2_just_released):
 			hook_2_interaction = false;
+	
+	# Bullet time input
+	bullet_time = Input.is_action_pressed("bullet_time");
 
 
 func hook(delta:float) -> void :
