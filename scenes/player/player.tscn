@@ -27,10 +27,10 @@ hook_1_origin = NodePath("HookOrigin1")
 hook_2_origin = NodePath("HookOrigin2")
 
 [node name="Sword" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00718, 0.107594, -0.551664 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22571, 0.107594, -0.551664 )
 
 [node name="Sword2" parent="." instance=ExtResource( 3 )]
-transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 1.007, 0.108, -0.552 )
+transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, 1.226, 0.108, -0.552 )
 
 [node name="Shape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
