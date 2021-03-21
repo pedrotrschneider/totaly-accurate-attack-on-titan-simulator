@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/sword/sword.gd" type="Script" id=1]
+[ext_resource path="res://singletons/sword_hitbox_flag.gd" type="Script" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.0177152, 0.959576, 0.0842422 )
+extents = Vector3( 0.0177152, 1.29584, 0.0842422 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "AttackGo2"
 length = 1.5
 tracks/0/type = "value"
@@ -22,13 +23,37 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector3( -22.4943, -8.08593, -3.96866 ), Vector3( -23.82, -0.788, -80 ), Vector3( -23.82, 120, -80 ), Vector3( -22.4943, -8.08593, -3.96866 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mesh/Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Mesh/Hitbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
 [node name="Sword" type="Spatial"]
 script = ExtResource( 1 )
 _animation_player = NodePath("AnimationPlayer")
 
 [node name="Mesh" type="Spatial" parent="."]
-transform = Transform( 0.983959, 0.122208, -0.129957, -0.0639451, 0.921702, 0.382591, 0.166537, -0.368144, 0.914732, 0, 0, 0 )
+transform = Transform( 0.983959, 0.122208, -0.129956, -0.063945, 0.921702, 0.382591, 0.166537, -0.368144, 0.914732, 0, 0, 0 )
 
 [node name="CSGCombiner" type="CSGCombiner" parent="Mesh"]
 
@@ -52,10 +77,14 @@ depth = 0.165372
 material = SubResource( 1 )
 
 [node name="Hitbox" type="Area" parent="Mesh"]
+transform = Transform( 1, -1.11759e-08, 2.98023e-08, 0, 1, 2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0 )
+monitoring = false
+monitorable = false
+script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Mesh/Hitbox"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19018, 0 )
+transform = Transform( 1, 0, -1.49012e-08, 3.72529e-09, 1, 2.98023e-08, 0, -2.98023e-08, 1, -7.45058e-09, 1.19018, 0 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AttackGo2 = SubResource( 4 )
+anims/AttackGo2 = SubResource( 3 )

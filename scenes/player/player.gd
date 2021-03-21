@@ -25,7 +25,6 @@ var jump_impulse: Vector3 = Vector3.ZERO;
 var hook_force: Vector3 = Vector3.ZERO;
 var tension_impulse: Vector3 = Vector3.ZERO;
 
-
 # Movement stuff
 const GRAVITY: float = 9.8
 const MAX_GROUND_SPEED: float = 5.0
