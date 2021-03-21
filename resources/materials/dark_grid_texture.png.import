@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/dark_texture_01.png-bca1fefc192ececca34bb52d505aa16c.s3tc.stex"
-path.etc2="res://.import/dark_texture_01.png-bca1fefc192ececca34bb52d505aa16c.etc2.stex"
+path.s3tc="res://.import/dark_grid_texture.png-ee7bcc91602e9e5d4da5ae459044ee5c.s3tc.stex"
+path.etc2="res://.import/dark_grid_texture.png-ee7bcc91602e9e5d4da5ae459044ee5c.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/materials/dark_texture_01.png"
-dest_files=[ "res://.import/dark_texture_01.png-bca1fefc192ececca34bb52d505aa16c.s3tc.stex", "res://.import/dark_texture_01.png-bca1fefc192ececca34bb52d505aa16c.etc2.stex" ]
+source_file="res://resources/materials/dark_grid_texture.png"
+dest_files=[ "res://.import/dark_grid_texture.png-ee7bcc91602e9e5d4da5ae459044ee5c.s3tc.stex", "res://.import/dark_grid_texture.png-ee7bcc91602e9e5d4da5ae459044ee5c.etc2.stex" ]
 
 [params]
 
