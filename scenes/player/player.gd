@@ -1,5 +1,7 @@
 extends RigidBody
 
+var _garbage;
+
 export (NodePath) onready  var head = get_node(head) as Position3D;
 export (NodePath) onready  var eye = get_node(eye) as Position3D;
 export (NodePath) onready  var capsule = get_node(capsule) as MeshInstance;
@@ -137,21 +139,25 @@ func _integrate_forces(state):
 	# Add rope tension impulse
 	tension_impulse = Vector3.ZERO;
 	
-	if((hook_1 == HOOK_STATES.GRAPPLED || hook_1 == HOOK_STATES.REWINDING) && activate_motor):
-		var dir: Vector3 = (hook_1_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
-		var partial_tension_impulse: Vector3 = dir.dot(state.linear_velocity) * (-dir);
-		if(partial_tension_impulse.normalized().dot(dir) > 0):
-			tension_impulse += partial_tension_impulse;
+	if(hook_1_grapple_position):
+		if((hook_1 == HOOK_STATES.GRAPPLED || hook_1 == HOOK_STATES.REWINDING) && activate_motor):
+			var dir: Vector3 = (hook_1_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
+			var partial_tension_impulse: Vector3 = dir.dot(state.linear_velocity) * (-dir);
+			if(partial_tension_impulse.normalized().dot(dir) > 0):
+				tension_impulse += partial_tension_impulse;
 	
-	if((hook_2 == HOOK_STATES.GRAPPLED || hook_2 == HOOK_STATES.REWINDING) && activate_motor):
-		var dir: Vector3 = (hook_2_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
-		var partial_tension_impulse: Vector3 = dir.dot(state.linear_velocity) * (-dir);
-		if(partial_tension_impulse.normalized().dot(dir) > 0):
-			tension_impulse += partial_tension_impulse;
+	if(hook_2_grapple_position):
+		if((hook_2 == HOOK_STATES.GRAPPLED || hook_2 == HOOK_STATES.REWINDING) && activate_motor):
+			var dir: Vector3 = (hook_2_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
+			var partial_tension_impulse: Vector3 = dir.dot(state.linear_velocity) * (-dir);
+			if(partial_tension_impulse.normalized().dot(dir) > 0):
+				tension_impulse += partial_tension_impulse;
 	
 	self.apply_central_impulse(tension_impulse * self.mass);
 
 func _ready() -> void :
+	_garbage = GameEvents.connect("enemy_killed", self, "_on_enemy_killed");
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 	
 	var physics_material:PhysicsMaterial = PhysicsMaterial.new();
@@ -189,7 +195,7 @@ func _physics_process(delta) -> void:
 	# Handle jump
 	if (is_on_ground):
 		can_jump = true;
-	else :
+	else:
 		can_jump = false;
 	
 	jump_impulse = Vector3.ZERO;
@@ -199,6 +205,15 @@ func _physics_process(delta) -> void:
 	
 	# Handle hook
 	hook(delta);
+
+
+func _on_enemy_killed(object) -> void:
+	if(hook_1_gappled_object == object):
+		hook_1_release = true;
+	if(hook_2_gappled_object == object):
+		hook_2_release = true;
+	
+	hook(0);
 
 
 ####################################
@@ -317,15 +332,16 @@ func hook(delta:float) -> void :
 			hook_1 = HOOK_STATES.GRAPPLED;
 	
 	# Hook 2
-	if (hook_2 == HOOK_STATES.READY):
-		if (hook_2_interaction):
-			hook_2 = HOOK_STATES.SHOOT;
-	elif (hook_2_release):
+	if (hook_2_release):
 		hook_2_grapple_position.queue_free();
 		hook_2_rope.queue_free();
 		hook_2_interaction = false;
 		hook_2_release = false;
 		hook_2 = HOOK_STATES.READY;
+	
+	if (hook_2 == HOOK_STATES.READY):
+		if (hook_2_interaction):
+			hook_2 = HOOK_STATES.SHOOT;
 	
 	if (hook_2 == HOOK_STATES.SHOOT):
 		var collision:Dictionary = scan_hook_hit();

@@ -1,16 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://resources/materials/grid_material_dark.tres" type="Material" id=1]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/materials/grid_material_orange.tres" type="Material" id=3]
-[ext_resource path="res://scenes/world/label.gd" type="Script" id=4]
+[ext_resource path="res://scenes/fps_meter/fps_meter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemy/enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/test_titan_root_motion/test_titan_root_motion.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Spatial"]
 
 [node name="PlayerR" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -16.5018 )
-can_sleep = false
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 3, -16.5018 )
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
@@ -72,14 +72,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -10 )
 height = 32.0
 material = ExtResource( 3 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" parent="." instance=ExtResource( 4 )]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 40.0
-margin_bottom = 14.0
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="test_titan_root_motion" parent="." instance=ExtResource( 6 )]
+transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, 2.877, 0.758445, -10.2288 )

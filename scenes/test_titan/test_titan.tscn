@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/test_titan/titan_ai.gd" type="Script" id=1]
+[ext_resource path="res://singletons/enemy_hitbox_flag.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleMesh" id=1]
+radius = 2.0
+mid_height = 8.0
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="SphereMesh" id=3]
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 3.174, 2, 2 )
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+albedo_color = Color( 1, 0, 0, 0.498039 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 1.58713, 1, 1 )
+
+[node name="TestTitan" type="KinematicBody"]
+script = ExtResource( 1 )
+_hitbox = NodePath("Area")
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 6, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 6, 0 )
+shape = SubResource( 2 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.68525, -1.80084 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="CollisionShape2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.36954, 1.0852 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Area" type="Area" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.36954, 0.415501 )
+shape = SubResource( 6 )
