@@ -5,6 +5,8 @@ var _garbage;
 export(NodePath) onready var map_rect = get_node(map_rect) as ColorRect;
 export(Vector2) var map_size;
 
+onready var _player_minimap_texture: Texture = preload("res://resources/assets/textures/player_minimap_icon.png") as Texture;
+
 var targets: Array = [];
 var enemies: Array = [];
 var player: Object;
@@ -27,7 +29,11 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	draw_circle(calculate_relative_position(player.global_transform.origin), 3.0, Color.white);
+	var p_rel_pos: Vector2 = calculate_relative_position(player.global_transform.origin);
+	draw_circle(p_rel_pos, 3.0, Color.white);
+	var angle: float = deg2rad(player.rotation_degrees.y);
+	var p_rel_end_pos: Vector2 = p_rel_pos + Vector2(10 * sin(angle), 10 * cos(angle));
+	draw_line(p_rel_pos, p_rel_end_pos, Color.white, 1.0);
 	
 	for enemy in enemies:
 		if(enemy):
