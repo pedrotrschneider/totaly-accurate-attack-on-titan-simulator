@@ -2,12 +2,14 @@ extends KinematicBody
 
 var _garbage;
 
+var _titan_flag;
+
 export(NodePath) onready var _hitbox = get_node(_hitbox) as Area
 var _nav_mesh: NavigationMesh = preload("res://resources/nav_meshes/sample_town/R2H8.tres") as NavigationMesh;
 
 var _nav: Navigation;
 
-const move_speed: int = 1000;
+const move_speed: float = 5.0;
 const move_acceleration: float = 100.0;
 const gravity: float = 9.8;
 
@@ -30,7 +32,7 @@ func _ready():
 	path = _get_path_to(target_pos.global_transform.origin);
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(path_index < path.size()):
 		var path_position: Vector3 = Vector3(path[path_index].x, self.global_transform.origin.y, path[path_index].z)
 		var move_dir: Vector3 = (path_position - self.global_transform.origin);
@@ -38,7 +40,8 @@ func _physics_process(delta):
 			path_index += 1;
 		else:
 			self.look_at(path_position, Vector3.UP);
-			_garbage = self.move_and_slide(move_dir.normalized() * move_speed * delta);
+			velocity = move_dir.normalized() * move_speed;
+			_garbage = self.move_and_slide(velocity);
 
 
 func _get_path_to(destination: Vector3) -> PoolVector3Array:

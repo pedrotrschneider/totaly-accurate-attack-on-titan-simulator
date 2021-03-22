@@ -37,8 +37,13 @@ func _physics_process(delta):
 		if(move_dir.length() < 0.1):
 			path_index += 1;
 		else:
-			self.look_at(path_position, Vector3.UP);
+			smooth_look_at(path_position, delta);
 			_garbage = self.move_and_slide(move_dir.normalized() * move_speed * delta);
+
+
+func smooth_look_at(pos: Vector3, delta: float) -> void:
+	var T: Transform = self.global_transform.looking_at(pos, Vector3.UP);
+	self.global_transform = self.global_transform.interpolate_with(T, delta * 5);
 
 
 func _get_path_to(destination: Vector3) -> PoolVector3Array:
@@ -47,10 +52,8 @@ func _get_path_to(destination: Vector3) -> PoolVector3Array:
 
 
 func _on_hit() -> void:
-	print("I have been hit");
 	hit_points += 1;
 	
 	if(hit_points >= MAX_HIT_POINTS):
-		print("I have been killed");
 		GameEvents.emit_enemy_killed_signal(self);
 		self.queue_free();

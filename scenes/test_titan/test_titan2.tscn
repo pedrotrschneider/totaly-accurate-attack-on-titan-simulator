@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/test_titan/titan_ai.gd" type="Script" id=1]
+[ext_resource path="res://singletons/enemy_hitbox_flag.gd" type="Script" id=2]
+[ext_resource path="res://resources/assets/models/test_titan_no_root.gltf" type="PackedScene" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.648727
+height = 0.88659
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 3.174, 2, 2 )
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+albedo_color = Color( 1, 0, 0, 0.498039 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 1.69057, 1.86864, 1.51494 )
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Scary Clown Walk wo root-loop"
+
+[sub_resource type="AnimationNodeBlendTree" id=6]
+graph_offset = Vector2( 0, 54 )
+nodes/Animation/node = SubResource( 5 )
+nodes/Animation/position = Vector2( -20, 80 )
+node_connections = [ "output", 0, "Animation" ]
+
+[node name="TestTitan" type="KinematicBody"]
+collision_layer = 4
+collision_mask = 13
+collision/safe_margin = 0.01
+script = ExtResource( 1 )
+_hitbox = NodePath("Area")
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.94654, 0 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.36954, 1.0852 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.04703, 0 )
+collision_layer = 4
+collision_mask = 2147483650
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0875328 )
+shape = SubResource( 4 )
+
+[node name="test_titan_no_root" parent="." instance=ExtResource( 3 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 6 )
+anim_player = NodePath("../test_titan_no_root/AnimationPlayer")
+active = true
+
+[editable path="test_titan_no_root"]

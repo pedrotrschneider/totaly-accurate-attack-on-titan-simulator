@@ -107,7 +107,7 @@ func is_grounded() -> bool:
 func scan_hook_hit() -> Dictionary:
 	var direct_state:PhysicsDirectSpaceState = get_world().direct_space_state;
 	var direction:Vector3 = (crosshair_position.global_transform.origin - eye.global_transform.origin).normalized();
-	return direct_state.intersect_ray(eye.global_transform.origin, eye.global_transform.origin + direction * HOOK_LENGTH);
+	return direct_state.intersect_ray(eye.global_transform.origin, eye.global_transform.origin + direction * HOOK_LENGTH, [], 16);
 
 
 ####################################
@@ -291,8 +291,12 @@ func hook(delta:float) -> void :
 	hook_force = Vector3.ZERO;
 	
 	# Hook 1
+	if(!hook_1_grapple_position && hook_1 != HOOK_STATES.READY):
+		hook_1_release = true;
+	
 	if (hook_1_release):
-		hook_1_grapple_position.queue_free();
+		if(hook_1_grapple_position):
+			hook_1_grapple_position.queue_free();
 		hook_1_rope.queue_free();
 		hook_1_interaction = false;
 		hook_1_release = false;
@@ -325,15 +329,19 @@ func hook(delta:float) -> void :
 			hook_1 = HOOK_STATES.REWINDING;
 	
 	elif (hook_1 == HOOK_STATES.REWINDING):
-		if (hook_1_interaction):
+		if (hook_1_interaction && hook_1_grapple_position):
 			var direction:Vector3 = (hook_1_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
 			hook_force += direction * HOOK_POTENCY * delta;
 		else :
 			hook_1 = HOOK_STATES.GRAPPLED;
 	
 	# Hook 2
+	if(!hook_2_grapple_position && hook_2 != HOOK_STATES.READY):
+		hook_2_release = true;
+	
 	if (hook_2_release):
-		hook_2_grapple_position.queue_free();
+		if(hook_2_grapple_position):
+			hook_2_grapple_position.queue_free();
 		hook_2_rope.queue_free();
 		hook_2_interaction = false;
 		hook_2_release = false;
@@ -366,7 +374,7 @@ func hook(delta:float) -> void :
 			hook_2 = HOOK_STATES.REWINDING;
 
 	elif (hook_2 == HOOK_STATES.REWINDING):
-		if (hook_2_interaction):
+		if (hook_2_interaction && hook_2_grapple_position):
 			var direction:Vector3 = (hook_2_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
 			hook_force += direction * HOOK_POTENCY * delta;
 		else :

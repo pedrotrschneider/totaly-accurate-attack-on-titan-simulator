@@ -76,6 +76,15 @@ attack={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Geometry"
+3d_physics/layer_2="Sword"
+3d_physics/layer_3="Enemy"
+3d_physics/layer_4="Player"
+3d_physics/layer_5="Grapple"
+3d_physics/layer_6="Target"
+
 [physics]
 
 common/physics_fps=240

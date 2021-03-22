@@ -6,15 +6,38 @@
 [ext_resource path="res://scenes/sample_town/sample_town.gd" type="Script" id=4]
 [ext_resource path="res://resources/materials/grid_material_green.tres" type="Material" id=5]
 [ext_resource path="res://resources/nav_meshes/sample_town/R2H8.tres" type="NavigationMesh" id=6]
-[ext_resource path="res://scenes/test_titan/test_titan.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/fps_meter/fps_meter.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/test_titan_no_root/test_titan_no_root.tscn" type="PackedScene" id=9]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 75, 1, 150 )
 
 [node name="SampleTown" type="Spatial"]
 script = ExtResource( 4 )
 
+[node name="test_titan_no_root" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.13, 1, -63.296 )
+
+[node name="test_titan_no_root2" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39871, 1, -55.4859 )
+
+[node name="test_titan_no_root3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.0031, 1, -61.442 )
+
+[node name="test_titan_no_root4" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52.8471, 1, -55.4002 )
+
+[node name="test_titan_no_root5" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -72.2264, 1, -30.925 )
+
+[node name="test_titan_no_root6" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8311, 1, -19.304 )
+
+[node name="test_titan_no_root7" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -58.3481, 1, 0.785328 )
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.59452, 3, -42.3821 )
 
 [node name="Navigation" type="Navigation" parent="."]
 
@@ -23,6 +46,7 @@ navmesh = ExtResource( 6 )
 
 [node name="Geometry" type="CSGCombiner" parent="Navigation/NavigationMeshInstance"]
 use_collision = true
+collision_layer = 17
 
 [node name="Ground" type="CSGBox" parent="Navigation/NavigationMeshInstance/Geometry"]
 width = 150.0
@@ -130,24 +154,25 @@ material = ExtResource( 5 )
 [node name="Target" type="Position3D" parent="." groups=[
 "target",
 ]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5931, 14.9306, 28.5425 )
-
-[node name="TestTitan" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -57.0549, -1.90735e-06, -2.13778 )
-
-[node name="TestTitan2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.991, -1.90735e-06, -61.6295 )
-
-[node name="TestTitan3" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1435, -1.90735e-06, -63.4868 )
-
-[node name="TestTitan4" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -62.3337, -1.90735e-06, -62.1998 )
-
-[node name="TestTitan5" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.3398, 5.72205e-06, -28.1361 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2225, 0, 24.9088 )
 
 [node name="FpsMeter" parent="." instance=ExtResource( 8 )]
 
-[node name="test_titan_no_root" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.918, 1, -65.44 )
+[node name="Bounds" type="StaticBody" parent="."]
+transform = Transform( -1.62921e-07, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -1.62921e-07, 7.12149e-15, 67.7811, 30.5731, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Bounds"]
+transform = Transform( 1, 0, 0, 0, 1, -1.16024e-21, 0, -1.16024e-21, 1, 0, -7.62939e-06, -116.333 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Bounds"]
+transform = Transform( 1, 0, 0, 0, 1, -1.16024e-21, 0, -1.16024e-21, 1, 2.28407e-05, -140.195, -116.333 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Bounds"]
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, -1.16024e-21, 0, 0, 1, -72.6069, -66.7983, -116.332 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Bounds"]
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, -1.16024e-21, 0, 0, 1, 73.3633, -66.7982, -116.332 )
+shape = SubResource( 1 )
