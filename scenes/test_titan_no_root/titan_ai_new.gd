@@ -3,8 +3,8 @@ extends KinematicBody
 var _garbage;
 
 export(NodePath) onready var _hitbox = get_node(_hitbox) as Area
-var _nav_mesh: NavigationMesh = preload("res://resources/nav_meshes/sample_town/R2H8.tres") as NavigationMesh;
 
+var nav_mesh: NavigationMesh;
 var _nav: Navigation;
 
 const move_speed: int = 1000;
@@ -23,11 +23,11 @@ var hit_points: int = 0;
 func _ready():
 	_garbage = _hitbox.connect("hit", self, "_on_hit");
 	
-	_nav = Navigation.new();
-	_garbage = _nav.navmesh_add(_nav_mesh, Transform.IDENTITY);
-	
-	var target_pos: Position3D = self.get_tree().get_nodes_in_group("target")[0];
-	path = _get_path_to(target_pos.global_transform.origin);
+#	_nav = Navigation.new();
+#	_garbage = _nav.navmesh_add(_nav_mesh, Transform.IDENTITY);
+#
+#	var target_pos: Position3D = self.get_tree().get_nodes_in_group("target")[0];
+#	path = _get_path_to(target_pos.global_transform.origin);
 
 
 func _physics_process(delta):
@@ -44,6 +44,14 @@ func _physics_process(delta):
 func smooth_look_at(pos: Vector3, delta: float) -> void:
 	var T: Transform = self.global_transform.looking_at(pos, Vector3.UP);
 	self.global_transform = self.global_transform.interpolate_with(T, delta * 5);
+
+
+func init_pathfinding() -> void:
+	_nav = Navigation.new();
+	_garbage = _nav.navmesh_add(nav_mesh, Transform.IDENTITY);
+	
+	var target_pos: Position3D = self.get_tree().get_nodes_in_group("target")[0];
+	path = _get_path_to(target_pos.global_transform.origin);
 
 
 func _get_path_to(destination: Vector3) -> PoolVector3Array:

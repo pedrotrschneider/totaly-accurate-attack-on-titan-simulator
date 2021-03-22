@@ -1,0 +1,308 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/sample_level/level_controller.gd" type="Script" id=1]
+[ext_resource path="res://resources/nav_meshes/sample_level/5m.tres" type="NavigationMesh" id=2]
+[ext_resource path="res://resources/materials/grid_material_dark.tres" type="Material" id=3]
+[ext_resource path="res://resources/materials/grid_material_orange.tres" type="Material" id=4]
+[ext_resource path="res://resources/materials/grid_material_green.tres" type="Material" id=5]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=6]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 5, 4, 5 )
+
+[node name="SampleLevel" type="Spatial"]
+script = ExtResource( 1 )
+_spawn_positions_container = NodePath("SpawnPosContainer")
+_titan_targets_paths = [ NodePath("Target") ]
+
+[node name="SpawnPosContainer" type="Spatial" parent="."]
+
+[node name="Position3D" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 63.4612, 0, -62.6151 )
+
+[node name="Position3D2" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 66.5638, 0, -51.3331 )
+
+[node name="Position3D3" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 68.8201, 0, -30.4614 )
+
+[node name="Position3D4" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.5125, 0, -8.4615 )
+
+[node name="Position3D5" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 69.9483, 0, 8.74354 )
+
+[node name="Position3D6" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 69.6663, 0, 37.7947 )
+
+[node name="Position3D7" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 68.5381, 0, 66.2817 )
+
+[node name="Position3D8" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5895, 0, 66.5638 )
+
+[node name="Position3D9" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9229, 0, 67.1279 )
+
+[node name="Position3D10" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.38461, 0, 68.5381 )
+
+[node name="Position3D11" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3845, 0, 68.5381 )
+
+[node name="Position3D12" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.2048, 0, 67.974 )
+
+[node name="Position3D13" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -67.974, 0, 59.7946 )
+
+[node name="Position3D14" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -68.8201, 0, 34.128 )
+
+[node name="Position3D15" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -69.6663, 0, 7.33332 )
+
+[node name="Position3D16" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -69.9483, 0, -20.8717 )
+
+[node name="Position3D17" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -69.1022, 0, -48.2305 )
+
+[node name="Position3D18" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.4612, 0, -64.5894 )
+
+[node name="Position3D19" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44.2818, 0, -67.4099 )
+
+[node name="Position3D20" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8203, 0, -67.4099 )
+
+[node name="Position3D21" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.82047, 0, -68.8201 )
+
+[node name="Position3D22" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4871, 0, -69.1022 )
+
+[node name="Position3D23" type="Position3D" parent="SpawnPosContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4871, 0, -69.1022 )
+
+[node name="Geometry" type="CSGCombiner" parent="."]
+use_collision = true
+collision_layer = 17
+collision_mask = 29
+
+[node name="CSGBox" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+width = 150.0
+height = 1.0
+depth = 150.0
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 3, 1 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox3" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -14 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox4" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 3, -23 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox5" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 3, -28 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox6" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 3, -6 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox7" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 3, 11 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox8" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 3, 28 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox9" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 3, 43 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox10" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 3, 61 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox11" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 48 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox12" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 3, 61 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox13" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 3, 41 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox14" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 3, 53 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox15" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 21 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox16" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3, 17 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox17" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 3, 5 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox18" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 3, 25 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox19" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 3, -15 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox20" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3, -25 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox21" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 3, -37 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox22" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 3, -41 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox23" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 3, -46 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox24" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 3, -50 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox25" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, -56 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox26" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 3, -61 )
+width = 16.0
+height = 6.0
+depth = 14.0
+material = ExtResource( 4 )
+
+[node name="CSGBox27" type="CSGBox" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 21, 4 )
+width = 6.0
+height = 42.0
+depth = 6.0
+material = ExtResource( 5 )
+
+[node name="Navigation" type="Navigation" parent="."]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = ExtResource( 2 )
+
+[node name="Target" type="Position3D" parent="." groups=[
+"target",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4 )
+
+[node name="Area" type="Area" parent="Target"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="Target/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+shape = SubResource( 1 )
+
+[node name="SpawnTitan" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7646, 7.26607, -2.04044 )
+[connection signal="timeout" from="SpawnTitan" to="." method="_on_SpawnTitan_timeout"]
