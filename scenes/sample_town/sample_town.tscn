@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/materials/grid_material_dark.tres" type="Material" id=1]
 [ext_resource path="res://resources/materials/grid_material_orange.tres" type="Material" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://resources/nav_meshes/sample_town/R2H8.tres" type="NavigationMesh" id=6]
 [ext_resource path="res://scenes/test_titan/test_titan.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/fps_meter/fps_meter.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/test_titan_no_root/test_titan_no_root.tscn" type="PackedScene" id=9]
 
 [node name="SampleTown" type="Spatial"]
 script = ExtResource( 4 )
@@ -147,3 +148,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -62.3337, -1.90735e-06, -62.19
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.3398, 5.72205e-06, -28.1361 )
 
 [node name="FpsMeter" parent="." instance=ExtResource( 8 )]
+
+[node name="test_titan_no_root" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.918, 1, -65.44 )
