@@ -980,6 +980,7 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource( 1 )
 _hitbox = NodePath("Area")
+_attack_timer = NodePath("AttackTimer")
 
 [node name="OtherTitanCollision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.26542, -0.183495 )
@@ -1333,7 +1334,7 @@ skin = SubResource( 4 )
 material/0 = null
 
 [node name="LeftLegUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.893027, 0.406801, 0.192396, -0.167264, -0.696978, 0.697312, 0.417763, 0.590537, 0.690463, 0.341938, 2.3776, 0.0116056 )
+transform = Transform( -0.889858, 0.417716, 0.183483, -0.19512, -0.711966, 0.67456, 0.412409, 0.564461, 0.715053, 0.336197, 2.33773, 0.0306305 )
 bone_name = "left_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLegUp"]
@@ -1346,7 +1347,7 @@ transform = Transform( 1, 2.98023e-08, 0, -4.47035e-08, 1, -2.98023e-08, 2.98023
 shape = SubResource( 5 )
 
 [node name="LeftLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.851281, -0.215204, 0.478547, -0.225669, -0.673204, -0.70418, 0.473703, -0.707448, 0.52452, 0.80838, 1.57844, 0.688718 )
+transform = Transform( -0.835774, -0.226713, 0.500083, -0.29148, -0.588651, -0.754008, 0.465318, -0.775944, 0.425896, 0.815154, 1.52139, 0.677844 )
 bone_name = "left_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLeg"]
@@ -1359,7 +1360,7 @@ transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-0
 shape = SubResource( 5 )
 
 [node name="RightLegUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.976168, -0.177071, -0.125512, 0.0745957, -0.816768, 0.572123, -0.203821, 0.549122, 0.810506, -0.331213, 2.33187, 0.0644876 )
+transform = Transform( -0.972108, -0.194312, -0.131376, 0.0705598, -0.776414, 0.62626, -0.223693, 0.599518, 0.768465, -0.337311, 2.29538, 0.0817431 )
 bone_name = "right_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLegUp"]
@@ -1372,7 +1373,7 @@ transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-0
 shape = SubResource( 5 )
 
 [node name="RightLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.951599, -0.0997936, -0.29071, 0.198861, -0.921082, -0.334755, -0.234363, -0.376361, 0.89634, -0.534244, 1.39538, 0.694104 )
+transform = Transform( -0.957765, -0.0793471, -0.276409, 0.173558, -0.92588, -0.335593, -0.229295, -0.36939, 0.900541, -0.560112, 1.40515, 0.769143 )
 bone_name = "right_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLeg"]
@@ -1385,7 +1386,7 @@ transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-0
 shape = SubResource( 5 )
 
 [node name="Torso" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.991803, -0.0942162, 0.0863201, 0.102766, 0.989601, -0.100642, -0.0759404, 0.108687, 0.991171, -0.0201789, 2.73629, 0.0466802 )
+transform = Transform( 0.993816, -0.0911353, 0.0634365, 0.0972904, 0.990029, -0.101869, -0.0535201, 0.107411, 0.992773, -0.0245689, 2.69829, 0.0600701 )
 bone_name = "spine"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/Torso"]
@@ -1405,3 +1406,7 @@ anims/T-Pose-loop = SubResource( 8 )
 tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 3.0
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

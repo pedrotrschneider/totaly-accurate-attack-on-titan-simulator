@@ -1,5 +1,9 @@
 extends Spatial
 
+var _garbage;
+
+const MAX_TARGET_HEALTH: int = 100;
+
 export(NodePath) onready var _spawn_positions_container = get_node(_spawn_positions_container) as Spatial;
 export(Array, NodePath) onready var _titan_targets_paths;
 
@@ -10,8 +14,12 @@ var spawn_positions: PoolVector3Array = [];
 var titan_target_positions: PoolVector3Array = [];
 var titans_in_target_area: int = 0;
 
+var target_health: float = MAX_TARGET_HEALTH;
+
 
 func _ready() -> void:
+	_garbage = GameEvents.connect("damage_target", self, "_on_damage_target");
+	
 	for spawn_pos in _spawn_positions_container.get_children():
 		spawn_positions.append(spawn_pos.global_transform.origin);
 	
@@ -28,21 +36,27 @@ func _on_SpawnTitan_timeout() -> void:
 	else:
 		target_pos = titan_target_positions[0];
 	
-	print(target_pos);
 	var titan_instance = _titan_res.instance();
 	self.add_child(titan_instance);
 	titan_instance.nav_mesh = _navmesh;
 	titan_instance.global_transform.origin = spawn_pos;
 	titan_instance.target_pos = target_pos;
 	titan_instance.init_pathfinding();
+	
+	GameEvents.emit_enemy_spawned_signal(titan_instance);
 
 
 func _on_TargetArea_body_entered(body) -> void:
 	if(body.is_in_group("enemy")):
+		body.got_to_target();
 		titans_in_target_area += 1;
-		print(titans_in_target_area);
 
 
 func _on_TargetArea_body_exited(body) -> void:
 	if(body.is_in_group("enemy")):
 		titans_in_target_area -= 1;
+
+
+func _on_damage_target(damage: float):
+	target_health -= damage;
+	GameEvents.emit_update_target_health_signal(target_health, MAX_TARGET_HEALTH);

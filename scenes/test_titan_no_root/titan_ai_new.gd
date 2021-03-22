@@ -8,14 +8,14 @@ enum TITAN_STATES {
 }
 
 export(NodePath) onready var _hitbox = get_node(_hitbox) as Area
+export(NodePath) onready var _attack_timer = get_node(_attack_timer) as Timer;
 
 var nav_mesh: NavigationMesh;
 var _nav: Navigation;
 
 var state: int;
 
-const move_speed: int = 1000;
-const move_acceleration: float = 100.0;
+const move_speed: float = 4.0;
 const gravity: float = 9.8;
 
 var target_pos: Vector3;
@@ -42,9 +42,11 @@ func _physics_process(delta):
 				path_index += 1;
 			else:
 				smooth_look_at(path_position, delta);
-				_garbage = self.move_and_slide(move_dir.normalized() * move_speed * delta);
+				_garbage = self.move_and_slide(move_dir.normalized() * move_speed);
 	elif(state == TITAN_STATES.ATTACK):
-		pass
+		smooth_look_at(target_pos, delta);
+		if(_attack_timer.is_stopped()):
+			_attack_timer.start();
 
 
 func smooth_look_at(pos: Vector3, delta: float) -> void:
@@ -72,3 +74,11 @@ func _on_hit() -> void:
 	if(hit_points >= MAX_HIT_POINTS):
 		GameEvents.emit_enemy_killed_signal(self);
 		self.queue_free();
+
+
+func got_to_target() -> void:
+	state = TITAN_STATES.ATTACK;
+
+
+func _on_AttackTimer_timeout():
+	GameEvents.emit_signal("damage_target", 10);

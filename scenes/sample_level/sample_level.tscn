@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/sample_level/level_controller.gd" type="Script" id=1]
 [ext_resource path="res://resources/nav_meshes/sample_level/5m.tres" type="NavigationMesh" id=2]
@@ -6,9 +6,12 @@
 [ext_resource path="res://resources/materials/grid_material_orange.tres" type="Material" id=4]
 [ext_resource path="res://resources/materials/grid_material_green.tres" type="Material" id=5]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/fps_meter/fps_meter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/sample_level/target_health.gd" type="Script" id=8]
+[ext_resource path="res://scenes/sample_level/minimap.gd" type="Script" id=9]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 5, 4, 5 )
+extents = Vector3( 3.48547, 4, 3.48531 )
 
 [node name="SampleLevel" type="Spatial"]
 script = ExtResource( 1 )
@@ -290,12 +293,12 @@ navmesh = ExtResource( 2 )
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4 )
 
-[node name="Area" type="Area" parent="Target"]
+[node name="TargetArea" type="Area" parent="Target"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 collision_layer = 16
 collision_mask = 4
 
-[node name="CollisionShape" type="CollisionShape" parent="Target/Area"]
+[node name="CollisionShape" type="CollisionShape" parent="Target/TargetArea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 shape = SubResource( 1 )
 
@@ -305,4 +308,67 @@ autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7646, 7.26607, -2.04044 )
+
+[node name="LevelUI" type="CanvasLayer" parent="."]
+
+[node name="CanvasLayer" parent="LevelUI" instance=ExtResource( 7 )]
+
+[node name="TargetHealth" type="Control" parent="LevelUI"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 20.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+_health_rect = NodePath("CurrentHealth")
+
+[node name="TotalHealth" type="ColorRect" parent="LevelUI/TargetHealth"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 160.0
+margin_bottom = 20.0
+color = Color( 0, 0, 0, 0.454902 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentHealth" type="ColorRect" parent="LevelUI/TargetHealth"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 160.0
+margin_bottom = 20.0
+color = Color( 0.12549, 1, 0, 0.454902 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Minimap" type="Control" parent="LevelUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = 30.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+map_rect = NodePath("ColorRect")
+map_size = Vector2( 150, 150 )
+
+[node name="ColorRect" type="ColorRect" parent="LevelUI/Minimap"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -200.0
+margin_bottom = 200.0
+color = Color( 0, 0, 0, 0.505882 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="Target/TargetArea" to="." method="_on_TargetArea_body_entered"]
+[connection signal="body_exited" from="Target/TargetArea" to="." method="_on_TargetArea_body_exited"]
 [connection signal="timeout" from="SpawnTitan" to="." method="_on_SpawnTitan_timeout"]

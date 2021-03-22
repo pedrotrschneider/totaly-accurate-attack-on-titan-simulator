@@ -372,7 +372,7 @@ func hook(delta:float) -> void :
 	elif (hook_2 == HOOK_STATES.GRAPPLED):
 		if (hook_2_interaction):
 			hook_2 = HOOK_STATES.REWINDING;
-
+	
 	elif (hook_2 == HOOK_STATES.REWINDING):
 		if (hook_2_interaction && hook_2_grapple_position):
 			var direction:Vector3 = (hook_2_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
