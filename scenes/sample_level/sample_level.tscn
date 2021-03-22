@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/sample_level/level_controller.gd" type="Script" id=1]
 [ext_resource path="res://resources/nav_meshes/sample_level/5m.tres" type="NavigationMesh" id=2]
@@ -6,9 +6,8 @@
 [ext_resource path="res://resources/materials/grid_material_orange.tres" type="Material" id=4]
 [ext_resource path="res://resources/materials/grid_material_green.tres" type="Material" id=5]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/fps_meter/fps_meter.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/sample_level/target_health.gd" type="Script" id=8]
-[ext_resource path="res://scenes/sample_level/minimap.gd" type="Script" id=9]
+[ext_resource path="res://scenes/level_ui/level_ui.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/fps_meter/fps_meter.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/target_building/target.tscn" type="PackedScene" id=11]
 
 [node name="SampleLevel" type="Spatial"]
@@ -289,51 +288,14 @@ navmesh = ExtResource( 2 )
 [node name="Target" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4 )
 
-[node name="Target2" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.8935, -9.53674e-07, 3.81196 )
-
 [node name="SpawnTitan" type="Timer" parent="."]
-one_shot = true
+wait_time = 10.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7646, 7.26607, -2.04044 )
 
-[node name="LevelUI" type="CanvasLayer" parent="."]
+[node name="LevelUI" parent="." instance=ExtResource( 7 )]
 
-[node name="CanvasLayer" parent="LevelUI" instance=ExtResource( 7 )]
-
-[node name="TargetHealth" type="VBoxContainer" parent="LevelUI"]
-margin_left = 30.0
-margin_top = 30.0
-margin_right = 230.0
-margin_bottom = 83.0
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Minimap" type="Control" parent="LevelUI"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -30.0
-margin_top = 30.0
-margin_right = -30.0
-margin_bottom = 30.0
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-map_rect = NodePath("ColorRect")
-map_size = Vector2( 150, 150 )
-
-[node name="ColorRect" type="ColorRect" parent="LevelUI/Minimap"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -200.0
-margin_bottom = 200.0
-color = Color( 0, 0, 0, 0.505882 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CanvasLayer" parent="." instance=ExtResource( 8 )]
 [connection signal="timeout" from="SpawnTitan" to="." method="_on_SpawnTitan_timeout"]

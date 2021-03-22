@@ -1,5 +1,7 @@
 extends Node
 
+signal game_over(level);
+
 # Player signals
 signal attack;
 
@@ -8,6 +10,10 @@ signal enemy_killed(object);
 
 # UI events
 signal enemy_spawned(enemy);
+
+
+func emit_game_over_signal(level: Object) -> void:
+	self.emit_signal("game_over", level);
 
 
 func emit_attack_signal() -> void:

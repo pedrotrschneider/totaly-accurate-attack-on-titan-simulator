@@ -84,4 +84,4 @@ func got_to_target() -> void:
 
 func _on_AttackTimer_timeout():
 	print("signal emitted")
-	self.emit_signal("attack_target", 10);
+	self.emit_signal("attack_target", 50);
