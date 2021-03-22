@@ -1,7 +1,5 @@
 extends Spatial
 
-var _garbage;
-
 const MAX_TARGET_HEALTH: int = 100;
 
 export(NodePath) onready var _spawn_positions_container = get_node(_spawn_positions_container) as Spatial;
@@ -18,8 +16,6 @@ var target_health: float = MAX_TARGET_HEALTH;
 
 
 func _ready() -> void:
-	_garbage = GameEvents.connect("damage_target", self, "_on_damage_target");
-	
 	for spawn_pos in _spawn_positions_container.get_children():
 		spawn_positions.append(spawn_pos.global_transform.origin);
 	
@@ -44,19 +40,3 @@ func _on_SpawnTitan_timeout() -> void:
 	titan_instance.init_pathfinding();
 	
 	GameEvents.emit_enemy_spawned_signal(titan_instance);
-
-
-func _on_TargetArea_body_entered(body) -> void:
-	if(body.is_in_group("enemy")):
-		body.got_to_target();
-		titans_in_target_area += 1;
-
-
-func _on_TargetArea_body_exited(body) -> void:
-	if(body.is_in_group("enemy")):
-		titans_in_target_area -= 1;
-
-
-func _on_damage_target(damage: float):
-	target_health -= damage;
-	GameEvents.emit_update_target_health_signal(target_health, MAX_TARGET_HEALTH);

@@ -29,20 +29,22 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	var p_rel_pos: Vector2 = calculate_relative_position(player.global_transform.origin);
-	draw_circle(p_rel_pos, 3.0, Color.white);
-	var angle: float = deg2rad(player.rotation_degrees.y);
-	var p_rel_end_pos: Vector2 = p_rel_pos + Vector2(10 * sin(angle), 10 * cos(angle));
-	draw_line(p_rel_pos, p_rel_end_pos, Color.white, 1.0);
-	
+	# Draw enemy markers
 	for enemy in enemies:
 		if(enemy):
 			draw_circle(calculate_relative_position(enemy.global_transform.origin), 3.0, Color.red);
 		else:
 			enemies.remove(enemies.find(enemy));
-	
+	 # Draw target markers
 	for target in targets:
 		draw_circle(calculate_relative_position(target.global_transform.origin), 3.0, Color.green);
+	
+	# Draw player marker
+	var p_rel_pos: Vector2 = calculate_relative_position(player.global_transform.origin);
+	draw_circle(p_rel_pos, 3.0, Color.white);
+	var angle: float = deg2rad(player.rotation_degrees.y);
+	var p_rel_end_pos: Vector2 = p_rel_pos - Vector2(-10 * sin(angle), 10 * cos(angle));
+	draw_line(p_rel_pos, p_rel_end_pos, Color.white, 1.0);
 
 
 func _process(_delta) -> void:

@@ -2,19 +2,21 @@ extends Control
 
 var _garbage;
 
-export(NodePath) onready var _health_rect = get_node(_health_rect) as ColorRect;
-
-var max_health: float = 1;
-var cur_health: float = 1;
+var health_bar_res: Resource = preload("res://scenes/health_bar/health_bar.tscn") as Resource;
+var targets: Array = [];
+var health_bars: Array = [];
 
 func _ready():
-	_garbage = GameEvents.connect("update_target_health", self, "_on_update_target_health");
-
+	targets = get_tree().get_nodes_in_group("target");
+	
+	for target in targets:
+		var health_bar_instance: Object = health_bar_res.instance();
+		self.add_child(health_bar_instance);
+		health_bars.append(health_bar_instance.get_child(1));
 
 func _process(delta):
-	_health_rect.rect_scale.x = lerp(_health_rect.rect_scale.x, cur_health / max_health, delta * 5.0);
-
-
-func _on_update_target_health(value: float, max_value: float):
-	max_health = max_value;
-	cur_health = value;
+	for i in targets.size():
+		var target: Position3D = targets[i];
+		var health_bar: ColorRect = health_bars[i];
+		
+		health_bar.rect_scale.x = lerp(health_bar.rect_scale.x, target.health / target.MAX_HEALTH, delta * 5);

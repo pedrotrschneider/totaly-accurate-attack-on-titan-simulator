@@ -28,6 +28,8 @@ var velocity: Vector3 = Vector3.ZERO;
 const MAX_HIT_POINTS: int = 2;
 var hit_points: int = 0;
 
+signal attack_target(damage);
+
 
 func _ready():
 	_garbage = _hitbox.connect("hit", self, "_on_hit");
@@ -81,4 +83,5 @@ func got_to_target() -> void:
 
 
 func _on_AttackTimer_timeout():
-	GameEvents.emit_signal("damage_target", 10);
+	print("signal emitted")
+	self.emit_signal("attack_target", 10);

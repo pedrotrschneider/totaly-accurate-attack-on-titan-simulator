@@ -21,6 +21,8 @@ var velocity: Vector3 = Vector3.ZERO;
 const MAX_HIT_POINTS: int = 2;
 var hit_points: int = 0;
 
+signal attack_target(damage);
+
 
 func _ready():
 	_garbage = _hitbox.connect("hit", self, "_on_hit");
