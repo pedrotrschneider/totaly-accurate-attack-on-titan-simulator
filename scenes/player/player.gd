@@ -4,7 +4,7 @@ var _garbage;
 
 export (NodePath) onready  var head = get_node(head) as Position3D;
 export (NodePath) onready  var eye = get_node(eye) as Position3D;
-export (NodePath) onready  var capsule = get_node(capsule) as MeshInstance;
+export (NodePath) onready  var capsule = get_node(capsule) as CollisionShape;
 export (NodePath) onready  var crosshair_position = get_node(crosshair_position) as Position3D;
 export (NodePath) onready  var hook_1_origin = get_node(hook_1_origin) as Position3D;
 export (NodePath) onready  var hook_2_origin = get_node(hook_2_origin) as Position3D;
@@ -76,8 +76,8 @@ func remap_range(value: float, min_in_range: float, max_in_range: float, min_out
 func is_grounded() -> bool:
 	var num_rays: int = 9;
 	var sep_rad: float = deg2rad(360 / float(num_rays - 1));
-	var capsule_radius: float = capsule.mesh.radius;
-	var capsule_heihgt: float = capsule.mesh.mid_height;
+	var capsule_radius: float = capsule.shape.radius;
+	var capsule_heihgt: float = capsule.shape.height;
 	var ray_positions: Array = PoolVector3Array();
 	
 	for i in num_rays - 1:
@@ -95,7 +95,7 @@ func is_grounded() -> bool:
 	var direct_state: PhysicsDirectSpaceState = get_world().direct_space_state;
 	var collision: Dictionary;
 	for ray in ray_positions:
-		collision = direct_state.intersect_ray(ray, ray + Vector3(0.0, - (capsule_heihgt + 0.0005), 0.0));
+		collision = direct_state.intersect_ray(ray, ray + Vector3(0.0, - (capsule_heihgt + 0.5), 0.0));
 		if (collision):
 			break;
 	

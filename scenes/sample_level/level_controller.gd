@@ -49,7 +49,7 @@ func _on_SpawnTitan_timeout() -> void:
 		self.add_child(titan_instance);
 	else:
 		titan_instance = titan_pool[titan_pool.size() - 1];
-		titan_pool.remove(titan_pool.size() - 1);
+		titan_pool.remove(titan_pool.find(titan_instance));
 	
 	titan_instance.nav_mesh = _navmesh;
 	titan_instance.global_transform.origin = spawn_pos;

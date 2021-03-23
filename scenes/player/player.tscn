@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=1]
 [ext_resource path="res://resources/assets/textures/crosshair.png" type="Texture" id=2]
@@ -6,11 +6,7 @@
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
-height = 1.5
-
-[sub_resource type="CapsuleMesh" id=2]
-radius = 0.5
-mid_height = 1.5
+height = 0.9
 
 [sub_resource type="CubeMesh" id=3]
 size = Vector3( 0.3, 2, 0.5 )
@@ -26,7 +22,7 @@ can_sleep = false
 script = ExtResource( 1 )
 head = NodePath("Head")
 eye = NodePath("Head/Eye")
-capsule = NodePath("Body")
+capsule = NodePath("Shape")
 crosshair_position = NodePath("Head/CrosshairPosition")
 hook_1_origin = NodePath("HookOrigin1")
 hook_2_origin = NodePath("HookOrigin2")
@@ -35,14 +31,8 @@ hook_2_origin = NodePath("HookOrigin2")
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 shape = SubResource( 1 )
 
-[node name="Body" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
-cast_shadow = 0
-mesh = SubResource( 2 )
-material/0 = null
-
 [node name="Head" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70417, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
 

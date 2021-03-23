@@ -330,9 +330,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7646, 7.26607, -2.04044 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7646, 9.30209, -2.04044 )
 
 [node name="LevelUI" parent="." instance=ExtResource( 7 )]
 [connection signal="timeout" from="SpawnTitan" to="." method="_on_SpawnTitan_timeout"]
-
-[editable path="Player"]

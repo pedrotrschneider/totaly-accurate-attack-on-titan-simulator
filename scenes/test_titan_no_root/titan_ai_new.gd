@@ -72,7 +72,6 @@ func init_pathfinding() -> void:
 
 func stop_pathfinding() -> void:
 	state = TITAN_STATES.POOL;
-	_nav.call_deferred("free");
 	path.clear();
 	target_pos = Vector3.ZERO;
 	path_index = 0;
