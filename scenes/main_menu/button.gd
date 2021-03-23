@@ -2,10 +2,11 @@ extends Label
 
 var _garbage;
 
-export(NodePath) onready var button = get_node(button) as Button;
 export(PackedScene) var destination_scene;
 export(bool) var selectable = true;
+export(bool) var quit = false;
 
+onready var button: Button = get_node("Button") as Button;
 onready var font: Font = self.get_font("font");
 var mouse_over: bool = false;
 
@@ -36,4 +37,7 @@ func _on_mouse_exited():
 
 func _on_gui_input(event):
 	if(event is InputEventMouseButton && event.is_pressed()):
-		GameEvents.emit_go_to_scene_signal(destination_scene);
+		if(!quit):
+			GameEvents.emit_go_to_scene_signal(destination_scene);
+		else:
+			self.get_tree().call_deferred("quit");

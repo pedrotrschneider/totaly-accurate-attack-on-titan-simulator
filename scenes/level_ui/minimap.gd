@@ -48,7 +48,7 @@ func _draw() -> void:
 
 
 func _process(_delta) -> void:
-	update();
+	update(); # Need this to call draw every frame
 
 
 func _on_enemy_spawned(enemy: Object) -> void:
