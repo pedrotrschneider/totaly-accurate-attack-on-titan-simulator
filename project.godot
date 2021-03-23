@@ -85,6 +85,10 @@ attack={
 3d_physics/layer_5="Grapple"
 3d_physics/layer_6="Target"
 
+[logging]
+
+file_logging/enable_file_logging=true
+
 [physics]
 
 common/physics_fps=240

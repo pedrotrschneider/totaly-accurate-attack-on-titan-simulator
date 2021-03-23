@@ -28,6 +28,8 @@ var velocity: Vector3 = Vector3.ZERO;
 const MAX_HIT_POINTS: int = 2;
 var hit_points: int = 0;
 
+var damage: float = 10;
+
 signal attack_target(damage);
 
 
@@ -74,8 +76,21 @@ func _on_hit() -> void:
 	hit_points += 1;
 	
 	if(hit_points >= MAX_HIT_POINTS):
+		for collision in get_tree().get_nodes_in_group("collision"):
+			collision.disabled = true;
+			collision.call_deferred("free");
+
+		self.hide();
+		
 		GameEvents.emit_enemy_killed_signal(self);
-		self.queue_free();
+		
+#		self.global_transform.origin = Vector3(1000, 1000, 1000);
+		
+		
+#		yield(get_tree().create_timer(1.0), "timeout");
+		
+		
+#		self.call_deferred("queue_free");
 
 
 func got_to_target() -> void:
@@ -84,4 +99,4 @@ func got_to_target() -> void:
 
 func _on_AttackTimer_timeout():
 	print("signal emitted")
-	self.emit_signal("attack_target", 50);
+	self.emit_signal("attack_target", damage);

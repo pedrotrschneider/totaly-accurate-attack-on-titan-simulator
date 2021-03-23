@@ -982,7 +982,9 @@ script = ExtResource( 1 )
 _hitbox = NodePath("Area")
 _attack_timer = NodePath("AttackTimer")
 
-[node name="OtherTitanCollision" type="CollisionShape" parent="."]
+[node name="OtherTitanCollision" type="CollisionShape" parent="." groups=[
+"collision",
+]]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.26542, -0.183495 )
 shape = SubResource( 1 )
 
@@ -993,7 +995,9 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape" type="CollisionShape" parent="Area" groups=[
+"collision",
+]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00924787, -0.170486, 0.0652261 )
 shape = SubResource( 2 )
 
@@ -1010,7 +1014,7 @@ bones/1/name = "spine"
 bones/1/parent = 0
 bones/1/rest = Transform( 0.99788, -0.0311608, 0.0571359, 0.0369897, 0.993892, -0.103978, -0.0535468, 0.105871, 0.992937, 0, 0.245607, -0.0172443 )
 bones/1/enabled = true
-bones/1/bound_children = [  ]
+bones/1/bound_children = [ NodePath("Torso") ]
 bones/2/name = "spine_1"
 bones/2/parent = 1
 bones/2/rest = Transform( 0.999817, 0.0157134, 0.0108997, -0.0155173, 0.99972, -0.0178475, -0.0111771, 0.0176751, 0.999781, 2.98023e-08, 0.287246, 7.45063e-09 )
@@ -1280,12 +1284,12 @@ bones/55/name = "left_up_leg"
 bones/55/parent = 0
 bones/55/rest = Transform( -0.92954, 0.29272, 0.224208, -0.0437856, -0.6914, 0.721144, 0.366111, 0.660515, 0.655501, 0.338326, -0.136555, -0.039749 )
 bones/55/enabled = true
-bones/55/bound_children = [  ]
+bones/55/bound_children = [ NodePath("LeftLegUp") ]
 bones/56/name = "left_leg"
 bones/56/parent = 55
 bones/56/rest = Transform( 0.998657, 0.03943, -0.0336182, 0.0291826, 0.108123, 0.993709, 0.0428168, -0.993355, 0.106827, -4.21677e-08, 1.14658, 1.18084e-07 )
 bones/56/enabled = true
-bones/56/bound_children = [  ]
+bones/56/bound_children = [ NodePath("LeftLeg") ]
 bones/57/name = "left_foot"
 bones/57/parent = 56
 bones/57/rest = Transform( 0.990857, -0.117962, 0.0654789, 0.0851066, 0.169908, -0.981778, 0.104687, 0.978374, 0.178394, 4.66013e-08, 1.18735, -7.69529e-09 )
@@ -1305,12 +1309,12 @@ bones/60/name = "right_up_leg"
 bones/60/parent = 0
 bones/60/rest = Transform( -0.961386, -0.241882, -0.131298, 0.153407, -0.867041, 0.474032, -0.228502, 0.435583, 0.870663, -0.338331, -0.136554, -0.0272773 )
 bones/60/enabled = true
-bones/60/bound_children = [  ]
+bones/60/bound_children = [ NodePath("RightLegUp") ]
 bones/61/name = "right_leg"
 bones/61/parent = 60
 bones/61/rest = Transform( 0.982175, 0.131188, 0.134622, -0.187759, 0.650582, 0.73586, 0.008953, -0.748019, 0.663617, 8.79977e-08, 1.14658, -3.88112e-08 )
 bones/61/enabled = true
-bones/61/bound_children = [  ]
+bones/61/bound_children = [ NodePath("RightLeg") ]
 bones/62/name = "right_foot"
 bones/62/parent = 61
 bones/62/rest = Transform( 0.99766, 0.0676228, 0.0100918, -0.00830529, 0.26637, -0.963835, -0.0678654, 0.961496, 0.266308, -1.01015e-07, 1.18731, 8.7156e-09 )
@@ -1334,7 +1338,7 @@ skin = SubResource( 4 )
 material/0 = null
 
 [node name="LeftLegUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.889858, 0.417716, 0.183483, -0.19512, -0.711966, 0.67456, 0.412409, 0.564461, 0.715053, 0.336197, 2.33773, 0.0306305 )
+transform = Transform( -0.905109, 0.354261, 0.23511, -0.24426, -0.885854, 0.394461, 0.348015, 0.299602, 0.888326, 0.355724, 2.24412, 0.0995108 )
 bone_name = "left_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLegUp"]
@@ -1342,12 +1346,14 @@ transform = Transform( 0.961161, -0.2751, -0.0221743, 0.0132913, -0.0341122, 0.9
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/LeftLegUp/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/LeftLegUp/StaticBody" groups=[
+"collision",
+]]
 transform = Transform( 1, 2.98023e-08, 0, -4.47035e-08, 1, -2.98023e-08, 2.98023e-08, -2.98023e-08, 1, 0.0667603, 0.0224897, 0.00436163 )
 shape = SubResource( 5 )
 
 [node name="LeftLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.835774, -0.226713, 0.500083, -0.29148, -0.588651, -0.754008, 0.465318, -0.775944, 0.425896, 0.815154, 1.52139, 0.677844 )
+transform = Transform( -0.916436, -0.131915, 0.377815, -0.286585, -0.442611, -0.849685, 0.279312, -0.886957, 0.367819, 0.761923, 1.2284, 0.443037 )
 bone_name = "left_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLeg"]
@@ -1355,12 +1361,14 @@ transform = Transform( 0.961161, -0.2751, -0.0221743, 0.0132913, -0.0341122, 0.9
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/LeftLeg/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/LeftLeg/StaticBody" groups=[
+"collision",
+]]
 transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-08, 2.98023e-08, -3.1665e-08, 1, 0.026383, 0.0171132, 0.00494611 )
 shape = SubResource( 5 )
 
 [node name="RightLegUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.972108, -0.194312, -0.131376, 0.0705598, -0.776414, 0.62626, -0.223693, 0.599518, 0.768465, -0.337311, 2.29538, 0.0817431 )
+transform = Transform( -0.960012, -0.235112, -0.152018, 0.0399036, -0.65232, 0.756892, -0.27712, 0.720555, 0.635614, -0.319352, 2.19998, 0.118058 )
 bone_name = "right_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLegUp"]
@@ -1368,12 +1376,14 @@ transform = Transform( 0.961161, -0.2751, -0.0221743, 0.0132913, -0.0341122, 0.9
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/RightLegUp/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/RightLegUp/StaticBody" groups=[
+"collision",
+]]
 transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-08, 2.98023e-08, -3.1665e-08, 1, 0.026383, 0.0171132, 0.00494611 )
 shape = SubResource( 5 )
 
 [node name="RightLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.957765, -0.0793471, -0.276409, 0.173558, -0.92588, -0.335593, -0.229295, -0.36939, 0.900541, -0.560112, 1.40515, 0.769143 )
+transform = Transform( -0.970124, -0.055066, -0.236302, 0.110536, -0.967274, -0.22839, -0.215994, -0.247686, 0.944457, -0.588933, 1.45204, 0.944236 )
 bone_name = "right_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLeg"]
@@ -1381,12 +1391,14 @@ transform = Transform( 0.961161, -0.2751, -0.0221743, 0.0132913, -0.0341122, 0.9
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/RightLeg/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/RightLeg/StaticBody" groups=[
+"collision",
+]]
 transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-08, 2.98023e-08, -3.1665e-08, 1, 0.026383, 0.0171132, 0.00494611 )
 shape = SubResource( 5 )
 
 [node name="Torso" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.993816, -0.0911353, 0.0634365, 0.0972904, 0.990029, -0.101869, -0.0535201, 0.107411, 0.992773, -0.0245689, 2.69829, 0.0600701 )
+transform = Transform( 0.993567, -0.100461, -0.0522819, 0.0942464, 0.989436, -0.11016, 0.0627963, 0.104524, 0.992537, -0.00715022, 2.6037, 0.105705 )
 bone_name = "spine"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/Torso"]
@@ -1394,7 +1406,9 @@ transform = Transform( 0.961161, -0.2751, -0.0221743, 0.0132913, -0.0341123, 0.9
 collision_layer = 16
 collision_mask = 8
 
-[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/Torso/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Armature/Skeleton/Torso/StaticBody" groups=[
+"collision",
+]]
 transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-08, 2.98023e-08, -3.1665e-08, 1, 0.026383, 0.0171132, 0.00494611 )
 shape = SubResource( 6 )
 
