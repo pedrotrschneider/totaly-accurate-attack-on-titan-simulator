@@ -209,15 +209,16 @@ func _physics_process(delta) -> void:
 
 func _on_enemy_killed(object: Object) -> void:
 	if(hook_1_grapple_position && object.is_a_parent_of(hook_1_grapple_position)):
-		print("this is fine")
-#		hook_1_grapple_position.call_deferred("free");
-		hook_1_grapple_position.free();
-		print("memory has been freed");
+#		print("this is fine")
+#		hook_1_grapple_position.free();
+#		print("memory has been freed");
 		hook_1_release = true;
 		
 	if(hook_2_grapple_position && object.is_a_parent_of(hook_2_grapple_position)):
-		hook_2_grapple_position.call_deferred("free");
+#		hook_2_grapple_position.call_deferred("free");
 		hook_2_release = true;
+	
+	hook(0);
 
 
 ####################################

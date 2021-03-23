@@ -3,6 +3,7 @@ extends KinematicBody
 var _garbage;
 
 enum TITAN_STATES {
+	POOL,
 	FOLLOW,
 	ATTACK
 }
@@ -20,7 +21,7 @@ const gravity: float = 9.8;
 
 var target_pos: Vector3;
 
-var path: PoolVector3Array;
+var path: Array;
 var path_index: int = 0;
 
 var velocity: Vector3 = Vector3.ZERO;
@@ -59,12 +60,22 @@ func smooth_look_at(pos: Vector3, delta: float) -> void:
 
 
 func init_pathfinding() -> void:
+	self.show();
+	
 	state = TITAN_STATES.FOLLOW;
 	
 	_nav = Navigation.new();
 	_garbage = _nav.navmesh_add(nav_mesh, Transform.IDENTITY);
 	
 	path = _get_path_to(target_pos);
+
+
+func stop_pathfinding() -> void:
+	state = TITAN_STATES.POOL;
+	_nav.call_deferred("free");
+	path.clear();
+	target_pos = Vector3.ZERO;
+	path_index = 0;
 
 
 func _get_path_to(destination: Vector3) -> PoolVector3Array:
@@ -76,21 +87,10 @@ func _on_hit() -> void:
 	hit_points += 1;
 	
 	if(hit_points >= MAX_HIT_POINTS):
-		for collision in get_tree().get_nodes_in_group("collision"):
-			collision.disabled = true;
-			collision.call_deferred("free");
-
-		self.hide();
-		
 		GameEvents.emit_enemy_killed_signal(self);
-		
-#		self.global_transform.origin = Vector3(1000, 1000, 1000);
-		
-		
-#		yield(get_tree().create_timer(1.0), "timeout");
-		
-		
-#		self.call_deferred("queue_free");
+		self.hide();
+		self.global_transform.origin = Vector3(1000, 1000, 1000);
+		stop_pathfinding();
 
 
 func got_to_target() -> void:
