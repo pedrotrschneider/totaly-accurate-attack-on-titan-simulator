@@ -1333,12 +1333,13 @@ bones/64/bound_children = [  ]
 
 [node name="UniHuman_Base_Mesh001" type="MeshInstance" parent="Armature/Skeleton"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144391, 0.00791645, -0.00905037 )
+use_in_baked_light = true
 mesh = SubResource( 3 )
 skin = SubResource( 4 )
 material/0 = null
 
 [node name="LeftLegUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.905109, 0.354261, 0.23511, -0.24426, -0.885854, 0.394461, 0.348015, 0.299602, 0.888326, 0.355724, 2.24412, 0.0995108 )
+transform = Transform( -0.919072, 0.304768, 0.249845, -0.0171393, -0.664293, 0.747275, 0.393716, 0.682517, 0.615756, 0.309089, 2.4497, -0.0217593 )
 bone_name = "left_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLegUp"]
@@ -1353,7 +1354,7 @@ transform = Transform( 1, 2.98023e-08, 0, -4.47035e-08, 1, -2.98023e-08, 2.98023
 shape = SubResource( 5 )
 
 [node name="LeftLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.916436, -0.131915, 0.377815, -0.286585, -0.442611, -0.849685, 0.279312, -0.886957, 0.367819, 0.761923, 1.2284, 0.443037 )
+transform = Transform( -0.927323, -0.0560721, 0.370037, 0.0336003, -0.997193, -0.066902, 0.37275, -0.0496063, 0.926604, 0.65854, 1.68802, 0.760818 )
 bone_name = "left_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLeg"]
@@ -1368,7 +1369,7 @@ transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-0
 shape = SubResource( 5 )
 
 [node name="RightLegUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.960012, -0.235112, -0.152018, 0.0399036, -0.65232, 0.756892, -0.27712, 0.720555, 0.635614, -0.319352, 2.19998, 0.118058 )
+transform = Transform( -0.994207, -0.0746023, -0.0774423, 0.0595265, -0.981603, 0.181414, -0.0895528, 0.175751, 0.980352, -0.364176, 2.429, 0.0438657 )
 bone_name = "right_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLegUp"]
@@ -1383,7 +1384,7 @@ transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-0
 shape = SubResource( 5 )
 
 [node name="RightLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.970124, -0.055066, -0.236302, 0.110536, -0.967274, -0.22839, -0.215994, -0.247686, 0.944457, -0.588933, 1.45204, 0.944236 )
+transform = Transform( -0.933407, -0.170677, -0.315645, 0.304312, -0.842634, -0.444254, -0.19015, -0.510722, 0.838454, -0.449718, 1.30351, 0.24538 )
 bone_name = "right_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLeg"]
@@ -1398,7 +1399,7 @@ transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-0
 shape = SubResource( 5 )
 
 [node name="Torso" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.993567, -0.100461, -0.0522819, 0.0942464, 0.989436, -0.11016, 0.0627963, 0.104524, 0.992537, -0.00715022, 2.6037, 0.105705 )
+transform = Transform( 0.969598, -0.105522, 0.220784, 0.129119, 0.98704, -0.0952951, -0.207866, 0.120905, 0.970656, -0.0374905, 2.82113, 0.0324647 )
 bone_name = "spine"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/Torso"]

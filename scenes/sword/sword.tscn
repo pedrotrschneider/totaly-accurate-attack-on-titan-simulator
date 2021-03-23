@@ -56,6 +56,7 @@ _animation_player = NodePath("AnimationPlayer")
 transform = Transform( 0.983959, 0.122208, -0.129956, -0.063945, 0.921702, 0.382591, 0.166537, -0.368144, 0.914732, 0, 0, 0 )
 
 [node name="CSGCombiner" type="CSGCombiner" parent="Mesh"]
+use_in_baked_light = true
 
 [node name="CSGBox" type="CSGBox" parent="Mesh/CSGCombiner"]
 width = 0.0763402
