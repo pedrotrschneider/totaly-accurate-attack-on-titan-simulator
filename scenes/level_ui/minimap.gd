@@ -14,7 +14,7 @@ var player: Object;
 
 func calculate_relative_position(world_pos: Vector3) -> Vector2:
 	return Vector2(
-		-(world_pos.x + (map_size.x / 2.0)) / map_size.x * map_rect.rect_size.x,
+		(world_pos.x + (map_size.x / 2.0)) / map_size.x * map_rect.rect_size.x,
 		(world_pos.z + (map_size.y / 2.0)) / map_size.y * map_rect.rect_size.y
 	);
 
@@ -43,7 +43,7 @@ func _draw() -> void:
 	var p_rel_pos: Vector2 = calculate_relative_position(player.global_transform.origin);
 	draw_circle(p_rel_pos, 3.0, Color.white);
 	var angle: float = deg2rad(player.rotation_degrees.y);
-	var p_rel_end_pos: Vector2 = p_rel_pos - Vector2(-10 * sin(angle), 10 * cos(angle));
+	var p_rel_end_pos: Vector2 = p_rel_pos - Vector2(10 * sin(angle), 10 * cos(angle));
 	draw_line(p_rel_pos, p_rel_end_pos, Color.white, 1.0);
 
 
