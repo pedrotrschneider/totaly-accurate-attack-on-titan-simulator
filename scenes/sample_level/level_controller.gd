@@ -21,6 +21,12 @@ var target_health: float = MAX_TARGET_HEALTH;
 func _ready() -> void:
 	_garbage = GameEvents.connect("enemy_killed", self, "_on_enemy_killed");
 	
+	randomize();
+	
+	titan_pool.append(_titan_res.instance());
+	self.add_child(titan_pool[0]);
+	titan_pool[0].global_transform.origin = Vector3(1000, 1000, 1000);
+	
 	for spawn_pos in _spawn_positions_container.get_children():
 		spawn_positions.append(spawn_pos.global_transform.origin);
 	

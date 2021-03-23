@@ -2,13 +2,11 @@
 
 [ext_resource path="res://scenes/game/game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/defeat_screen/defeat_screen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/sample_level/sample_level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/main_menu/main_menu.tscn" type="PackedScene" id=3]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="SampleLevel" parent="." instance=ExtResource( 3 )]
+[node name="MainMenu" parent="." instance=ExtResource( 3 )]
 
 [node name="DefeatScreen" parent="." instance=ExtResource( 2 )]
-
-[editable path="SampleLevel"]
