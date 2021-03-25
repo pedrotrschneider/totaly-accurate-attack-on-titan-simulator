@@ -7,8 +7,11 @@
 [ext_resource path="res://resources/materials/grid_material_green.tres" type="Material" id=5]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/level_ui/level_ui.tscn" type="PackedScene" id=7]
-[ext_resource path="res://kloetzle_blei_2k.hdr" type="Texture" id=9]
+[ext_resource path="res://resources/assets/skybox/kloetzle_blei_2k.hdr" type="Texture" id=9]
 [ext_resource path="res://scenes/target_building/target.tscn" type="PackedScene" id=11]
+
+
+
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 9 )

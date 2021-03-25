@@ -2,7 +2,8 @@
 
 [ext_resource path="res://scenes/test_titan/titan_ai.gd" type="Script" id=1]
 [ext_resource path="res://singletons/enemy_hitbox_flag.gd" type="Script" id=2]
-[ext_resource path="res://resources/assets/models/test_titan_no_root.gltf" type="PackedScene" id=3]
+[ext_resource path="res://resources/assets/models/titans/test_titan_no_root.gltf" type="PackedScene" id=3]
+
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.648727
