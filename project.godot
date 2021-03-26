@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Totaly accurate Attack on Titan simulator"
+config/name="Totally accurate Attack on Titan simulator"
 run/main_scene="res://scenes/game/game.tscn"
 config/icon="res://icon.png"
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://resources/assets/fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/main_menu/button.gd" type="Script" id=2]
 [ext_resource path="res://scenes/sample_level/sample_level.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/main_menu/main_menu.gd" type="Script" id=4]
+[ext_resource path="res://scenes/sample_level_2/sample_level.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 44
@@ -98,7 +99,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-destination_scene = ExtResource( 3 )
+destination_scene = ExtResource( 5 )
 
 [node name="Button" type="Button" parent="Buttons/Arcade"]
 modulate = Color( 1, 1, 1, 0 )
