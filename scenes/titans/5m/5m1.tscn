@@ -4447,7 +4447,6 @@ _attack_timer = NodePath("AttackTimer")
 
 [node name="OtherTitanCollider" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.31849, 0 )
-visible = false
 shape = SubResource( 1 )
 
 [node name="Armature" type="Spatial" parent="."]
