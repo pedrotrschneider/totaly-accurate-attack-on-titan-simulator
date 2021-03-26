@@ -124,7 +124,8 @@ func _input(event) -> void :
 
 func _integrate_forces(state):
 	# Add movement force
-	self.add_central_force(movement_force);
+	if(hook_1 != HOOK_STATES.REWINDING && hook_2 != HOOK_STATES.REWINDING):
+		self.add_central_force(movement_force);
 	
 	# Add jump impulse
 	self.apply_central_impulse(jump_impulse);
