@@ -21,6 +21,7 @@ func calculate_relative_position(world_pos: Vector3) -> Vector2:
 
 func _ready() -> void:
 	_garbage = GameEvents.connect("enemy_spawned", self, "_on_enemy_spawned");
+	_garbage = GameEvents.connect("enemy_killed", self, "_on_enemy_killed");
 	
 	for target in get_tree().get_nodes_in_group("target"):
 		targets.append(target);
@@ -31,7 +32,7 @@ func _ready() -> void:
 func _draw() -> void:
 	# Draw enemy markers
 	for enemy in enemies:
-		if(enemy):
+		if(enemy.is_inside_tree()):
 			draw_circle(calculate_relative_position(enemy.global_transform.origin), 3.0, Color.red);
 		else:
 			enemies.remove(enemies.find(enemy));
@@ -53,3 +54,7 @@ func _process(_delta) -> void:
 
 func _on_enemy_spawned(enemy: Object) -> void:
 	enemies.append(enemy);
+
+
+func _on_enemy_killed(enemy: Object) -> void:
+	enemies.remove(enemies.find(enemy));

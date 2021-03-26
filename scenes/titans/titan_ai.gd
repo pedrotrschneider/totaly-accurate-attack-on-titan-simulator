@@ -8,6 +8,7 @@ enum TITAN_STATES {
 	ATTACK
 }
 
+export(NodePath) onready var _anim_tree = get_node(_anim_tree) as AnimationTree;
 export(NodePath) onready var _hitbox = get_node(_hitbox) as Area
 export(NodePath) onready var _attack_timer = get_node(_attack_timer) as Timer;
 
@@ -31,12 +32,20 @@ var hit_points: int = 0;
 
 var damage: float = 10;
 
+var anim_state_machine;
+var walk_animation: String = "w";
+var attack_animation: String = "a";
+
 signal attack_target(damage);
 
 
 func _ready():
 	_garbage = _hitbox.connect("hit", self, "_on_hit");
-
+	_garbage = _attack_timer.connect("timeout", self, "_on_AttackTimer_timeout");
+	
+	self.add_to_group("enemy");
+	
+	anim_state_machine = _anim_tree["parameters/playback"];
 
 func _physics_process(delta):
 	if(state == TITAN_STATES.FOLLOW):
@@ -61,6 +70,14 @@ func smooth_look_at(pos: Vector3, delta: float) -> void:
 
 func init_pathfinding() -> void:
 	self.show();
+	
+	var walk_animation_index: int = randi() % 6 + 1;
+	var attack_animation_index: int = randi() % 2 + 1;
+
+	walk_animation += str(walk_animation_index);
+	attack_animation += str(attack_animation_index);
+	
+	anim_state_machine.start(walk_animation);
 	
 	state = TITAN_STATES.FOLLOW;
 	
@@ -96,6 +113,7 @@ func _on_hit() -> void:
 
 func got_to_target() -> void:
 	state = TITAN_STATES.ATTACK;
+	anim_state_machine.travel(attack_animation);
 
 
 func _on_AttackTimer_timeout():

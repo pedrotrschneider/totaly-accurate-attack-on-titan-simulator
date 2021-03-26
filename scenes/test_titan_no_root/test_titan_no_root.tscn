@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/test_titan_no_root/titan_ai_new.gd" type="Script" id=1]
-[ext_resource path="res://singletons/enemy_hitbox_flag.gd" type="Script" id=2]
+[ext_resource path="res://scenes/titans/enemy_hitbox_flag.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.34145
@@ -1014,7 +1014,7 @@ bones/1/name = "spine"
 bones/1/parent = 0
 bones/1/rest = Transform( 0.99788, -0.0311608, 0.0571359, 0.0369897, 0.993892, -0.103978, -0.0535468, 0.105871, 0.992937, 0, 0.245607, -0.0172443 )
 bones/1/enabled = true
-bones/1/bound_children = [ NodePath("Torso") ]
+bones/1/bound_children = [  ]
 bones/2/name = "spine_1"
 bones/2/parent = 1
 bones/2/rest = Transform( 0.999817, 0.0157134, 0.0108997, -0.0155173, 0.99972, -0.0178475, -0.0111771, 0.0176751, 0.999781, 2.98023e-08, 0.287246, 7.45063e-09 )
@@ -1284,12 +1284,12 @@ bones/55/name = "left_up_leg"
 bones/55/parent = 0
 bones/55/rest = Transform( -0.92954, 0.29272, 0.224208, -0.0437856, -0.6914, 0.721144, 0.366111, 0.660515, 0.655501, 0.338326, -0.136555, -0.039749 )
 bones/55/enabled = true
-bones/55/bound_children = [ NodePath("LeftLegUp") ]
+bones/55/bound_children = [  ]
 bones/56/name = "left_leg"
 bones/56/parent = 55
 bones/56/rest = Transform( 0.998657, 0.03943, -0.0336182, 0.0291826, 0.108123, 0.993709, 0.0428168, -0.993355, 0.106827, -4.21677e-08, 1.14658, 1.18084e-07 )
 bones/56/enabled = true
-bones/56/bound_children = [ NodePath("LeftLeg") ]
+bones/56/bound_children = [  ]
 bones/57/name = "left_foot"
 bones/57/parent = 56
 bones/57/rest = Transform( 0.990857, -0.117962, 0.0654789, 0.0851066, 0.169908, -0.981778, 0.104687, 0.978374, 0.178394, 4.66013e-08, 1.18735, -7.69529e-09 )
@@ -1309,12 +1309,12 @@ bones/60/name = "right_up_leg"
 bones/60/parent = 0
 bones/60/rest = Transform( -0.961386, -0.241882, -0.131298, 0.153407, -0.867041, 0.474032, -0.228502, 0.435583, 0.870663, -0.338331, -0.136554, -0.0272773 )
 bones/60/enabled = true
-bones/60/bound_children = [ NodePath("RightLegUp") ]
+bones/60/bound_children = [  ]
 bones/61/name = "right_leg"
 bones/61/parent = 60
 bones/61/rest = Transform( 0.982175, 0.131188, 0.134622, -0.187759, 0.650582, 0.73586, 0.008953, -0.748019, 0.663617, 8.79977e-08, 1.14658, -3.88112e-08 )
 bones/61/enabled = true
-bones/61/bound_children = [ NodePath("RightLeg") ]
+bones/61/bound_children = [  ]
 bones/62/name = "right_foot"
 bones/62/parent = 61
 bones/62/rest = Transform( 0.99766, 0.0676228, 0.0100918, -0.00830529, 0.26637, -0.963835, -0.0678654, 0.961496, 0.266308, -1.01015e-07, 1.18731, 8.7156e-09 )
@@ -1339,7 +1339,7 @@ skin = SubResource( 4 )
 material/0 = null
 
 [node name="LeftLegUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.919072, 0.304768, 0.249845, -0.0171393, -0.664293, 0.747275, 0.393716, 0.682517, 0.615756, 0.309089, 2.4497, -0.0217593 )
+transform = Transform( -0.971516, 0.206257, 0.11668, -0.0743797, -0.732901, 0.676256, 0.224998, 0.648315, 0.727366, 0.386819, 2.27729, 0.132253 )
 bone_name = "left_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLegUp"]
@@ -1354,7 +1354,7 @@ transform = Transform( 1, 2.98023e-08, 0, -4.47035e-08, 1, -2.98023e-08, 2.98023
 shape = SubResource( 5 )
 
 [node name="LeftLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.927323, -0.0560721, 0.370037, 0.0336003, -0.997193, -0.066902, 0.37275, -0.0496063, 0.926604, 0.65854, 1.68802, 0.760818 )
+transform = Transform( -0.910868, -0.0440259, 0.410344, -0.0876784, -0.950951, -0.296652, 0.403278, -0.306189, 0.86233, 0.623316, 1.43694, 0.875614 )
 bone_name = "left_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLeg"]
@@ -1369,7 +1369,7 @@ transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-0
 shape = SubResource( 5 )
 
 [node name="RightLegUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.994207, -0.0746023, -0.0774423, 0.0595265, -0.981603, 0.181414, -0.0895528, 0.175751, 0.980352, -0.364176, 2.429, 0.0438657 )
+transform = Transform( -0.836438, -0.499491, -0.225585, 0.299381, -0.761167, 0.575322, -0.459077, 0.413682, 0.786203, -0.284524, 2.31214, 0.0541133 )
 bone_name = "right_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLegUp"]
@@ -1384,7 +1384,7 @@ transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-0
 shape = SubResource( 5 )
 
 [node name="RightLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.933407, -0.170677, -0.315645, 0.304312, -0.842634, -0.444254, -0.19015, -0.510722, 0.838454, -0.449718, 1.30351, 0.24538 )
+transform = Transform( -0.813327, 0.226454, -0.535936, 0.374966, -0.500314, -0.780439, -0.444873, -0.835705, 0.322004, -0.857238, 1.43939, 0.528434 )
 bone_name = "right_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLeg"]
@@ -1399,7 +1399,7 @@ transform = Transform( 1, 1.49012e-08, 3.49246e-10, -1.49012e-08, 1, -2.98023e-0
 shape = SubResource( 5 )
 
 [node name="Torso" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.969598, -0.105522, 0.220784, 0.129119, 0.98704, -0.0952951, -0.207866, 0.120905, 0.970656, -0.0374905, 2.82113, 0.0324647 )
+transform = Transform( 0.999936, 0.0111882, 0.00190754, -0.0109142, 0.994003, -0.10881, -0.00311351, 0.108783, 0.99406, 0.068657, 2.67643, 0.110423 )
 bone_name = "spine"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/Torso"]

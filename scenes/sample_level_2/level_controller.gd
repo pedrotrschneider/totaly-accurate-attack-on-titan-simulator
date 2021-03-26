@@ -8,9 +8,7 @@ export(NodePath) onready var _spawn_positions_container = get_node(_spawn_positi
 export(Array, NodePath) onready var _titan_targets_paths;
 
 onready var _navmesh: NavigationMesh = preload("res://resources/nav_meshes/sample_level/5m.tres") as NavigationMesh;
-#onready var _titan_res: Resource = preload("res://scenes/test_titan_no_root/test_titan_no_root.tscn") as Resource
-
-onready var _titan_res: Resource = preload("res://scenes/titans/5m/5m3.tscn");
+onready var _titan_res: Resource = preload("res://scenes/test_titan_no_root/test_titan_no_root.tscn") as Resource;
 
 var spawn_positions: Array = [];
 var titan_target_positions: Array = [];
