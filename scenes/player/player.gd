@@ -13,7 +13,7 @@ export (NodePath) onready  var hook_2_origin = get_node(hook_2_origin) as Positi
 var mouse_sensitivity: float = 0.08;
 
 # Bullet time stuff
-const BULLET_TIME_SCALE: float = 0.02;
+const BULLET_TIME_SCALE: float = 0.1;
 var bullet_time: bool = false;
 
 # Attack stuff
@@ -38,7 +38,7 @@ var can_jump: bool = true;
 var jump_magnitude: float = 600.0;
 
 # Hook stuff
-const HOOK_LENGTH: float = 100.0;
+const HOOK_LENGTH: float = 45.0;
 const HOOK_POTENCY: float = 3e+06;
 const MAX_GRAPPLE_SPEED: float = 20.0;
 enum HOOK_STATES{

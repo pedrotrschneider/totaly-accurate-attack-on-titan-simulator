@@ -33,7 +33,9 @@ func _draw() -> void:
 	# Draw enemy markers
 	for enemy in enemies:
 		if(enemy.is_inside_tree()):
-			draw_circle(calculate_relative_position(enemy.global_transform.origin), 3.0, Color.red);
+			var enemy_pos: Vector2 = calculate_relative_position(enemy.global_transform.origin);
+			if(!(enemy_pos.x > map_rect.rect_size.x) && !(enemy_pos.y > map_rect.rect_size.y)):
+				draw_circle(calculate_relative_position(enemy.global_transform.origin), 3.0, Color.red);
 		else:
 			enemies.remove(enemies.find(enemy));
 	 # Draw target markers

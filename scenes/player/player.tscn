@@ -8,7 +8,7 @@
 radius = 0.5
 height = 0.9
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=2]
 size = Vector3( 0.3, 2, 0.5 )
 
 [node name="Player" type="RigidBody" groups=[
@@ -35,6 +35,7 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70417, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
+far = 50.0
 
 [node name="Eye" type="Position3D" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.461242 )
@@ -53,7 +54,7 @@ transform = Transform( 1, 0, 0, 0, 0.514874, 0.857266, 0, -0.857266, 0.514874, -
 
 [node name="BaldeSheath" type="MeshInstance" parent="HookOrigin1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.993558, 0.178856 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="HookOrigin2" type="Position3D" parent="."]
@@ -61,7 +62,7 @@ transform = Transform( 1, 0, 0, 0, 0.514874, 0.857266, 0, -0.857266, 0.514874, 0
 
 [node name="BaldeSheath" type="MeshInstance" parent="HookOrigin2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.993558, 0.178856 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

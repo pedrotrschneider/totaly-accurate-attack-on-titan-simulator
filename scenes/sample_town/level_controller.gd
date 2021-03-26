@@ -7,8 +7,16 @@ const MAX_TARGET_HEALTH: int = 100;
 export(NodePath) onready var _spawn_positions_container = get_node(_spawn_positions_container) as Spatial;
 export(Array, NodePath) onready var _titan_targets_paths;
 
-onready var _navmesh: NavigationMesh = preload("res://resources/nav_meshes/sample_level/5m.tres") as NavigationMesh;
+#onready var _navmesh: NavigationMesh = preload("res://resources/nav_meshes/sample_level/5m.tres") as NavigationMesh;
 #onready var _titan_res: Resource = preload("res://scenes/test_titan_no_root/test_titan_no_root.tscn") as Resource
+
+onready var _navmeshes: Array = [
+	preload("res://resources/nav_meshes/sample_town/5m.tres"),
+	preload("res://resources/nav_meshes/sample_town/7m.tres"),
+	preload("res://resources/nav_meshes/sample_town/15m.tres"),
+	preload("res://resources/nav_meshes/sample_town/15m.tres"),
+	preload("res://resources/nav_meshes/sample_town/20m.tres")
+]
 
 onready var _titans_res: Array = [
 	[ # 5m titans
@@ -55,9 +63,9 @@ func _ready() -> void:
 	
 	var height_indx: int = randi() % _titans_res.size();
 	var titan_indx: int = randi() % _titans_res[height_indx].size();
-	titan_pool.append(_titans_res[height_indx][titan_indx].instance());
-	self.add_child(titan_pool[0]);
-	titan_pool[0].global_transform.origin = Vector3(1000, 1000, 1000);
+	titan_pool.append([_titans_res[height_indx][titan_indx].instance(), height_indx]);
+	self.add_child(titan_pool[0][0]);
+	titan_pool[0][0].global_transform.origin = Vector3(1000, 1000, 1000);
 	
 	for spawn_pos in _spawn_positions_container.get_children():
 		spawn_positions.append(spawn_pos.global_transform.origin);
@@ -75,15 +83,20 @@ func _on_SpawnTitan_timeout() -> void:
 	else:
 		target_pos = titan_target_positions[0];
 	
-	var titan_instance
+	var titan_instance: Object;
+	var height_indx: int;
 	if(titan_pool.size() == 0):
-		titan_instance = spawn_titan();
+		var titan_spawner: Array = spawn_titan();
+		titan_instance = titan_spawner[0];
+		height_indx = titan_spawner[1];
 		self.add_child(titan_instance);
 	else:
-		titan_instance = titan_pool[titan_pool.size() - 1];
-		titan_pool.remove(titan_pool.find(titan_instance));
+		var titan_spawner: Array = titan_pool[titan_pool.size() - 1];
+		titan_instance = titan_spawner[0];
+		height_indx = titan_spawner[1];
+		titan_pool.remove(titan_pool.find(titan_spawner));
 	
-	titan_instance.nav_mesh = _navmesh;
+	titan_instance.nav_mesh = _navmeshes[height_indx];
 	titan_instance.global_transform.origin = spawn_pos;
 	titan_instance.target_pos = target_pos;
 	titan_instance.init_pathfinding();
@@ -91,13 +104,13 @@ func _on_SpawnTitan_timeout() -> void:
 	GameEvents.emit_enemy_spawned_signal(titan_instance);
 
 
-func spawn_titan() -> Object:
+func spawn_titan() -> Array:
 	randomize();
 	var height_indx: int = randi() % _titans_res.size();
 	var titan_indx: int = randi() % _titans_res[height_indx].size();
 	var titan_instance: Object = _titans_res[height_indx][titan_indx].instance();
 	self.add_child(titan_instance);
-	return titan_instance;
+	return [titan_instance, height_indx];
 
 
 func _on_enemy_killed(enemy):
