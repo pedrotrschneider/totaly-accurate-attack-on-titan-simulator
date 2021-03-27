@@ -71,7 +71,7 @@ func _ready() -> void:
 		spawn_positions.append(spawn_pos.global_transform.origin);
 	
 	for target_pos in _titan_targets_paths:
-		titan_target_positions.append(get_node(target_pos).global_transform.origin);
+		titan_target_positions.append(self.get_tree().get_nodes_in_group("target")[0].global_transform.origin);
 
 
 func _on_SpawnTitan_timeout() -> void:

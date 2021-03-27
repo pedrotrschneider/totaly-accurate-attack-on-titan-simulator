@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/assets/models/hosues/models/tower.glb" type="PackedScene" id=1]
+[ext_resource path="res://scenes/houses/hitboxes/tower_hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/target_building/target.gd" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 9.93125, 4.61819, 9.15364 )
+
+[node name="tower" instance=ExtResource( 1 )]
+
+[node name="Tower" parent="." index="0"]
+use_in_baked_light = true
+
+[node name="tower_hitbox" parent="." index="1" instance=ExtResource( 2 )]
+collision_layer = 17
+
+[node name="Target" type="Position3D" parent="." index="2" groups=[
+"target",
+]]
+script = ExtResource( 3 )
+
+[node name="TargetArea" type="Area" parent="Target" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24838, 0, -1.44044 )
+collision_layer = 16
+collision_mask = 524292
+
+[node name="CollisionShape" type="CollisionShape" parent="Target/TargetArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45803, 0 )
+shape = SubResource( 1 )
+[connection signal="body_entered" from="Target/TargetArea" to="Target" method="_on_TargetArea_body_entered"]
+[connection signal="body_exited" from="Target/TargetArea" to="Target" method="_on_TargetArea_body_exited"]
