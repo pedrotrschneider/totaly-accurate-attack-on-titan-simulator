@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/ui/level_ui/target_health.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/level_ui/minimap.gd" type="Script" id=2]
+
+[node name="LevelUI" type="CanvasLayer"]
+
+[node name="TargetHealth" type="VBoxContainer" parent="."]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 230.0
+margin_bottom = 83.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Minimap" type="Control" parent="."]
+margin_left = 784.886
+margin_top = 33.371
+margin_right = 784.886
+margin_bottom = 33.371
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+map_rect = NodePath("ColorRect")
+map_size = Vector2( 150, 150 )
+
+[node name="ColorRect" type="ColorRect" parent="Minimap"]
+margin_right = 200.0
+margin_bottom = 200.0
+color = Color( 0, 0, 0, 0.505882 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

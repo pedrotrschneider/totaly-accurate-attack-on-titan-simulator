@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://singletons/sword_hitbox_flag.gd" type="Script" id=1]
+[ext_resource path="res://scenes/player/sword/sword.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.0177152, 1.29584, 0.0842422 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "AttackGo2"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mesh:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -22.4943, -8.08593, -3.96866 ), Vector3( -23.82, -0.788, -80 ), Vector3( -23.82, 120, -80 ), Vector3( -22.4943, -8.08593, -3.96866 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mesh/Hitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Mesh/Hitbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="Sword" type="Spatial"]
+script = ExtResource( 2 )
+_animation_player = NodePath("AnimationPlayer")
+
+[node name="Mesh" type="Spatial" parent="."]
+transform = Transform( 0.983959, 0.122208, -0.129956, -0.063945, 0.921702, 0.382591, 0.166537, -0.368144, 0.914732, 0, 0, 0 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="Mesh"]
+use_in_baked_light = true
+
+[node name="CSGBox" type="CSGBox" parent="Mesh/CSGCombiner"]
+width = 0.0763402
+height = 0.659453
+depth = 0.208756
+
+[node name="CSGBox2" type="CSGBox" parent="Mesh/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10985, 0 )
+width = 0.0250317
+height = 2.1268
+depth = 0.165372
+
+[node name="CSGBox3" type="CSGBox" parent="Mesh/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 0.559192, 0.829037, 0, -0.829037, 0.559192, 0, 2.22891, -0.0556745 )
+operation = 2
+width = 0.358368
+height = 0.636238
+depth = 0.165372
+material = SubResource( 1 )
+
+[node name="Hitbox" type="Area" parent="Mesh"]
+transform = Transform( 1, -1.11759e-08, 2.98023e-08, 0, 1, 2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0 )
+monitoring = false
+monitorable = false
+collision_layer = 2
+collision_mask = 4
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mesh/Hitbox"]
+transform = Transform( 1, 0, -1.49012e-08, 3.72529e-09, 1, 2.98023e-08, 0, -2.98023e-08, 1, -7.45058e-09, 1.19018, 0 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AttackGo2 = SubResource( 3 )

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/buildings/building.gd" type="Script" id=1]
+[ext_resource path="res://resources/assets/models/hosues/models/house3.glb" type="PackedScene" id=2]
+[ext_resource path="res://scenes/buildings/house3/house3_hitbox.tscn" type="PackedScene" id=3]
+
+[node name="house3" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+mesh = NodePath("house 3")
+hitbox = NodePath("house3_hitbox")
+
+[node name="house 3" parent="." index="0"]
+use_in_baked_light = true
+
+[node name="house3_hitbox" parent="." index="1" instance=ExtResource( 3 )]

@@ -33,7 +33,7 @@ const MAX_GROUND_SPEED: float = 5.0
 const MAX_MOVEMENT_ACCELERATION: float = 200000.0;
 var movement_acceleration: float = MAX_MOVEMENT_ACCELERATION;
 
-# Jum stuff
+# Jump stuff
 var can_jump: bool = true;
 var jump_magnitude: float = 600.0;
 
@@ -47,7 +47,7 @@ enum HOOK_STATES{
 	GRAPPLED, 
 	REWINDING
 }
-onready  var rope_prefab = preload("res://scenes/rope/rope.tscn");
+onready  var rope_prefab = preload("res://scenes/player/rope/rope.tscn");
 var activate_motor: bool = false;
 
 var hook_1_interaction:bool = false;
