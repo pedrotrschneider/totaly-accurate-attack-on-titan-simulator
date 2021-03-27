@@ -13,7 +13,7 @@ var defeat_screen: Object;
 var fps_meter: Object;
 
 
-func _ready():
+func _ready() -> void:
 	_garbage = GameEvents.connect("main_menu_selected", self, "_on_main_menu_selected");
 	_garbage = GameEvents.connect("arcade_mode_selected", self, "_on_arcade_mode_selected");
 	_garbage = GameEvents.connect("quit_selected", self, "_on_quit_selected");

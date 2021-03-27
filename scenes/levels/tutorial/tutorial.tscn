@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="Tutorial" type="Spatial"]
+
+[node name="Grapplable" type="CSGCombiner" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="Grapplable"]
+
+[node name="Ungrapplable" type="CSGCombiner" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable"]

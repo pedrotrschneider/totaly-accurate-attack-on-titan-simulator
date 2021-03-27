@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/orange_grid_texture.png-3c0e150aede2592f21203cac175a4be6.s3tc.stex"
-path.etc2="res://.import/orange_grid_texture.png-3c0e150aede2592f21203cac175a4be6.etc2.stex"
+path.s3tc="res://.import/red_grid_texture.png-aa41609487c47080e969095b4a912dae.s3tc.stex"
+path.etc2="res://.import/red_grid_texture.png-aa41609487c47080e969095b4a912dae.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/materials/orange_grid_texture.png"
-dest_files=[ "res://.import/orange_grid_texture.png-3c0e150aede2592f21203cac175a4be6.s3tc.stex", "res://.import/orange_grid_texture.png-3c0e150aede2592f21203cac175a4be6.etc2.stex" ]
+source_file="res://resources/assets/textures/red_grid_texture.png"
+dest_files=[ "res://.import/red_grid_texture.png-aa41609487c47080e969095b4a912dae.s3tc.stex", "res://.import/red_grid_texture.png-aa41609487c47080e969095b4a912dae.etc2.stex" ]
 
 [params]
 
