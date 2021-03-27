@@ -25,4 +25,4 @@ func _on_attack_target(damage: float):
 	
 	if(health <= 0 && !dead):
 		dead = true;
-		GameEvents.emit_signal("game_over", self.get_parent());
+		GameEvents.emit_game_over_signal();

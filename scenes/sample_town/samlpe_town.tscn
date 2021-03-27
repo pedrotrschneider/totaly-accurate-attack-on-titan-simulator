@@ -58,7 +58,9 @@ extents = Vector3( 100, 1, 100 )
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 75, 65, 1 )
 
-[node name="SampleTown" type="Spatial"]
+[node name="SampleTown" type="Spatial" groups=[
+"level",
+]]
 script = ExtResource( 9 )
 _spawn_positions_container = NodePath("SpawnPosContainer")
 _titan_targets_paths = [ NodePath("Target") ]

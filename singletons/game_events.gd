@@ -1,6 +1,11 @@
 extends Node
 
-signal game_over(level);
+
+# Game controll events
+signal main_menu_selected;
+signal arcade_mode_selected;
+signal quit_selected;
+signal game_over;
 
 # Player signals
 signal attack;
@@ -9,12 +14,24 @@ signal attack;
 signal enemy_killed(object);
 signal enemy_spawned(enemy);
 
-
 # UI events
 signal go_to_scene(scene);
 
-func emit_game_over_signal(level: Object) -> void:
-	self.emit_signal("game_over", level);
+
+func emit_main_menu_selected_signal() -> void:
+	self.emit_signal("main_menu_selected");
+
+
+func emit_arcade_mode_selected_signal() -> void:
+	self.emit_signal("arcade_mode_selected");
+
+
+func emit_quit_selected_signal() -> void:
+	self.emit_signal("quit_selected");
+
+
+func emit_game_over_signal() -> void:
+	self.emit_signal("game_over");
 
 
 func emit_attack_signal() -> void:

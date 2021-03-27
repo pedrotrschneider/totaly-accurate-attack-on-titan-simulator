@@ -2,10 +2,25 @@ extends CanvasLayer
 
 var _garbage;
 
+export(NodePath) onready var arcade_mode_button = get_node(arcade_mode_button) as Button;
+export(NodePath) onready var quit_button = get_node(quit_button) as Button;
+
+
 var scene_selected: bool = false;
 
-func _ready():
-	_garbage = GameEvents.connect("go_to_scene", self, "_on_go_to_scene");
+func _ready() -> void:
+#	_garbage = GameEvents.connect("go_to_scene", self, "_on_go_to_scene");
+	_garbage = arcade_mode_button.connect("pressed", self, "_on_arcade_mode_selected");
+	_garbage = quit_button.connect("pressed", self, "_on_quit_selected");
+
+
+func _on_arcade_mode_selected() -> void:
+	GameEvents.emit_arcade_mode_selected_signal();
+	pass
+
+
+func _on_quit_selected() -> void:
+	GameEvents.emit_quit_selected_signal();
 
 
 func _on_go_to_scene(scene: PackedScene) -> void:

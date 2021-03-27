@@ -89,7 +89,6 @@ func _on_SpawnTitan_timeout() -> void:
 		var titan_spawner: Array = spawn_titan();
 		titan_instance = titan_spawner[0];
 		height_indx = titan_spawner[1];
-		self.add_child(titan_instance);
 	else:
 		var titan_spawner: Array = titan_pool[titan_pool.size() - 1];
 		titan_instance = titan_spawner[0];

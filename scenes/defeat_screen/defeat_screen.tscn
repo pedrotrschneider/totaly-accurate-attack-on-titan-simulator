@@ -3,19 +3,18 @@
 [ext_resource path="res://resources/assets/fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/defeat_screen/defeat_screen.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 60
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 20
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "defeated"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Control/ColorRect:color")
 tracks/0/interp = 1
@@ -26,7 +25,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Control/GameOverLabel:modulate")
@@ -56,10 +55,8 @@ tracks/2/keys = {
 [node name="DefeatScreen" type="CanvasLayer"]
 script = ExtResource( 2 )
 animation_player = NodePath("AnimationPlayer")
-game_over_screen = NodePath("Control")
 
 [node name="Control" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -69,12 +66,13 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GameOverLabel" type="Label" parent="Control"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -83,13 +81,14 @@ margin_left = -159.5
 margin_top = -110.751
 margin_right = 159.5
 margin_bottom = -38.751
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "GAME OVER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PressAnyButtonLabel" type="Label" parent="Control"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -98,8 +97,8 @@ margin_left = -142.5
 margin_top = 60.0813
 margin_right = 142.5
 margin_bottom = 84.0813
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "[Press any button to continue]"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/defeated = SubResource( 1 )
+anims/defeated = SubResource( 3 )
