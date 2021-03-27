@@ -7,9 +7,6 @@ const MAX_TARGET_HEALTH: int = 100;
 export(NodePath) onready var _spawn_positions_container = get_node(_spawn_positions_container) as Spatial;
 export(Array, NodePath) onready var _titan_targets_paths;
 
-#onready var _navmesh: NavigationMesh = preload("res://resources/nav_meshes/sample_level/5m.tres") as NavigationMesh;
-#onready var _titan_res: Resource = preload("res://scenes/test_titan_no_root/test_titan_no_root.tscn") as Resource
-
 onready var _navmeshes: Array = [
 	preload("res://resources/nav_meshes/sample_town/5m.tres"),
 	preload("res://resources/nav_meshes/sample_town/7m.tres"),
@@ -112,5 +109,6 @@ func spawn_titan() -> Array:
 	return [titan_instance, height_indx];
 
 
-func _on_enemy_killed(enemy):
-	self.remove_child(enemy);
+func _on_enemy_killed(enemy: Object) -> void:
+	enemy.call_deferred("free");
+#	self.remove_child(enemy);
