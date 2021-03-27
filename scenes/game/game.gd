@@ -21,8 +21,8 @@ func _ready():
 	
 	main_menu = main_menu_scene_res.instance()
 	fps_meter = fps_meter_res.instance();
-	self.add_child(fps_meter);
 	self.add_child(main_menu);
+	self.add_child(fps_meter);
 
 
 func _on_main_menu_selected() -> void:

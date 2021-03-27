@@ -91,6 +91,7 @@ __meta__ = {
 
 [node name="Ground" type="MeshInstance" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00470161, -9.53674e-07, -0.112262 )
+visible = false
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 

@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://resources/assets/models/hosues/models/house4.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/houses/hitboxes/house4_hitbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/houses/houses.gd" type="Script" id=3]
 
 [node name="house4" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+mesh = NodePath("hosue4")
+hitbox = NodePath("house4_hitbox")
 
 [node name="hosue4" parent="." index="0"]
 use_in_baked_light = true
