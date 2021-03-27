@@ -108,6 +108,7 @@ func _on_hit() -> void:
 		self.set_physics_process_internal(false);
 		self.set_process_input(false);
 		stop_pathfinding();
+		self.global_transform.origin = Vector3(1000, 1000, 1000);
 		GameEvents.emit_enemy_killed_signal(self);
 
 

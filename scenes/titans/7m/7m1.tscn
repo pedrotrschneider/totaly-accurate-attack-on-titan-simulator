@@ -4349,7 +4349,7 @@ skin = SubResource( 3 )
 material/0 = null
 
 [node name="LeftLeguUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.982988, -0.150849, 0.104772, 0.016857, 0.493945, 0.869329, -0.18289, 0.856307, -0.483, 43.3206, -21.4708, -362.045 )
+transform = Transform( -0.942391, 0.145819, -0.301053, -0.109529, 0.71586, 0.6896, 0.316068, 0.682847, -0.65865, 54.0993, -19.5957, -319.934 )
 bone_name = "mixamorig_left_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLeguUp"]
@@ -4361,7 +4361,7 @@ transform = Transform( 0.999244, -0.000315543, -0.0389095, -0.0389094, -0.000141
 shape = SubResource( 4 )
 
 [node name="RightLegUp" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.983384, 0.181522, -0.00398211, 0.019613, 0.128007, 0.99158, 0.180504, 0.975019, -0.12944, -51.7409, -3.82339, -372.62 )
+transform = Transform( -0.740369, -0.614639, -0.272173, -0.539437, 0.301661, 0.786137, -0.401084, 0.728847, -0.554897, -36.2809, -55.2509, -324.412 )
 bone_name = "mixamorig_right_up_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLegUp"]
@@ -4373,7 +4373,7 @@ transform = Transform( 0.995818, 0.00974518, 0.0907705, 0.0907555, 0.00188615, -
 shape = SubResource( 4 )
 
 [node name="LeftLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.974851, 0.0750756, 0.209828, 0.122692, -0.605203, 0.786559, 0.18604, 0.792524, 0.580771, 19.1202, 57.7717, -224.67 )
+transform = Transform( -0.89891, 0.414653, 0.141498, 0.0392552, -0.245438, 0.968616, 0.436368, 0.876256, 0.204349, 77.4927, 95.2482, -210.386 )
 bone_name = "mixamorig_left_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/LeftLeg"]
@@ -4385,7 +4385,7 @@ transform = Transform( 0.999615, 0.00113424, 0.0277219, 0.0276322, 0.0494023, -0
 shape = SubResource( 5 )
 
 [node name="RightLeg" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.992322, 0.0595945, -0.108426, -0.12214, -0.332074, 0.935313, 0.0197353, 0.941369, 0.3368, -22.6085, 16.7204, -216.14 )
+transform = Transform( -0.632106, -0.296805, -0.715789, -0.515436, -0.528697, 0.674396, -0.578596, 0.795229, 0.181207, -134.924, -6.83765, -207.44 )
 bone_name = "mixamorig_right_leg"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/RightLeg"]
@@ -4397,7 +4397,7 @@ transform = Transform( 0.999237, 0.0100511, 0.0375485, 0.0371139, 0.0401169, -0.
 shape = SubResource( 5 )
 
 [node name="Torso" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.980545, 0.0895208, 0.174689, -0.170693, -0.050562, 0.984026, 0.0969235, -0.994701, -0.0342979, 2.33554, -9.16114, -420.75 )
+transform = Transform( 0.919381, -0.0701965, -0.387053, 0.385756, 0.353506, 0.852189, 0.0770051, -0.932794, 0.352086, 5.62006, -22.6985, -373.949 )
 bone_name = "mixamorig_spine"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/Torso"]
@@ -4409,7 +4409,7 @@ transform = Transform( 1, 2.98552e-09, -4.96386e-09, -6.57378e-09, 0.0871034, -0
 shape = SubResource( 6 )
 
 [node name="Head" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.996985, 0.0204269, 0.074848, -0.07307, -0.0770847, 0.994342, 0.026081, -0.996815, -0.0753601, 15.1273, -4.97793, -600.822 )
+transform = Transform( 0.991961, 0.0674102, -0.107083, 0.0703887, 0.409283, 0.909688, 0.10515, -0.909913, 0.401247, -28.9598, 103.75, -486.503 )
 bone_name = "mixamorig_head"
 
 [node name="StaticBody" type="StaticBody" parent="Armature/Skeleton/Head"]
@@ -4421,7 +4421,7 @@ transform = Transform( 1, -1.42109e-14, -6.055e-16, 8.29429e-15, -1.62921e-07, -
 shape = SubResource( 7 )
 
 [node name="Neck" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.988669, 0.0467606, 0.142639, -0.144242, 0.0329194, 0.988994, 0.0415505, -0.998363, 0.0392913, 12.1924, -13.0379, -558.966 )
+transform = Transform( 0.928334, -0.20965, -0.306989, 0.338922, 0.816596, 0.467227, 0.152732, -0.537789, 0.829128, -18.044, 66.1459, -469.407 )
 bone_name = "mixamorig_neck"
 
 [node name="Hitbox" type="Area" parent="Armature/Skeleton/Neck"]

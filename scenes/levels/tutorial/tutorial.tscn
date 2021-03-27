@@ -1,11 +1,468 @@
-[gd_scene format=2]
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://resources/materials/grid_material_dark.tres" type="Material" id=1]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/materials/grid_material_orange.tres" type="Material" id=3]
+[ext_resource path="res://scenes/titans/7m/7m1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/materials/grid_material_green.tres" type="Material" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "a1"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "a2"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "w1"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "w2"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "w3"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "w4"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "w5"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "w6"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id=37]
+states/a1/node = SubResource( 17 )
+states/a1/position = Vector2( 27, 184 )
+states/a2/node = SubResource( 18 )
+states/a2/position = Vector2( 439, 184 )
+states/w1/node = SubResource( 19 )
+states/w1/position = Vector2( 230, 38 )
+states/w2/node = SubResource( 20 )
+states/w2/position = Vector2( 230, 92 )
+states/w3/node = SubResource( 21 )
+states/w3/position = Vector2( 230, 145 )
+states/w4/node = SubResource( 22 )
+states/w4/position = Vector2( 230, 196 )
+states/w5/node = SubResource( 23 )
+states/w5/position = Vector2( 230, 249 )
+states/w6/node = SubResource( 24 )
+states/w6/position = Vector2( 230, 303 )
+transitions = [ "w2", "a1", SubResource( 25 ), "w3", "a1", SubResource( 26 ), "w4", "a1", SubResource( 27 ), "w5", "a1", SubResource( 28 ), "w6", "a1", SubResource( 29 ), "w1", "a2", SubResource( 30 ), "w2", "a2", SubResource( 31 ), "w3", "a2", SubResource( 32 ), "w4", "a2", SubResource( 33 ), "w5", "a2", SubResource( 34 ), "w6", "a2", SubResource( 35 ), "w1", "a1", SubResource( 36 ) ]
+start_node = "a1"
+graph_offset = Vector2( -48, 31 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [node name="Tutorial" type="Spatial"]
 
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -349.872 )
+
 [node name="Grapplable" type="CSGCombiner" parent="."]
+use_collision = true
+collision_layer = 17
+
+[node name="CSGBox3" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 8, -7 )
+material = ExtResource( 3 )
+
+[node name="CSGBox6" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 8, -15 )
+material = ExtResource( 3 )
+
+[node name="CSGBox7" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 8, -23 )
+material = ExtResource( 3 )
+
+[node name="CSGBox4" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 8, -11 )
+material = ExtResource( 3 )
+
+[node name="CSGBox8" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 8, -19 )
+material = ExtResource( 3 )
+
+[node name="CSGBox5" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -53 )
+width = 22.0
+material = ExtResource( 3 )
+
+[node name="CSGBox9" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -170 )
+width = 22.0
+material = ExtResource( 3 )
+
+[node name="CSGBox10" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -117 )
+width = 22.0
+material = ExtResource( 3 )
+
+[node name="CSGBox11" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -204 )
+width = 22.0
+material = ExtResource( 3 )
+
+[node name="CSGBox15" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, -339 )
+width = 22.0
+depth = 6.0
+material = ExtResource( 3 )
+
+[node name="CSGBox14" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -335 )
+width = 22.0
+height = 14.0
+material = ExtResource( 3 )
+
+[node name="CSGBox12" type="CSGBox" parent="Grapplable"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 7, -283 )
+width = 16.0
+material = ExtResource( 3 )
+
+[node name="CSGBox13" type="CSGBox" parent="Grapplable"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 7, -283 )
+width = 16.0
+material = ExtResource( 3 )
 
 [node name="CSGBox" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 24, -366.499 )
+width = 4.0
+height = 10.0
+depth = 4.0
+material = ExtResource( 5 )
 
 [node name="Ungrapplable" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22 )
+material_override = ExtResource( 1 )
+use_collision = true
+collision_layer = 17
 
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable"]
+[node name="Room1" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 1 )
+width = 22.0
+depth = 34.0
+material = ExtResource( 1 )
+
+[node name="Room2" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -33 )
+width = 22.0
+depth = 34.0
+material = ExtResource( 1 )
+
+[node name="Room8" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -347 )
+width = 22.0
+depth = 34.0
+material = ExtResource( 1 )
+
+[node name="Room10" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 19, -381 )
+width = 22.0
+depth = 34.0
+material = ExtResource( 1 )
+
+[node name="Room11" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 19, -415 )
+width = 22.0
+depth = 34.0
+material = ExtResource( 1 )
+
+[node name="Room9" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 17, -357 )
+width = 22.0
+height = 6.0
+material = ExtResource( 1 )
+
+[node name="Room3" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -76 )
+width = 22.0
+height = 22.0
+depth = 52.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
+operation = 2
+width = 24.0
+height = 22.0
+depth = 20.0
+material = ExtResource( 1 )
+
+[node name="Room4" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -128 )
+width = 22.0
+height = 22.0
+depth = 52.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
+operation = 2
+width = 24.0
+height = 22.0
+depth = 20.0
+material = ExtResource( 1 )
+
+[node name="Room6" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -237 )
+width = 22.0
+height = 22.0
+depth = 62.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
+operation = 2
+width = 24.0
+height = 22.0
+depth = 40.0
+material = ExtResource( 1 )
+
+[node name="Room7" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -299 )
+width = 22.0
+height = 22.0
+depth = 62.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
+operation = 2
+width = 24.0
+height = 22.0
+depth = 40.0
+material = ExtResource( 1 )
+
+[node name="Room5" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -180 )
+width = 22.0
+height = 22.0
+depth = 52.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
+operation = 2
+width = 24.0
+height = 22.0
+depth = 20.0
+material = ExtResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -6 )
+width = 22.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="CSGBox3" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.5377, -189 )
+width = 22.0
+height = 4.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -16 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door2" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -50 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door3" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -102 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door4" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -154 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door5" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -206 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door6" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -268 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door7" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -330 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door8" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, -364 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door9" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, -398 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Door10" type="CSGBox" parent="Ungrapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, -432 )
+width = 22.0
+height = 16.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+operation = 2
+width = 4.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="7m1" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 20, -362 )
+
+[node name="LeftLeguUp" parent="7m1/Armature/Skeleton" index="1"]
+transform = Transform( -0.927546, 0.208829, -0.309917, -0.123084, 0.612319, 0.780971, 0.352857, 0.762532, -0.542251, 38.8346, -10.4961, -329.568 )
+
+[node name="RightLegUp" parent="7m1/Armature/Skeleton" index="2"]
+transform = Transform( -0.733494, -0.569727, -0.370679, -0.581191, 0.242929, 0.776664, -0.352434, 0.785109, -0.509305, -50.568, -48.7981, -329.839 )
+
+[node name="LeftLeg" parent="7m1/Armature/Skeleton" index="3"]
+transform = Transform( -0.843775, 0.50143, 0.19134, 0.101764, -0.200572, 0.974379, 0.52696, 0.84163, 0.118209, 72.3365, 87.7369, -207.237 )
+
+[node name="RightLeg" parent="7m1/Armature/Skeleton" index="4"]
+transform = Transform( -0.652697, -0.222329, -0.724266, -0.530768, -0.547986, 0.646531, -0.540626, 0.806402, 0.239661, -142.003, -9.8107, -203.837 )
+
+[node name="Torso" parent="7m1/Armature/Skeleton" index="5"]
+transform = Transform( 0.89755, -0.0878056, -0.43208, 0.440612, 0.214708, 0.871643, 0.0162357, -0.972723, 0.231399, -10.5863, -18.3681, -382.229 )
+
+[node name="Head" parent="7m1/Armature/Skeleton" index="6"]
+transform = Transform( 0.985665, 0.0759785, -0.15063, 0.135891, 0.171566, 0.975754, 0.0999799, -0.982238, 0.158781, -49.2938, 67.03, -532.801 )
+
+[node name="Neck" parent="7m1/Armature/Skeleton" index="7"]
+transform = Transform( 0.869197, -0.222519, -0.441565, 0.485371, 0.554436, 0.676028, 0.0943905, -0.801926, 0.589919, -36.9272, 39.0785, -502.948 )
+
+[node name="AnimationTree" parent="7m1" index="3"]
+tree_root = SubResource( 37 )
+parameters/playback = SubResource( 1 )
+
+[editable path="7m1"]
