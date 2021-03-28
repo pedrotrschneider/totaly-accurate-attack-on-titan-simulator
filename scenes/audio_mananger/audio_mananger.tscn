@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resources/music/arcade_bg.ogg" type="AudioStream" id=1]
+[ext_resource path="res://resources/music/main_menu.ogg" type="AudioStream" id=2]
+[ext_resource path="res://resources/music/tutorial_bg.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/audio_mananger/audio_mananger.gd" type="Script" id=4]
+
+[node name="AudioMananger" type="Node"]
+script = ExtResource( 4 )
+arcade_bg_player = NodePath("ArcadeBg")
+main_menu_bg_player = NodePath("MainMenuBg")
+tutorial_bg_player = NodePath("TutorialBg")
+
+[node name="ArcadeBg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+
+[node name="MainMenuBg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="TutorialBg" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

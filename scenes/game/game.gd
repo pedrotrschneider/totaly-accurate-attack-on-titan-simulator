@@ -2,6 +2,7 @@ extends Spatial
 
 var _garbage;
 
+export(PackedScene) onready var audio_mananger_res;
 export(PackedScene) onready var main_menu_scene_res;
 export(PackedScene) onready var arcade_mode_res;
 export(PackedScene) onready var tutorial_mode_res;
@@ -14,7 +15,6 @@ var arcade_mode: Object;
 var tutorial_mode: Object;
 var pause_menu: Object;
 var defeat_screen: Object;
-var fps_meter: Object;
 
 
 func clear_children() -> void:
@@ -31,9 +31,12 @@ func _ready() -> void:
 	_garbage = GameEvents.connect("game_over", self, "_on_game_over");
 	
 	main_menu = main_menu_scene_res.instance()
-	fps_meter = fps_meter_res.instance();
 	self.add_child(main_menu);
-	self.get_parent().call_deferred("add_child", fps_meter);
+	self.get_parent().call_deferred("add_child", fps_meter_res.instance());
+	self.get_parent().call_deferred("add_child", audio_mananger_res.instance());
+	
+	yield(self.get_tree().create_timer(0.5), "timeout");
+	GameEvents.emit_play_main_menu_bg_signal();
 
 
 func _process(_delta) -> void:
@@ -53,6 +56,7 @@ func pause() -> void:
 
 
 func _on_main_menu_selected() -> void:
+	GameEvents.emit_play_main_menu_bg_signal();
 	Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE));
 	clear_children();
 	main_menu = main_menu_scene_res.instance();
@@ -60,6 +64,7 @@ func _on_main_menu_selected() -> void:
 
 
 func _on_arcade_mode_selected() -> void:
+	GameEvents.emit_play_arcade_bg_signal();
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 	clear_children();
 	arcade_mode = arcade_mode_res.instance();
@@ -67,6 +72,7 @@ func _on_arcade_mode_selected() -> void:
 
 
 func _on_tutorial_selected() -> void:
+	GameEvents.emit_play_tutorial_bg_signal();
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 	clear_children();
 	tutorial_mode = tutorial_mode_res.instance();

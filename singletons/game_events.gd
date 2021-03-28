@@ -11,6 +11,11 @@ signal unpause;
 signal quit_selected;
 signal game_over;
 
+# Audio signals
+signal play_main_menu_bg;
+signal play_arcade_bg;
+signal play_tutorial_bg;
+
 # Player signals
 signal attack;
 signal respawn_player(position);
@@ -50,6 +55,18 @@ func emit_quit_selected_signal() -> void:
 
 func emit_game_over_signal() -> void:
 	self.emit_signal("game_over");
+
+
+func emit_play_main_menu_bg_signal() -> void:
+	self.emit_signal("play_main_menu_bg");
+
+
+func emit_play_arcade_bg_signal() -> void:
+	self.emit_signal("play_arcade_bg");
+
+
+func emit_play_tutorial_bg_signal() -> void:
+	self.emit_signal("play_tutorial_bg");
 
 
 func emit_attack_signal() -> void:
