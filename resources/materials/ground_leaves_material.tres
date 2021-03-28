@@ -1,0 +1,14 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://resources/assets/textures/GroundForest003_COL_VAR1_1K.jpg" type="Texture" id=1]
+[ext_resource path="res://resources/assets/textures/GroundForest003_NRM_1K.jpg" type="Texture" id=2]
+
+[resource]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 1 )
+normal_enabled = true
+normal_scale = -0.64
+normal_texture = ExtResource( 2 )
+uv1_scale = Vector3( 0.2, 1, 0.2 )
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.34151
