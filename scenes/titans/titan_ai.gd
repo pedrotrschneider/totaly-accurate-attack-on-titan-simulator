@@ -48,6 +48,8 @@ func _ready():
 	anim_state_machine = _anim_tree["parameters/playback"];
 
 func _physics_process(delta):
+#	self.global_transform.origin.y = 0.0;
+	
 	if(state == TITAN_STATES.FOLLOW):
 		if(path_index < path.size()):
 			var path_position: Vector3 = Vector3(path[path_index].x, self.global_transform.origin.y, path[path_index].z)
@@ -118,5 +120,4 @@ func got_to_target() -> void:
 
 
 func _on_AttackTimer_timeout():
-	print("signal emitted")
 	self.emit_signal("attack_target", damage);

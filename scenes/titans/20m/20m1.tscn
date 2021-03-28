@@ -4460,11 +4460,11 @@ _hitbox = NodePath("Armature/Skeleton/Neck/Hitbox")
 _attack_timer = NodePath("AttackTimer")
 
 [node name="OtherTitanCollider" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0.180723, 10.0552, 0.012753 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0.180723, 9.76289, 0.012753 )
 shape = SubResource( 1 )
 
 [node name="Armature" type="Spatial" parent="."]
-transform = Transform( -0.01, -3.25841e-09, 5.30863e-16, 0, -1.62921e-09, -0.01, 3.25841e-09, -0.01, 1.62921e-09, 0, 0, 0 )
+transform = Transform( -0.01, -3.25841e-09, 5.30863e-16, 0, -1.62921e-09, -0.01, 3.25841e-09, -0.01, 1.62921e-09, 0, -0.292313, 0 )
 
 [node name="Skeleton" type="Skeleton" parent="Armature"]
 bones/0/name = "mixamorig_hips"
