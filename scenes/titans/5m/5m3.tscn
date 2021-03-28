@@ -2522,6 +2522,7 @@ bones/32/enabled = true
 bones/32/bound_children = [  ]
 
 [node name="5m3" type="MeshInstance" parent="Armature/Skeleton"]
+use_in_baked_light = true
 mesh = SubResource( 2 )
 skin = SubResource( 3 )
 material/0 = null

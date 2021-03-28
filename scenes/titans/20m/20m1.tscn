@@ -4794,6 +4794,7 @@ bones/64/enabled = true
 bones/64/bound_children = [  ]
 
 [node name="20m1" type="MeshInstance" parent="Armature/Skeleton"]
+use_in_baked_light = true
 mesh = SubResource( 2 )
 skin = SubResource( 3 )
 material/0 = null

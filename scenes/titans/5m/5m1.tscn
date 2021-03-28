@@ -8,7 +8,7 @@
 radius = 1.34
 height = 1.87
 
-[sub_resource type="ArrayMesh" id=40]
+[sub_resource type="ArrayMesh" id=2]
 resource_name = "5m1"
 surfaces/0 = {
 "aabb": AABB( -2.2201, -0.00558006, -0.582083, 4.44017, 4.9963, 1.06584 ),
@@ -4794,7 +4794,8 @@ bones/64/enabled = true
 bones/64/bound_children = [  ]
 
 [node name="5m1" type="MeshInstance" parent="Armature/Skeleton"]
-mesh = SubResource( 40 )
+use_in_baked_light = true
+mesh = SubResource( 2 )
 skin = SubResource( 3 )
 material/0 = null
 

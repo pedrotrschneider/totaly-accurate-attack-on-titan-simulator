@@ -23,6 +23,7 @@ data = PoolVector3Array( -11, -2, 18, -11, 0, -50, -11, 0, 18, -11, -2, 18, -11,
 
 [node name="mesh" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22 )
+use_in_baked_light = true
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
 

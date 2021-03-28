@@ -17,6 +17,7 @@ extents = Vector3( 30, 1, 30 )
 [node name="TutorialTown" type="Spatial"]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
+use_in_baked_light = true
 mesh = SubResource( 1 )
 material/0 = null
 
