@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://scenes/levels/tutorial/tutorial_geometry/tutorial_level_geometry.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/levels/tutorial/tutorial.gd" type="Script" id=12]
 [ext_resource path="res://resources/assets/skybox/kloetzle_blei_2k.hdr" type="Texture" id=13]
 [ext_resource path="res://resources/materials/grid_material_dark.tres" type="Material" id=14]
+[ext_resource path="res://scenes/player/gas_replenishing_area/gas_replenishing_area.tscn" type="PackedScene" id=15]
 
 [sub_resource type="GIProbeData" id=1]
 bounds = AABB( -32, -47, -290, 64, 94, 580 )
@@ -45,6 +46,9 @@ tonemap_white = 8.0
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 4, 4, 1 )
+
+[sub_resource type="BoxShape" id=50]
+extents = Vector3( 11, 5, 5 )
 
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 11, 1, 20 )
@@ -463,12 +467,94 @@ shape = SubResource( 4 )
 [node name="Patch" type="CSGBox" parent="tutorial_level_geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, -470.5 )
 use_in_baked_light = true
+use_collision = true
 width = 4.0
 depth = 1.0
 material = ExtResource( 14 )
 
+[node name="Patch2" type="CSGBox" parent="tutorial_level_geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, -503 )
+use_in_baked_light = true
+use_collision = true
+width = 4.0
+material = ExtResource( 14 )
+
 [node name="TutorialTown" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -440 )
+
+[node name="GasReplenishingAreas" type="Spatial" parent="."]
+
+[node name="GasReplenishingArea" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 35 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea2" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea2" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea3" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -34 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea3" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea4" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -86 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea4" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea5" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -138 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea5" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea6" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -190 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea6" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea7" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -252 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea7" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea8" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -314 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea8" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea9" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -348 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea9" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea10" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -382 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea10" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea11" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -416 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea11" index="0"]
+shape = SubResource( 50 )
+
+[node name="GasReplenishingArea12" parent="GasReplenishingAreas" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -476 )
+
+[node name="CollisionShape" parent="GasReplenishingAreas/GasReplenishingArea12" index="0"]
+shape = SubResource( 50 )
 
 [node name="DialogueBoxes" type="Spatial" parent="."]
 
@@ -483,7 +569,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
 [node name="DA2" parent="DialogueBoxes" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
 visible = true
-text = "You have access to your 3D manouver system, and can deploy the right hook with [RIGHT MOUSE BUTTON], and the left hook with [LEFT MOUSE] button. You can release the hooks by clicking their respective buttons again. However, your hook doesn't work with every surface. They don't work well with this dark grey material; all other surfaces are fine."
+text = "You have access to your 3D manouver system, and can deploy the right hook with [RIGHT MOUSE BUTTON], and the left hook with [LEFT MOUSE] button. You can release the hooks by clicking their respective buttons again. However, your hook doesn't work with every surface. The grey squares on the bottom left turn red to indicate which hook is attatched to something. They don't work well with this dark grey material; all other surfaces are fine."
 
 [node name="CollisionShape" parent="DialogueBoxes/DA2" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
@@ -499,7 +585,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
 [node name="DA4" parent="DialogueBoxes" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -88 )
 visible = true
-text = "You can also rewind the hook while it's attatched to some surface to propell yourself in the direction of the hook. With one or both of the hooks grappled to something, lock the motors and press the mouse button of the hook you want to rewind. Use this hability to grapple to that orange block and get to the other side of the room."
+text = "You can also rewind the hook while it's attatched to some surface to propell yourself in the direction of the hook. This, however, consumes gas, which is indicated by the gry bar on the bottom left. If you deplete your gas, the equipment will be much slower. With one or both of the hooks grappled to something, lock the motors and press the mouse button of the hook you want to rewind. Use this hability to grapple to that orange block and get to the other side of the room."
 
 [node name="CollisionShape" parent="DialogueBoxes/DA4" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
@@ -507,7 +593,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
 [node name="DA5" parent="DialogueBoxes" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -140 )
 visible = true
-text = "To make more advanced manouvers you can slow down time by pressing [Q]. Behind that dark grey block on the ceiling there is an orange block you can grapple to. Jump on the hole and slow down time to be able aim to it and get to the other side of the room."
+text = "To make more advanced manouvers you can slow down time by pressing [Q]. Behind that dark grey block on the ceiling there is an orange block you can grapple to. That blue bar on the bottom right indicates how much you can do this at a time. Jump on the hole and slow down time to be able aim to it and get to the other side of the room."
 
 [node name="CollisionShape" parent="DialogueBoxes/DA5" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
@@ -555,7 +641,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
 [node name="DA11" parent="DialogueBoxes" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -420 )
 visible = true
-text = "This is an example of a place where you will fight some more titans. Your job is to protect the people of the village, who are hiding on that big stone tower in the middle. The titans are drawn to places where there are many people, so that tower will be their target. Be sure to not let them destroy it! You can use the houses in the village to get from one place to another real quick."
+text = "This is an example of a place where you will fight some more titans. Your job is to protect the people of the village, who are hiding on that big stone tower in the middle. The titans are drawn to places where there are many people, so that tower will be their target. Be sure to not let them destroy it! You can use the houses in the village to get from one place to another real quick. Also, the top of the tower is the place you'll be replenishing your gas on."
 
 [node name="CollisionShape" parent="DialogueBoxes/DA11" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
@@ -765,25 +851,25 @@ material = ExtResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, -363 )
 
 [node name="LeftLegUp" parent="5m1/Armature/Skeleton" index="1"]
-transform = Transform( -0.911703, 0.286252, -0.294727, -0.0330442, 0.663935, 0.747061, 0.40953, 0.690834, -0.59585, 33.011, -4.40189, -217.596 )
+transform = Transform( -0.871225, 0.483284, 0.0860705, 0.336354, 0.459994, 0.821751, 0.357549, 0.744879, -0.56331, 18.0729, -16.2302, -225.199 )
 
 [node name="LeftLeg" parent="5m1/Armature/Skeleton" index="2"]
-transform = Transform( -0.858953, 0.468208, 0.207334, 0.114366, -0.21926, 0.968941, 0.499129, 0.855983, 0.134786, 67.0458, 74.5387, -135.457 )
+transform = Transform( -0.802304, 0.370538, 0.467988, 0.435793, -0.172178, 0.883426, 0.407923, 0.91272, -0.0233374, 75.5344, 38.4622, -136.634 )
 
 [node name="RightLegUp" parent="5m1/Armature/Skeleton" index="3"]
-transform = Transform( -0.751376, -0.611279, -0.248538, -0.490841, 0.266013, 0.829646, -0.44103, 0.745369, -0.499916, -24.9261, -24.4018, -219.551 )
+transform = Transform( -0.919586, -0.367889, 0.137907, 0.0107031, 0.327421, 0.944818, -0.392741, 0.870318, -0.297154, -36.9347, 10.8426, -223.878 )
 
 [node name="RightLeg" parent="5m1/Armature/Skeleton" index="4"]
-transform = Transform( -0.632988, -0.195056, -0.749186, -0.56599, -0.543659, 0.61975, -0.528188, 0.816326, 0.23373, -97.6236, 7.23436, -130.906 )
+transform = Transform( -0.73759, -0.348149, -0.578578, -0.329257, -0.562638, 0.758306, -0.589534, 0.749819, 0.300366, -80.6865, 49.7819, -120.373 )
 
 [node name="Torso" parent="5m1/Armature/Skeleton" index="5"]
-transform = Transform( 0.929229, -0.0758882, -0.361627, 0.369275, 0.156297, 0.916082, -0.0129987, -0.98479, 0.17326, 3.0105, -7.52461, -258.111 )
+transform = Transform( 0.799761, -0.0330253, 0.599408, -0.57233, 0.259378, 0.777921, -0.181165, -0.965211, 0.18854, -5.33453, 7.49586, -263.151 )
 
 [node name="Head" parent="5m1/Armature/Skeleton" index="6"]
-transform = Transform( 0.993561, 0.0290638, -0.1095, 0.110342, -0.0290801, 0.993467, 0.0256895, -0.999154, -0.0320988, -21.5643, 35.8183, -386.421 )
+transform = Transform( 0.955301, -0.0349346, 0.29356, -0.294043, -0.00944312, 0.955744, -0.0306168, -0.999345, -0.0192922, -1.91405, 62.0877, -389.315 )
 
 [node name="Neck" parent="5m1/Armature/Skeleton" index="7"]
-transform = Transform( 0.927678, -0.16223, -0.336294, 0.371879, 0.320772, 0.871097, -0.033444, -0.933159, 0.357904, -14.152, 20.1045, -355.547 )
+transform = Transform( 0.656301, 0.0871097, 0.749453, -0.712886, 0.396916, 0.578143, -0.247109, -0.913711, 0.322596, -8.81306, 45.208, -358.942 )
 
 [node name="AnimationTree" parent="5m1" index="3"]
 tree_root = SubResource( 26 )
@@ -796,31 +882,55 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, -391 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 10.055, 0 )
 
 [node name="LeftLegUp" parent="20m1/Armature/Skeleton" index="1"]
-transform = Transform( -0.960344, 0.260991, 0.0980842, 0.181247, 0.317063, 0.930924, 0.211865, 0.911786, -0.351794, 7.74274, 176.211, -1006.92 )
+transform = Transform( -0.973048, 0.230547, 0.00498898, 0.0622468, 0.241764, 0.968336, 0.222041, 0.942549, -0.249599, -20.9596, 219.848, -1007.03 )
 
 [node name="RightLegUp" parent="20m1/Armature/Skeleton" index="2"]
-transform = Transform( -0.853739, -0.244377, -0.459796, -0.459928, -0.0600899, 0.88592, -0.244127, 0.967817, -0.0610945, -206.785, 143.03, -1011.63 )
+transform = Transform( -0.798015, -0.228075, -0.557813, -0.559292, -0.0644116, 0.826465, -0.224426, 0.971511, -0.0761592, -230.332, 162.338, -1005.94 )
 
 [node name="LeftLeg" parent="20m1/Armature/Skeleton" index="3"]
-transform = Transform( -0.968655, 0.212267, 0.129031, 0.055875, -0.319938, 0.945789, 0.242043, 0.923353, 0.298048, 138.18, 334.672, -551.231 )
+transform = Transform( -0.942922, 0.30305, 0.138048, 0.0303904, -0.334508, 0.941903, 0.331623, 0.892336, 0.306205, 94.2625, 340.676, -535.97 )
 
 [node name="RightLeg" parent="20m1/Armature/Skeleton" index="4"]
-transform = Transform( -0.759515, -0.117733, -0.639749, -0.521294, -0.478109, 0.70687, -0.389091, 0.870374, 0.301757, -328.907, 113.002, -527.986 )
+transform = Transform( -0.740893, -0.0743452, -0.667497, -0.547299, -0.509224, 0.664195, -0.389285, 0.857417, 0.336592, -344.308, 130.15, -520.444 )
 
 [node name="Torso" parent="20m1/Armature/Skeleton" index="5"]
-transform = Transform( 0.990303, 0.0387741, -0.133406, 0.133958, -0.0120137, 0.990914, 0.0368191, -0.999176, -0.0170913, -98.7496, 178.238, -1175.79 )
+transform = Transform( 0.965634, 0.0355264, -0.257465, 0.259811, -0.105482, 0.959881, 0.00694331, -0.993787, -0.111087, -127.79, 195.677, -1173.96 )
 
 [node name="Head" parent="20m1/Armature/Skeleton" index="6"]
-transform = Transform( 0.983765, 0.132071, -0.121508, 0.116985, 0.0415111, 0.992266, 0.136094, -0.990371, 0.0253868, -46.5879, 58.204, -1679.81 )
+transform = Transform( 0.973266, 0.229051, 0.0170037, 0.188734, -0.839752, 0.509114, 0.130892, -0.492294, -0.860531, -58.6548, -22.0316, -1642.33 )
 
 [node name="Neck" parent="20m1/Armature/Skeleton" index="7"]
-transform = Transform( 0.991065, 0.104393, -0.0830147, 0.102363, -0.196311, 0.975185, 0.085506, -0.974969, -0.205243, -55.2634, 57.0098, -1577.83 )
+transform = Transform( 0.974701, 0.153409, -0.162553, 0.223269, -0.634354, 0.740099, 0.0104218, -0.757669, -0.652556, -70.5367, 25.6482, -1552.54 )
 
 [node name="AnimationTree" parent="20m1" index="3"]
 tree_root = SubResource( 48 )
 parameters/playback = SubResource( 49 )
 
 [node name="FPSMeter" parent="." instance=ExtResource( 6 )]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea2"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea3"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea4"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea5"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea6"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea7"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea8"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea9"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea10"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea11"]
+
+[editable path="GasReplenishingAreas/GasReplenishingArea12"]
 
 [editable path="DialogueBoxes/DA1"]
 

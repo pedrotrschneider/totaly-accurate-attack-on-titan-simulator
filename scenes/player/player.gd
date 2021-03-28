@@ -47,6 +47,8 @@ var can_jump: bool = true;
 var jump_magnitude: float = 600.0;
 
 # Hook stuff
+const MAX_GAS_AMOUNT: float = 500.0;
+const GASD_DEPLETION: float = 0.1;
 const HOOK_LENGTH: float = 45.0;
 const HOOK_POTENCY: float = 3e+06;
 const MAX_GRAPPLE_SPEED: float = 20.0;
@@ -58,6 +60,7 @@ enum HOOK_STATES{
 }
 onready  var rope_prefab = preload("res://scenes/player/rope/rope.tscn");
 var activate_motor: bool = false;
+var gas_amount: float = MAX_GAS_AMOUNT;
 
 var hook_1_interaction: bool = false;
 var hook_1_release: bool = false;
@@ -216,7 +219,6 @@ func _physics_process(delta) -> void:
 	
 	# Handle movement
 	var is_on_ground:bool = is_grounded();
-	print(is_on_ground);
 	
 	movement_force = Vector3.ZERO;
 	if (is_on_ground):
@@ -245,7 +247,7 @@ func _physics_process(delta) -> void:
 func _on_enemy_killed(object: Object) -> void:
 	if(hook_1_grapple_position && object.is_a_parent_of(hook_1_grapple_position)):
 		hook_1_release = true;
-		
+	
 	if(hook_2_grapple_position && object.is_a_parent_of(hook_2_grapple_position)):
 		hook_2_release = true;
 	
@@ -332,7 +334,9 @@ func get_input() -> void:
 	attack = Input.is_action_just_pressed("attack");
 
 
-func hook(delta:float) -> void :
+func hook(delta:float) -> void:
+	gas_amount = min(gas_amount, MAX_GAS_AMOUNT);
+	
 	hook_force = Vector3.ZERO;
 	
 	# Hook 1
@@ -375,8 +379,12 @@ func hook(delta:float) -> void :
 	
 	elif (hook_1 == HOOK_STATES.REWINDING):
 		if (hook_1_interaction && hook_1_grapple_position):
+			gas_amount = max(gas_amount - GASD_DEPLETION, 0);
 			var direction:Vector3 = (hook_1_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
-			hook_force += direction * HOOK_POTENCY * delta;
+			var gas_multilpier: float = 1.0;
+			if(gas_amount == 0):
+				gas_multilpier = 0.1;
+			hook_force += direction * HOOK_POTENCY * gas_multilpier * delta;
 		else :
 			hook_1 = HOOK_STATES.GRAPPLED;
 	
@@ -420,7 +428,11 @@ func hook(delta:float) -> void :
 	
 	elif (hook_2 == HOOK_STATES.REWINDING):
 		if (hook_2_interaction && hook_2_grapple_position):
+			gas_amount = max(gas_amount - GASD_DEPLETION, 0);
 			var direction:Vector3 = (hook_2_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
-			hook_force += direction * HOOK_POTENCY * delta;
-		else :
+			var gas_multilpier: float = 1.0;
+			if(gas_amount == 0):
+				gas_multilpier = 0.1;
+			hook_force += direction * HOOK_POTENCY * gas_multilpier * delta;
+		else:
 			hook_2 = HOOK_STATES.GRAPPLED;
