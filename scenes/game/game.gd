@@ -28,7 +28,16 @@ func _ready() -> void:
 	self.add_child(fps_meter);
 
 
+func _process(_delta):
+	if(tutorial_mode || arcade_mode):
+		if (Input.is_action_just_pressed("ui_cancel")):
+			Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE));
+		if (Input.is_mouse_button_pressed(BUTTON_LEFT)):
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
+
+
 func _on_main_menu_selected() -> void:
+	Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE));
 	if(defeat_screen):
 		defeat_screen.call_deferred("free");
 	elif(tutorial_mode):
@@ -38,6 +47,7 @@ func _on_main_menu_selected() -> void:
 
 
 func _on_arcade_mode_selected() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 	if(main_menu):
 		main_menu.call_deferred("free");
 	arcade_mode = arcade_mode_res.instance();
@@ -45,6 +55,7 @@ func _on_arcade_mode_selected() -> void:
 
 
 func _on_tutorial_selected() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 	if(main_menu):
 		main_menu.call_deferred("free");
 	tutorial_mode = tutorial_mode_res.instance();
@@ -56,6 +67,7 @@ func _on_quit_selected() -> void:
 
 
 func _on_game_over() -> void:
+	Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE));
 	if(arcade_mode):
 		arcade_mode.call_deferred("free");
 	defeat_screen = defeat_scene_res.instance();

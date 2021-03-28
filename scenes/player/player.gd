@@ -170,8 +170,6 @@ func _ready() -> void :
 	_garbage = GameEvents.connect("enemy_killed", self, "_on_enemy_killed");
 	_garbage = GameEvents.connect("respawn_player", self, "_on_respawn_player");
 	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
-	
 	var physics_material:PhysicsMaterial = PhysicsMaterial.new();
 	physics_material.set_friction(2.0);
 	physics_material.set_rough(true);
@@ -238,12 +236,6 @@ func _on_respawn_player(position: Vector3) -> void:
 ####################################
 
 func get_input() -> void:
-	# Mouse visibility input
-	if (Input.is_action_just_pressed("ui_cancel")):
-		Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE));
-	if (Input.is_mouse_button_pressed(BUTTON_LEFT)):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
-	
 	# Movement input
 	input = Vector3.ZERO;
 	input.z -= int(Input.is_action_pressed("forward"));

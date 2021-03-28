@@ -7,7 +7,6 @@ export(NodePath) onready var animation_player = get_node(animation_player) as An
 var game_over: bool = false;
 
 func _ready():
-	Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE));
 	animation_player.play("defeated");
 	yield(animation_player, "animation_finished");
 	game_over = true
