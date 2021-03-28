@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://scenes/levels/tutorial/tutorial_geometry/tutorial_level_geometry.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
@@ -13,8 +13,9 @@
 [ext_resource path="res://scenes/levels/tutorial/killbox/killbox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/levels/tutorial/tutorial.gd" type="Script" id=12]
 [ext_resource path="res://resources/assets/skybox/kloetzle_blei_2k.hdr" type="Texture" id=13]
+[ext_resource path="res://resources/materials/grid_material_dark.tres" type="Material" id=14]
 
-[sub_resource type="GIProbeData" id=47]
+[sub_resource type="GIProbeData" id=1]
 bounds = AABB( -32, -47, -290, 64, 94, 580 )
 cell_size = 4.53125
 to_cell_xform = Transform( 0.22069, 0, 0, 0, 0.22069, 0, 0, 0, 0.22069, 7.06207, 10.3724, 64 )
@@ -24,12 +25,12 @@ bias = 1.5
 normal_bias = 0.0
 propagation = 0.7
 
-[sub_resource type="PanoramaSky" id=48]
+[sub_resource type="PanoramaSky" id=2]
 panorama = ExtResource( 13 )
 
-[sub_resource type="Environment" id=49]
+[sub_resource type="Environment" id=3]
 background_mode = 3
-background_sky = SubResource( 48 )
+background_sky = SubResource( 2 )
 background_color = Color( 0.215686, 0.215686, 0.215686, 1 )
 background_energy = 0.39
 ambient_light_energy = 0.5
@@ -42,44 +43,35 @@ fog_transmit_enabled = true
 tonemap_mode = 2
 tonemap_white = 8.0
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 4, 4, 1 )
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=5]
 extents = Vector3( 11, 1, 20 )
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "a1"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "a2"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "w1"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "w2"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "w3"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "w4"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "w5"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "w6"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-xfade_time = 0.5
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-xfade_time = 0.5
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
 xfade_time = 0.5
@@ -108,61 +100,61 @@ xfade_time = 0.5
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachine" id=23]
-states/a1/node = SubResource( 3 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id=26]
+states/a1/node = SubResource( 6 )
 states/a1/position = Vector2( 27, 184 )
-states/a2/node = SubResource( 4 )
+states/a2/node = SubResource( 7 )
 states/a2/position = Vector2( 439, 184 )
-states/w1/node = SubResource( 5 )
+states/w1/node = SubResource( 8 )
 states/w1/position = Vector2( 230, 38 )
-states/w2/node = SubResource( 6 )
+states/w2/node = SubResource( 9 )
 states/w2/position = Vector2( 230, 92 )
-states/w3/node = SubResource( 7 )
+states/w3/node = SubResource( 10 )
 states/w3/position = Vector2( 230, 145 )
-states/w4/node = SubResource( 8 )
+states/w4/node = SubResource( 11 )
 states/w4/position = Vector2( 230, 196 )
-states/w5/node = SubResource( 9 )
+states/w5/node = SubResource( 12 )
 states/w5/position = Vector2( 230, 249 )
-states/w6/node = SubResource( 10 )
+states/w6/node = SubResource( 13 )
 states/w6/position = Vector2( 230, 303 )
-transitions = [ "w2", "a1", SubResource( 11 ), "w3", "a1", SubResource( 12 ), "w4", "a1", SubResource( 13 ), "w5", "a1", SubResource( 14 ), "w6", "a1", SubResource( 15 ), "w1", "a2", SubResource( 16 ), "w2", "a2", SubResource( 17 ), "w3", "a2", SubResource( 18 ), "w4", "a2", SubResource( 19 ), "w5", "a2", SubResource( 20 ), "w6", "a2", SubResource( 21 ), "w1", "a1", SubResource( 22 ) ]
+transitions = [ "w2", "a1", SubResource( 14 ), "w3", "a1", SubResource( 15 ), "w4", "a1", SubResource( 16 ), "w5", "a1", SubResource( 17 ), "w6", "a1", SubResource( 18 ), "w1", "a2", SubResource( 19 ), "w2", "a2", SubResource( 20 ), "w3", "a2", SubResource( 21 ), "w4", "a2", SubResource( 22 ), "w5", "a2", SubResource( 23 ), "w6", "a2", SubResource( 24 ), "w1", "a1", SubResource( 25 ) ]
 start_node = "a2"
 graph_offset = Vector2( -48, 31 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
-
-[sub_resource type="AnimationNodeAnimation" id=25]
-animation = "a1"
-
-[sub_resource type="AnimationNodeAnimation" id=26]
-animation = "a2"
-
-[sub_resource type="AnimationNodeAnimation" id=27]
-animation = "w1"
+[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
 
 [sub_resource type="AnimationNodeAnimation" id=28]
-animation = "w2"
+animation = "a1"
 
 [sub_resource type="AnimationNodeAnimation" id=29]
-animation = "w3"
+animation = "a2"
 
 [sub_resource type="AnimationNodeAnimation" id=30]
-animation = "w4"
+animation = "w1"
 
 [sub_resource type="AnimationNodeAnimation" id=31]
-animation = "w5"
+animation = "w2"
 
 [sub_resource type="AnimationNodeAnimation" id=32]
+animation = "w3"
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "w4"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "w5"
+
+[sub_resource type="AnimationNodeAnimation" id=35]
 animation = "w6"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-xfade_time = 0.5
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-xfade_time = 0.5
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
-xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
 xfade_time = 0.5
@@ -191,28 +183,37 @@ xfade_time = 0.5
 [sub_resource type="AnimationNodeStateMachineTransition" id=44]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachine" id=45]
-states/a1/node = SubResource( 25 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id=48]
+states/a1/node = SubResource( 28 )
 states/a1/position = Vector2( 27, 184 )
-states/a2/node = SubResource( 26 )
+states/a2/node = SubResource( 29 )
 states/a2/position = Vector2( 439, 184 )
-states/w1/node = SubResource( 27 )
+states/w1/node = SubResource( 30 )
 states/w1/position = Vector2( 230, 38 )
-states/w2/node = SubResource( 28 )
+states/w2/node = SubResource( 31 )
 states/w2/position = Vector2( 230, 92 )
-states/w3/node = SubResource( 29 )
+states/w3/node = SubResource( 32 )
 states/w3/position = Vector2( 230, 145 )
-states/w4/node = SubResource( 30 )
+states/w4/node = SubResource( 33 )
 states/w4/position = Vector2( 230, 196 )
-states/w5/node = SubResource( 31 )
+states/w5/node = SubResource( 34 )
 states/w5/position = Vector2( 230, 249 )
-states/w6/node = SubResource( 32 )
+states/w6/node = SubResource( 35 )
 states/w6/position = Vector2( 230, 303 )
-transitions = [ "w2", "a1", SubResource( 33 ), "w3", "a1", SubResource( 34 ), "w4", "a1", SubResource( 35 ), "w5", "a1", SubResource( 36 ), "w6", "a1", SubResource( 37 ), "w1", "a2", SubResource( 38 ), "w2", "a2", SubResource( 39 ), "w3", "a2", SubResource( 40 ), "w4", "a2", SubResource( 41 ), "w5", "a2", SubResource( 42 ), "w6", "a2", SubResource( 43 ), "w1", "a1", SubResource( 44 ) ]
+transitions = [ "w2", "a1", SubResource( 36 ), "w3", "a1", SubResource( 37 ), "w4", "a1", SubResource( 38 ), "w5", "a1", SubResource( 39 ), "w6", "a1", SubResource( 40 ), "w1", "a2", SubResource( 41 ), "w2", "a2", SubResource( 42 ), "w3", "a2", SubResource( 43 ), "w4", "a2", SubResource( 44 ), "w5", "a2", SubResource( 45 ), "w6", "a2", SubResource( 46 ), "w1", "a1", SubResource( 47 ) ]
 start_node = "a1"
 graph_offset = Vector2( -48, 31 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=46]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=49]
 
 [node name="Tutorial" type="Spatial"]
 script = ExtResource( 12 )
@@ -221,10 +222,10 @@ finish = NodePath("Finish")
 [node name="GIProbe" type="GIProbe" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, -230 )
 extents = Vector3( 32, 47, 290 )
-data = SubResource( 47 )
+data = SubResource( 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 49 )
+environment = SubResource( 3 )
 
 [node name="Lights" type="Spatial" parent="."]
 
@@ -455,7 +456,16 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape" type="CollisionShape" parent="Finish"]
-shape = SubResource( 1 )
+shape = SubResource( 4 )
+
+[node name="tutorial_level_geometry" parent="." instance=ExtResource( 1 )]
+
+[node name="Patch" type="CSGBox" parent="tutorial_level_geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, -470.5 )
+use_in_baked_light = true
+width = 4.0
+depth = 1.0
+material = ExtResource( 14 )
 
 [node name="TutorialTown" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -440 )
@@ -471,7 +481,7 @@ text = "You can move around with [W] [A] [S] [D] and jump with [SPACE]. Try gett
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
 
 [node name="DA2" parent="DialogueBoxes" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
 visible = true
 text = "You have access to your 3D manouver system, and can deploy the right hook with [RIGHT MOUSE BUTTON], and the left hook with [LEFT MOUSE] button. You can release the hooks by clicking their respective buttons again. However, your hook doesn't work with every surface. They don't work well with this dark grey material; all other surfaces are fine."
 
@@ -487,7 +497,7 @@ text = "It is also possible to lock the motors on your 3D manouver system by pre
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
 
 [node name="DA4" parent="DialogueBoxes" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -88 )
 visible = true
 text = "You can also rewind the hook while it's attatched to some surface to propell yourself in the direction of the hook. With one or both of the hooks grappled to something, lock the motors and press the mouse button of the hook you want to rewind. Use this hability to grapple to that orange block and get to the other side of the room."
 
@@ -527,7 +537,7 @@ text = "You can use a similar trick to gain a lot of vertical momentum. While gr
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
 
 [node name="DA9" parent="DialogueBoxes" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 20, -352 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -352 )
 visible = true
 text = "Look! That titan is attacking the green tower! Let's not panic, you can easily dispose of him with your blades. Use your 3D manouver system to get close to its neck and strike it by pressng [E]."
 
@@ -535,7 +545,7 @@ text = "Look! That titan is attacking the green tower! Let's not panic, you can 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
 
 [node name="DA10" parent="DialogueBoxes" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 20, -386 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -386 )
 visible = true
 text = "Awesome! But you are going to face a great variety of titans, some much larger than others, like this 20 meters monster. Dealing with this one is as easy as the last, he is only taller. Try to use the orange tower to propell yourself upward to get a better angle to strike his neck!"
 
@@ -543,7 +553,7 @@ text = "Awesome! But you are going to face a great variety of titans, some much 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
 
 [node name="DA11" parent="DialogueBoxes" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 20, -420 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -420 )
 visible = true
 text = "This is an example of a place where you will fight some more titans. Your job is to protect the people of the village, who are hiding on that big stone tower in the middle. The titans are drawn to places where there are many people, so that tower will be their target. Be sure to not let them destroy it! You can use the houses in the village to get from one place to another real quick."
 
@@ -551,7 +561,7 @@ text = "This is an example of a place where you will fight some more titans. You
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
 
 [node name="DA12" parent="DialogueBoxes" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 20, -480 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -480 )
 visible = true
 text = "That's it for the tutorial! Now you are prepared to do whatever you want. You can choose to challange hordes of titans on ARCADE MODE, or use your 3D manouver system to clear some race levels and get the best time on PARKOUR MODE."
 
@@ -603,7 +613,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -52 )
 
 [node name="CollisionShape" parent="KillBoxes/Killbox" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="RespawnPos" parent="KillBoxes/Killbox" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 18 )
@@ -613,7 +623,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -104 )
 
 [node name="CollisionShape" parent="KillBoxes/Killbox2" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="RespawnPos" parent="KillBoxes/Killbox2" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 18 )
@@ -623,7 +633,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -156 )
 
 [node name="CollisionShape" parent="KillBoxes/Killbox3" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="RespawnPos" parent="KillBoxes/Killbox3" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 18 )
@@ -633,7 +643,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -204 )
 
 [node name="CollisionShape" parent="KillBoxes/Killbox4" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="RespawnPos" parent="KillBoxes/Killbox4" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 15 )
@@ -643,12 +653,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -266 )
 
 [node name="CollisionShape" parent="KillBoxes/Killbox5" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="RespawnPos" parent="KillBoxes/Killbox5" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 15 )
-
-[node name="TutorialLevelGeometry" parent="." instance=ExtResource( 1 )]
 
 [node name="Grapplable" type="CSGCombiner" parent="."]
 use_in_baked_light = true
@@ -757,29 +765,29 @@ material = ExtResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, -363 )
 
 [node name="LeftLegUp" parent="5m1/Armature/Skeleton" index="1"]
-transform = Transform( -0.828346, 0.351756, -0.436023, -0.196643, 0.546222, 0.814233, 0.524579, 0.760204, -0.383287, 7.94321, -4.97882, -227.845 )
+transform = Transform( -0.911703, 0.286252, -0.294727, -0.0330442, 0.663935, 0.747061, 0.40953, 0.690834, -0.59585, 33.011, -4.40189, -217.596 )
 
 [node name="LeftLeg" parent="5m1/Armature/Skeleton" index="2"]
-transform = Transform( -0.801942, 0.582902, 0.130839, 0.152607, -0.0118632, 0.988217, 0.577588, 0.812455, -0.0794411, 49.7663, 59.9659, -137.458 )
+transform = Transform( -0.858953, 0.468208, 0.207334, 0.114366, -0.21926, 0.968941, 0.499129, 0.855983, 0.134786, 67.0458, 74.5387, -135.457 )
 
 [node name="RightLegUp" parent="5m1/Armature/Skeleton" index="3"]
-transform = Transform( -0.685299, -0.582136, -0.437587, -0.647164, 0.211237, 0.732501, -0.33398, 0.785173, -0.521498, -43.9153, -37.5953, -225.128 )
+transform = Transform( -0.751376, -0.611279, -0.248538, -0.490841, 0.266013, 0.829646, -0.44103, 0.745369, -0.499916, -24.9261, -24.4018, -219.551 )
 
 [node name="RightLeg" parent="5m1/Armature/Skeleton" index="4"]
-transform = Transform( -0.629987, -0.0337018, -0.775874, -0.662381, -0.498236, 0.559476, -0.405424, 0.866386, 0.291559, -113.147, -12.4734, -131.75 )
+transform = Transform( -0.632988, -0.195056, -0.749186, -0.56599, -0.543659, 0.61975, -0.528188, 0.816326, 0.23373, -97.6236, 7.23436, -130.906 )
 
 [node name="Torso" parent="5m1/Armature/Skeleton" index="5"]
-transform = Transform( 0.77581, -0.124158, -0.618629, 0.619751, -0.0340893, 0.784058, -0.118436, -0.991677, 0.0505009, -21.2486, -19.4139, -266.454 )
+transform = Transform( 0.929229, -0.0758882, -0.361627, 0.369275, 0.156297, 0.916082, -0.0129987, -0.98479, 0.17326, 3.0105, -7.52461, -258.111 )
 
 [node name="Head" parent="5m1/Armature/Skeleton" index="6"]
-transform = Transform( 0.972862, 0.137162, -0.186344, 0.198237, -0.0787511, 0.976985, 0.11933, -0.987413, -0.103804, -64.9498, -14.5227, -396.117 )
+transform = Transform( 0.993561, 0.0290638, -0.1095, 0.110342, -0.0290801, 0.993467, 0.0256895, -0.999154, -0.0320988, -21.5643, 35.8183, -386.421 )
 
 [node name="Neck" parent="5m1/Armature/Skeleton" index="7"]
-transform = Transform( 0.674711, -0.435826, -0.595667, 0.669988, 0.023071, 0.742013, -0.309646, -0.899734, 0.307565, -46.6161, -19.1388, -366.156 )
+transform = Transform( 0.927678, -0.16223, -0.336294, 0.371879, 0.320772, 0.871097, -0.033444, -0.933159, 0.357904, -14.152, 20.1045, -355.547 )
 
 [node name="AnimationTree" parent="5m1" index="3"]
-tree_root = SubResource( 23 )
-parameters/playback = SubResource( 24 )
+tree_root = SubResource( 26 )
+parameters/playback = SubResource( 27 )
 
 [node name="20m1" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, -391 )
@@ -788,29 +796,29 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, -391 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 10.055, 0 )
 
 [node name="LeftLegUp" parent="20m1/Armature/Skeleton" index="1"]
-transform = Transform( -0.973076, 0.222115, -0.0615367, 0.0829695, 0.586667, 0.805567, 0.21503, 0.778773, -0.589301, -15.4489, -104.047, -951.327 )
+transform = Transform( -0.960344, 0.260991, 0.0980842, 0.181247, 0.317063, 0.930924, 0.211865, 0.911786, -0.351794, 7.74274, 176.211, -1006.92 )
 
 [node name="RightLegUp" parent="20m1/Armature/Skeleton" index="2"]
-transform = Transform( -0.847798, -0.397683, -0.350841, -0.508986, 0.424414, 0.74887, -0.148911, 0.813462, -0.562231, -228.083, -147.926, -953.949 )
+transform = Transform( -0.853739, -0.244377, -0.459796, -0.459928, -0.0600899, 0.88592, -0.244127, 0.967817, -0.0610945, -206.785, 143.03, -1011.63 )
 
 [node name="LeftLeg" parent="20m1/Armature/Skeleton" index="3"]
-transform = Transform( -0.94934, 0.304612, 0.0772341, 0.0761585, -0.0154319, 0.996976, 0.304883, 0.952351, -0.0085496, 95.559, 189.156, -562.114 )
+transform = Transform( -0.968655, 0.212267, 0.129031, 0.055875, -0.319938, 0.945789, 0.242043, 0.923353, 0.298048, 138.18, 334.672, -551.231 )
 
 [node name="RightLeg" parent="20m1/Armature/Skeleton" index="4"]
-transform = Transform( -0.775526, 0.0899765, -0.624873, -0.608504, -0.370214, 0.701901, -0.168182, 0.924579, 0.341861, -426.817, 64.1655, -547.438 )
+transform = Transform( -0.759515, -0.117733, -0.639749, -0.521294, -0.478109, 0.70687, -0.389091, 0.870374, 0.301757, -328.907, 113.002, -527.986 )
 
 [node name="Torso" parent="20m1/Armature/Skeleton" index="5"]
-transform = Transform( 0.978965, -0.0226895, -0.202761, 0.203281, 0.193343, 0.959842, 0.0174241, -0.980869, 0.193889, -125.301, -99.007, -1117.97 )
+transform = Transform( 0.990303, 0.0387741, -0.133406, 0.133958, -0.0120137, 0.990914, 0.0368191, -0.999176, -0.0170913, -98.7496, 178.238, -1175.79 )
 
 [node name="Head" parent="20m1/Armature/Skeleton" index="6"]
-transform = Transform( 0.987813, -0.0722305, -0.13787, 0.14909, 0.693473, 0.704889, 0.0446946, -0.716853, 0.695791, -156.861, 130.673, -1579.01 )
+transform = Transform( 0.983765, 0.132071, -0.121508, 0.116985, 0.0415111, 0.992266, 0.136094, -0.990371, 0.0253868, -46.5879, 58.204, -1679.81 )
 
 [node name="Neck" parent="20m1/Armature/Skeleton" index="7"]
-transform = Transform( 0.983038, -0.0742588, -0.167697, 0.172603, 0.683725, 0.709035, 0.0620068, -0.725953, 0.684945, -145.843, 47.0739, -1520.98 )
+transform = Transform( 0.991065, 0.104393, -0.0830147, 0.102363, -0.196311, 0.975185, 0.085506, -0.974969, -0.205243, -55.2634, 57.0098, -1577.83 )
 
 [node name="AnimationTree" parent="20m1" index="3"]
-tree_root = SubResource( 45 )
-parameters/playback = SubResource( 46 )
+tree_root = SubResource( 48 )
+parameters/playback = SubResource( 49 )
 
 [node name="FPSMeter" parent="." instance=ExtResource( 6 )]
 
