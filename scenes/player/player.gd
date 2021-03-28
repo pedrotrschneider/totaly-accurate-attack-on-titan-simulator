@@ -10,7 +10,8 @@ export (NodePath) onready var hook_1_origin = get_node(hook_1_origin) as Positio
 export (NodePath) onready var hook_2_origin = get_node(hook_2_origin) as Position3D;
 export (NodePath) onready var bullet_time_cooldown_timer = get_node(bullet_time_cooldown_timer) as Timer;
 
-# Mouse stuff
+# Input stuff
+var paused: bool = false;
 var mouse_sensitivity: float = 0.08;
 
 # Bullet time stuff
@@ -58,19 +59,19 @@ enum HOOK_STATES{
 onready  var rope_prefab = preload("res://scenes/player/rope/rope.tscn");
 var activate_motor: bool = false;
 
-var hook_1_interaction:bool = false;
-var hook_1_release:bool = false;
+var hook_1_interaction: bool = false;
+var hook_1_release: bool = false;
 var hook_1 = HOOK_STATES.READY;
-var hook_1_grapple_position:Position3D;
-var hook_1_gappled_object;
-var hook_1_rope:Position3D;
+var hook_1_grapple_position: Position3D;
+var hook_1_gappled_object: Object;
+var hook_1_rope: Position3D;
 
-var hook_2_interaction:bool = false;
-var hook_2_release:bool = false;
+var hook_2_interaction: bool = false;
+var hook_2_release: bool = false;
 var hook_2 = HOOK_STATES.READY;
-var hook_2_grapple_position:Position3D;
-var hook_2_gappled_object;
-var hook_2_rope:Position3D;
+var hook_2_grapple_position: Position3D;
+var hook_2_gappled_object: Object;
+var hook_2_rope: Position3D;
 
 
 ####################################
@@ -103,7 +104,7 @@ func is_grounded() -> bool:
 	var direct_state: PhysicsDirectSpaceState = get_world().direct_space_state;
 	var collision: Dictionary;
 	for ray in ray_positions:
-		collision = direct_state.intersect_ray(ray, ray + Vector3(0.0, - (capsule_heihgt + 0.5), 0.0));
+		collision = direct_state.intersect_ray(ray, ray + Vector3(0.0, - (capsule_heihgt + 0.5), 0.0), [], 1);
 		if (collision):
 			break;
 	
@@ -122,7 +123,23 @@ func scan_hook_hit() -> Dictionary:
 #          Callbacks               #
 ####################################
 
-func _input(event) -> void :
+func _ready() -> void :
+	_garbage = GameEvents.connect("pause", self, "_on_pause");
+	_garbage = GameEvents.connect("unpause", self, "_on_unpause");
+	_garbage = GameEvents.connect("enemy_killed", self, "_on_enemy_killed");
+	_garbage = GameEvents.connect("respawn_player", self, "_on_respawn_player");
+	_garbage = bullet_time_cooldown_timer.connect("timeout", self, "_on_bullet_time_cooldown_timer_timeout");
+	
+	var physics_material:PhysicsMaterial = PhysicsMaterial.new();
+	physics_material.set_friction(2.0);
+	physics_material.set_rough(true);
+	self.physics_material_override = physics_material;
+
+
+func _input(event) -> void:
+	if(paused):
+		return;
+	
 	# Camera pitch and yaw input
 	if event is InputEventMouseMotion:
 		rotate_y(deg2rad( - event.relative.x * mouse_sensitivity));
@@ -172,18 +189,11 @@ func _integrate_forces(state):
 	
 	self.apply_central_impulse(tension_impulse * self.mass);
 
-func _ready() -> void :
-	_garbage = GameEvents.connect("enemy_killed", self, "_on_enemy_killed");
-	_garbage = GameEvents.connect("respawn_player", self, "_on_respawn_player");
-	_garbage = bullet_time_cooldown_timer.connect("timeout", self, "_on_bullet_time_cooldown_timer_timeout");
-	
-	var physics_material:PhysicsMaterial = PhysicsMaterial.new();
-	physics_material.set_friction(2.0);
-	physics_material.set_rough(true);
-	self.physics_material_override = physics_material;
-
 
 func _physics_process(delta) -> void:
+	if(paused):
+		return;
+	
 	# Handle input
 	get_input();
 	
@@ -206,6 +216,7 @@ func _physics_process(delta) -> void:
 	
 	# Handle movement
 	var is_on_ground:bool = is_grounded();
+	print(is_on_ground);
 	
 	movement_force = Vector3.ZERO;
 	if (is_on_ground):
@@ -249,6 +260,13 @@ func _on_respawn_player(position: Vector3) -> void:
 func _on_bullet_time_cooldown_timer_timeout() -> void:
 	bullet_time_on_colldown = false;
 
+
+func _on_pause() -> void:
+	paused = true;
+
+
+func _on_unpause() -> void:
+	paused = false;
 ####################################
 #           Handlers               #
 ####################################

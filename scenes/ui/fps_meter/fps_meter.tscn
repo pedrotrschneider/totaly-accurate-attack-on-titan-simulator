@@ -2,8 +2,8 @@
 
 [ext_resource path="res://scenes/ui/fps_meter/label.gd" type="Script" id=1]
 
-
 [node name="FPSMeter" type="CanvasLayer"]
+layer = 10
 
 [node name="Label" type="Label" parent="."]
 margin_left = 967.418

@@ -5,61 +5,80 @@ var _garbage;
 export(PackedScene) onready var main_menu_scene_res;
 export(PackedScene) onready var arcade_mode_res;
 export(PackedScene) onready var tutorial_mode_res;
+export(PackedScene) onready var pause_menu_res;
 export(PackedScene) onready var defeat_scene_res;
 export(PackedScene) onready var fps_meter_res;
 
 var main_menu: Object;
 var arcade_mode: Object;
 var tutorial_mode: Object;
+var pause_menu: Object;
 var defeat_screen: Object;
 var fps_meter: Object;
+
+
+func clear_children() -> void:
+	for child in self.get_children():
+		child.call_deferred("free");
 
 
 func _ready() -> void:
 	_garbage = GameEvents.connect("main_menu_selected", self, "_on_main_menu_selected");
 	_garbage = GameEvents.connect("arcade_mode_selected", self, "_on_arcade_mode_selected");
 	_garbage = GameEvents.connect("tutorial_selected", self, "_on_tutorial_selected");
+	_garbage = GameEvents.connect("resume_selected", self, "_on_resume_selected");
 	_garbage = GameEvents.connect("quit_selected", self, "_on_quit_selected");
 	_garbage = GameEvents.connect("game_over", self, "_on_game_over");
 	
 	main_menu = main_menu_scene_res.instance()
 	fps_meter = fps_meter_res.instance();
 	self.add_child(main_menu);
-	self.add_child(fps_meter);
+	self.get_parent().call_deferred("add_child", fps_meter);
 
 
-func _process(_delta):
+func _process(_delta) -> void:
 	if(tutorial_mode || arcade_mode):
 		if (Input.is_action_just_pressed("ui_cancel")):
-			Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE));
-		if (Input.is_mouse_button_pressed(BUTTON_LEFT)):
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
+			if(!pause_menu):
+				pause();
+			else:
+				_on_resume_selected();
+
+func pause() -> void:
+	Engine.time_scale = 0.0;
+	GameEvents.emit_pause_signal();
+	Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE));
+	pause_menu = pause_menu_res.instance();
+	self.add_child(pause_menu);
 
 
 func _on_main_menu_selected() -> void:
 	Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE));
-	if(defeat_screen):
-		defeat_screen.call_deferred("free");
-	elif(tutorial_mode):
-		tutorial_mode.call_deferred("free");
+	clear_children();
 	main_menu = main_menu_scene_res.instance();
 	self.add_child(main_menu);
 
 
 func _on_arcade_mode_selected() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
-	if(main_menu):
-		main_menu.call_deferred("free");
+	clear_children();
 	arcade_mode = arcade_mode_res.instance();
 	self.add_child(arcade_mode);
 
 
 func _on_tutorial_selected() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
-	if(main_menu):
-		main_menu.call_deferred("free");
+	clear_children();
 	tutorial_mode = tutorial_mode_res.instance();
 	self.add_child(tutorial_mode);
+
+
+func _on_resume_selected() -> void:
+	Engine.time_scale = 1.0;
+	GameEvents.emit_unpause_signal();
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
+	if(pause_menu):
+		pause_menu.call_deferred("free");
 
 
 func _on_quit_selected() -> void:

@@ -5,6 +5,9 @@ extends Node
 signal main_menu_selected;
 signal arcade_mode_selected;
 signal tutorial_selected;
+signal resume_selected;
+signal pause;
+signal unpause;
 signal quit_selected;
 signal game_over;
 
@@ -15,9 +18,6 @@ signal respawn_player(position);
 # Enemy signals
 signal enemy_killed(object);
 signal enemy_spawned(enemy);
-
-# UI events
-signal go_to_scene(scene);
 
 
 func emit_main_menu_selected_signal() -> void:
@@ -30,6 +30,18 @@ func emit_arcade_mode_selected_signal() -> void:
 
 func emit_tutorial_selected_signal() -> void:
 	self.emit_signal("tutorial_selected");
+
+
+func emit_resume_selected_signal() -> void:
+	self.emit_signal("resume_selected");
+
+
+func emit_pause_signal() -> void:
+	self.emit_signal("pause");
+
+
+func emit_unpause_signal() -> void:
+	self.emit_signal("unpause");
 
 
 func emit_quit_selected_signal() -> void:
@@ -54,7 +66,3 @@ func emit_enemy_killed_signal(object: Object) -> void:
 
 func emit_enemy_spawned_signal(enemy: Object) -> void:
 	self.emit_signal("enemy_spawned", enemy);
-
-
-func emit_go_to_scene_signal(scene: PackedScene) -> void:
-	self.emit_signal("go_to_scene", scene);
