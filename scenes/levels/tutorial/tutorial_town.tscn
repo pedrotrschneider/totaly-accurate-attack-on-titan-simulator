@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://resources/materials/ground_leaves_material.tres" type="Material" id=1]
+[ext_resource path="res://scenes/buildings/house2/house2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/buildings/house4/house4.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/buildings/tower/tower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/buildings/house3/house3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/buildings/house1/house1.tscn" type="PackedScene" id=6]
+
+[sub_resource type="PlaneMesh" id=1]
+material = ExtResource( 1 )
+size = Vector2( 60, 60 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 30, 1, 30 )
+
+[node name="TutorialTown" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+shape = SubResource( 2 )
+
+[node name="Houses" type="Spatial" parent="."]
+
+[node name="house1" parent="Houses" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -18 )
+
+[node name="house8" parent="Houses" instance=ExtResource( 6 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -6, 0, -4 )
+
+[node name="house2" parent="Houses" instance=ExtResource( 2 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -21, 0, -1 )
+
+[node name="house6" parent="Houses" instance=ExtResource( 2 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 19, 0, 21 )
+
+[node name="house3" parent="Houses" instance=ExtResource( 5 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 14, 0, -15 )
+
+[node name="house7" parent="Houses" instance=ExtResource( 5 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -13, 0, 16 )
+
+[node name="house4" parent="Houses" instance=ExtResource( 3 )]
+transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 20, 0, 7 )
+
+[node name="house5" parent="Houses" instance=ExtResource( 3 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -22, 0, -22 )
+
+[node name="tower" parent="Houses" instance=ExtResource( 4 )]
+transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 3, 0, -2 )

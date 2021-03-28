@@ -13,14 +13,6 @@
 [ext_resource path="res://resources/nav_meshes/sample_town/7m.tres" type="NavigationMesh" id=12]
 [ext_resource path="res://scenes/buildings/tower/tower.tscn" type="PackedScene" id=13]
 
-
-
-
-
-
-
-
-
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 8 )
 
@@ -35,6 +27,8 @@ fog_depth_begin = 0.0
 fog_depth_end = 50.0
 fog_depth_curve = 0.784586
 fog_transmit_enabled = true
+tonemap_mode = 2
+tonemap_white = 8.0
 
 [sub_resource type="GIProbeData" id=3]
 bounds = AABB( -120.128, -18.1498, -109.687, 240.256, 36.2996, 219.374 )

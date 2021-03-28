@@ -1,52 +1,122 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=55 format=2]
 
-[ext_resource path="res://resources/materials/grid_material_dark.tres" type="Material" id=1]
+[ext_resource path="res://scenes/levels/tutorial/tutorial_level_geometry.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/materials/grid_material_orange.tres" type="Material" id=3]
-[ext_resource path="res://scenes/titans/7m/7m1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/titans/5m/5m1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/materials/grid_material_green.tres" type="Material" id=5]
+[ext_resource path="res://scenes/ui/fps_meter/fps_meter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/titans/20m/20m1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/levels/tutorial/tutorial_town.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/levels/tutorial/dialogue_area.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/levels/tutorial/sliding_door.tscn" type="PackedScene" id=10]
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=1]
 animation = "a1"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "a2"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "w1"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "w2"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "w3"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "w4"
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "w5"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "w6"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id=21]
+states/a1/node = SubResource( 1 )
+states/a1/position = Vector2( 27, 184 )
+states/a2/node = SubResource( 2 )
+states/a2/position = Vector2( 439, 184 )
+states/w1/node = SubResource( 3 )
+states/w1/position = Vector2( 230, 38 )
+states/w2/node = SubResource( 4 )
+states/w2/position = Vector2( 230, 92 )
+states/w3/node = SubResource( 5 )
+states/w3/position = Vector2( 230, 145 )
+states/w4/node = SubResource( 6 )
+states/w4/position = Vector2( 230, 196 )
+states/w5/node = SubResource( 7 )
+states/w5/position = Vector2( 230, 249 )
+states/w6/node = SubResource( 8 )
+states/w6/position = Vector2( 230, 303 )
+transitions = [ "w2", "a1", SubResource( 9 ), "w3", "a1", SubResource( 10 ), "w4", "a1", SubResource( 11 ), "w5", "a1", SubResource( 12 ), "w6", "a1", SubResource( 13 ), "w1", "a2", SubResource( 14 ), "w2", "a2", SubResource( 15 ), "w3", "a2", SubResource( 16 ), "w4", "a2", SubResource( 17 ), "w5", "a2", SubResource( 18 ), "w6", "a2", SubResource( 19 ), "w1", "a1", SubResource( 20 ) ]
+start_node = "a2"
+graph_offset = Vector2( -48, 31 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "a1"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "a2"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "w1"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "w2"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "w3"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "w4"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "w5"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "w6"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 xfade_time = 0.5
@@ -66,33 +136,192 @@ xfade_time = 0.5
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachine" id=37]
-states/a1/node = SubResource( 17 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id=43]
+states/a1/node = SubResource( 23 )
 states/a1/position = Vector2( 27, 184 )
-states/a2/node = SubResource( 18 )
+states/a2/node = SubResource( 24 )
 states/a2/position = Vector2( 439, 184 )
-states/w1/node = SubResource( 19 )
+states/w1/node = SubResource( 25 )
 states/w1/position = Vector2( 230, 38 )
-states/w2/node = SubResource( 20 )
+states/w2/node = SubResource( 26 )
 states/w2/position = Vector2( 230, 92 )
-states/w3/node = SubResource( 21 )
+states/w3/node = SubResource( 27 )
 states/w3/position = Vector2( 230, 145 )
-states/w4/node = SubResource( 22 )
+states/w4/node = SubResource( 28 )
 states/w4/position = Vector2( 230, 196 )
-states/w5/node = SubResource( 23 )
+states/w5/node = SubResource( 29 )
 states/w5/position = Vector2( 230, 249 )
-states/w6/node = SubResource( 24 )
+states/w6/node = SubResource( 30 )
 states/w6/position = Vector2( 230, 303 )
-transitions = [ "w2", "a1", SubResource( 25 ), "w3", "a1", SubResource( 26 ), "w4", "a1", SubResource( 27 ), "w5", "a1", SubResource( 28 ), "w6", "a1", SubResource( 29 ), "w1", "a2", SubResource( 30 ), "w2", "a2", SubResource( 31 ), "w3", "a2", SubResource( 32 ), "w4", "a2", SubResource( 33 ), "w5", "a2", SubResource( 34 ), "w6", "a2", SubResource( 35 ), "w1", "a1", SubResource( 36 ) ]
+transitions = [ "w2", "a1", SubResource( 31 ), "w3", "a1", SubResource( 32 ), "w4", "a1", SubResource( 33 ), "w5", "a1", SubResource( 34 ), "w6", "a1", SubResource( 35 ), "w1", "a2", SubResource( 36 ), "w2", "a2", SubResource( 37 ), "w3", "a2", SubResource( 38 ), "w4", "a2", SubResource( 39 ), "w5", "a2", SubResource( 40 ), "w6", "a2", SubResource( 41 ), "w1", "a1", SubResource( 42 ) ]
 start_node = "a1"
 graph_offset = Vector2( -48, 31 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=44]
 
 [node name="Tutorial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -349.872 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 36.128 )
+
+[node name="TutorialTown" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 20, -440 )
+
+[node name="DialogueBoxes" type="Spatial" parent="."]
+
+[node name="DA1" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 33 )
+visible = true
+text = "You can move around with [W] [A] [S] [D] and jump with [SPACE]. Try getting to the other side of the room."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA1" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
+
+[node name="DA2" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
+visible = true
+text = "You have access to your 3D manouver system, and can deploy the right hook with [RIGHT MOUSE BUTTON], and the left hook with [LEFT MOUSE] button. You can release the hooks by clicking their respective buttons again. However, your hook doesn't work with every surface. They don't work well with this dark grey material; all other surfaces are fine."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
+
+[node name="DA3" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36 )
+visible = true
+text = "It is also possible to lock the motors on your 3D manouver system by pressing [SHIFT]. This way, you can lock the length of the string and swing from one place to another. Try using that orange block to swing to the other side of the room."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA3" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
+
+[node name="DA4" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -90 )
+visible = true
+text = "You can also rewind the hook while it's attatched to some surface to propell yourself in the direction of the hook. With one or both of the hooks grappled to something, lock the motors and press the mouse button of the hook you want to rewind. Use this hability to grapple to that orange block and get to the other side of the room."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA4" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
+
+[node name="DA5" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -140 )
+visible = true
+text = "To make more advanced manouvers you can slow down time by pressing [Q]. Behind that dark grey block on the ceiling there is an orange block you can grapple to. Jump on the hole and slow down time to be able aim to it and get to the other side of the room."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA5" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 2 )
+
+[node name="DA6" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -194 )
+visible = true
+text = "Momentum is key. You can release the motors midway through rewinding the hook. You will keep your momentum and be propelled in the direction you were moving. Use this knowledge to try and get over this giant hole."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA6" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
+
+[node name="DA7" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -256 )
+visible = true
+text = "That is not the only way to use momentum in your favor. If you have both hooks grappled, rewind both at the same time and release the motors to gain great horizontal momentum. Use this to get through this other hole."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA7" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
+
+[node name="DA8" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -318 )
+visible = true
+text = "You can use a similar trick to gain a lot of vertical momentum. While grappled to that wall and beeing positioned next to it, rewind the hook and release the motor right before getting to the hook's tip. This will propell you upward and you'll be able to clear that gap."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA8" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
+
+[node name="DA9" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 20, -352 )
+visible = true
+text = "Look! That titan is attacking the green tower! Let's not panic, you can easily dispose of him with your blades. Use your 3D manouver system to get close to its neck and strike it by pressng [E]."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA9" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
+
+[node name="DA10" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 20, -386 )
+visible = true
+text = "Awesome! But you are going to face a great variety of titans, some much larger than others, like this 20 meters monster. Dealing with this one is as easy as the last, he is only taller. Try to use the orange tower to propell yourself upward to get a better angle to strike his neck!"
+
+[node name="CollisionShape" parent="DialogueBoxes/DA10" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
+
+[node name="DA11" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 20, -420 )
+visible = true
+text = "This is an example of a place where you will fight some more titans. Your job is to protect the people of the village, who are hiding on that big stone tower in the middle. The titans are drawn to places where there are many people, so that tower will be their target. Be sure to not let them destroy it! You can use the houses in the village to get from one place to another real quick."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA11" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
+
+[node name="DA12" parent="DialogueBoxes" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 20, -480 )
+visible = true
+text = "That's it for the tutorial! Now you are prepared to do whatever you want. You can choose to challange hordes of titans on ARCADE MODE, or use your 3D manouver system to clear some race levels and get the best time on PARKOUR MODE."
+
+[node name="CollisionShape" parent="DialogueBoxes/DA12" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
+
+[node name="SlidingDoors" type="Spatial" parent="."]
+
+[node name="SlidingDoor" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 6 )
+
+[node name="SlidingDoor2" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -28 )
+
+[node name="SlidingDoor3" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -80 )
+
+[node name="SlidingDoor4" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -132 )
+
+[node name="SlidingDoor5" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -184 )
+
+[node name="SlidingDoor6" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -246 )
+
+[node name="SlidingDoor7" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -308 )
+
+[node name="SlidingDoor8" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 20, -342 )
+
+[node name="SlidingDoor9" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 20, -376 )
+
+[node name="SlidingDoor10" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 20, -410 )
+
+[node name="SlidingDoor11" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 20, -470 )
+
+[node name="SlidingDoor12" parent="SlidingDoors" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 20, -503 )
+
+[node name="TutorialLevelGeometry" parent="." instance=ExtResource( 1 )]
 
 [node name="Grapplable" type="CSGCombiner" parent="."]
 use_collision = true
@@ -167,302 +396,105 @@ height = 10.0
 depth = 4.0
 material = ExtResource( 5 )
 
-[node name="Ungrapplable" type="CSGCombiner" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22 )
-material_override = ExtResource( 1 )
-use_collision = true
-collision_layer = 17
-
-[node name="Room1" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 1 )
-width = 22.0
-depth = 34.0
-material = ExtResource( 1 )
-
-[node name="Room2" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -33 )
-width = 22.0
-depth = 34.0
-material = ExtResource( 1 )
-
-[node name="Room8" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -347 )
-width = 22.0
-depth = 34.0
-material = ExtResource( 1 )
-
-[node name="Room10" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 19, -381 )
-width = 22.0
-depth = 34.0
-material = ExtResource( 1 )
-
-[node name="Room11" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 19, -415 )
-width = 22.0
-depth = 34.0
-material = ExtResource( 1 )
-
-[node name="Room9" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 17, -357 )
-width = 22.0
-height = 6.0
-material = ExtResource( 1 )
-
-[node name="Room3" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -76 )
-width = 22.0
-height = 22.0
-depth = 52.0
-material = ExtResource( 1 )
-
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
-operation = 2
-width = 24.0
-height = 22.0
-depth = 20.0
-material = ExtResource( 1 )
-
-[node name="Room4" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -128 )
-width = 22.0
-height = 22.0
-depth = 52.0
-material = ExtResource( 1 )
-
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
-operation = 2
-width = 24.0
-height = 22.0
-depth = 20.0
-material = ExtResource( 1 )
-
-[node name="Room6" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -237 )
-width = 22.0
-height = 22.0
-depth = 62.0
-material = ExtResource( 1 )
-
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
-operation = 2
-width = 24.0
-height = 22.0
-depth = 40.0
-material = ExtResource( 1 )
-
-[node name="Room7" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -299 )
-width = 22.0
-height = 22.0
-depth = 62.0
-material = ExtResource( 1 )
-
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room7"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
-operation = 2
-width = 24.0
-height = 22.0
-depth = 40.0
-material = ExtResource( 1 )
-
-[node name="Room5" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -11, -180 )
-width = 22.0
-height = 22.0
-depth = 52.0
-material = ExtResource( 1 )
-
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Room5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74238e-08, 2, -1 )
-operation = 2
-width = 24.0
-height = 22.0
-depth = 20.0
-material = ExtResource( 1 )
-
-[node name="CSGBox2" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -6 )
-width = 22.0
-depth = 4.0
-material = ExtResource( 1 )
-
-[node name="CSGBox3" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.5377, -189 )
-width = 22.0
-height = 4.0
-depth = 4.0
-material = ExtResource( 1 )
-
-[node name="Door" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -16 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
-
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
+[node name="CSGBox2" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 30, -400.499 )
 width = 4.0
-height = 6.0
+height = 20.0
 depth = 4.0
-material = ExtResource( 1 )
+material = ExtResource( 5 )
 
-[node name="Door2" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -50 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
-
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
+[node name="CSGBox16" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 30, -390.499 )
 width = 4.0
-height = 6.0
+height = 20.0
 depth = 4.0
-material = ExtResource( 1 )
+material = ExtResource( 3 )
 
-[node name="Door3" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -102 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
+[node name="5m1" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, -363 )
 
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
-width = 4.0
-height = 6.0
-depth = 4.0
-material = ExtResource( 1 )
+[node name="LeftLegUp" parent="5m1/Armature/Skeleton" index="1"]
+transform = Transform( -0.906496, 0.287288, -0.309416, -0.043293, 0.66572, 0.744946, 0.42, 0.688683, -0.591032, 32.013, -3.65185, -217.647 )
 
-[node name="Door4" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -154 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
+[node name="LeftLeg" parent="5m1/Armature/Skeleton" index="2"]
+transform = Transform( -0.857541, 0.471761, 0.205114, 0.110762, -0.220047, 0.969181, 0.502358, 0.853828, 0.136446, 66.171, 75.5009, -135.764 )
 
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
-width = 4.0
-height = 6.0
-depth = 4.0
-material = ExtResource( 1 )
+[node name="RightLegUp" parent="5m1/Armature/Skeleton" index="3"]
+transform = Transform( -0.740942, -0.62044, -0.257016, -0.505263, 0.262908, 0.821942, -0.442394, 0.738873, -0.508284, -25.5435, -24.7615, -219.112 )
 
-[node name="Door5" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -206 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
+[node name="RightLeg" parent="5m1/Armature/Skeleton" index="4"]
+transform = Transform( -0.639386, -0.179962, -0.747529, -0.567472, -0.54556, 0.616716, -0.518808, 0.818521, 0.246701, -99.3306, 6.50535, -131.24 )
 
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
-width = 4.0
-height = 6.0
-depth = 4.0
-material = ExtResource( 1 )
+[node name="Torso" parent="5m1/Armature/Skeleton" index="5"]
+transform = Transform( 0.918791, -0.095518, -0.383014, 0.393297, 0.138491, 0.908921, -0.0337743, -0.985747, 0.164812, 1.81718, -7.57245, -257.947 )
 
-[node name="Door6" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -268 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
+[node name="Head" parent="5m1/Armature/Skeleton" index="6"]
+transform = Transform( 0.990001, 0.0313531, -0.13753, 0.139601, -0.0779448, 0.987135, 0.0202297, -0.996464, -0.0815414, -27.6698, 31.0251, -386.848 )
 
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
-width = 4.0
-height = 6.0
-depth = 4.0
-material = ExtResource( 1 )
+[node name="Neck" parent="5m1/Armature/Skeleton" index="7"]
+transform = Transform( 0.907072, -0.210512, -0.36456, 0.412047, 0.266577, 0.871293, -0.0862343, -0.940543, 0.328547, -18.4201, 17.2099, -355.565 )
 
-[node name="Door7" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -330 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
+[node name="AnimationTree" parent="5m1" index="3"]
+tree_root = SubResource( 21 )
+parameters/playback = SubResource( 22 )
 
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door7"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
-width = 4.0
-height = 6.0
-depth = 4.0
-material = ExtResource( 1 )
+[node name="20m1" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, -391 )
 
-[node name="Door8" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, -364 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
+[node name="OtherTitanCollider" parent="20m1" index="0"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 10.055, 0 )
 
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door8"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
-width = 4.0
-height = 6.0
-depth = 4.0
-material = ExtResource( 1 )
+[node name="LeftLegUp" parent="20m1/Armature/Skeleton" index="1"]
+transform = Transform( -0.953308, 0.205221, -0.221557, -0.0277874, 0.670916, 0.741012, 0.300718, 0.71257, -0.633888, -19.0203, -100.1, -909.017 )
 
-[node name="Door9" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, -398 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
+[node name="RightLegUp" parent="20m1/Armature/Skeleton" index="2"]
+transform = Transform( -0.774415, -0.4835, -0.408058, -0.624267, 0.479117, 0.617039, -0.102831, 0.732581, -0.672868, -213.675, -195.953, -917.221 )
 
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door9"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
-width = 4.0
-height = 6.0
-depth = 4.0
-material = ExtResource( 1 )
+[node name="LeftLeg" parent="20m1/Armature/Skeleton" index="3"]
+transform = Transform( -0.938528, 0.342371, 0.0441258, 0.00758986, -0.107331, 0.994194, 0.345119, 0.933414, 0.0981337, 83.5446, 235.208, -552.891 )
 
-[node name="Door10" type="CSGBox" parent="Ungrapplable"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, -432 )
-width = 22.0
-height = 16.0
-material = ExtResource( 1 )
+[node name="RightLeg" parent="20m1/Armature/Skeleton" index="4"]
+transform = Transform( -0.781577, 0.15133, -0.605176, -0.616958, -0.330921, 0.714041, -0.0922099, 0.931446, 0.352003, -455.293, 43.4757, -551.129 )
 
-[node name="CSGBox" type="CSGBox" parent="Ungrapplable/Door10"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
-operation = 2
-width = 4.0
-height = 6.0
-depth = 4.0
-material = ExtResource( 1 )
+[node name="Torso" parent="20m1/Armature/Skeleton" index="5"]
+transform = Transform( 0.888551, -0.0714002, -0.453189, 0.446991, 0.357209, 0.820122, 0.103326, -0.931292, 0.349314, -126.724, -112.974, -1076.64 )
 
-[node name="7m1" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 20, -362 )
+[node name="Head" parent="20m1/Armature/Skeleton" index="6"]
+transform = Transform( 0.98971, -0.0916453, -0.109886, 0.137595, 0.820277, 0.555171, 0.039258, -0.564578, 0.824446, -224.785, 273.046, -1366.51 )
 
-[node name="LeftLeguUp" parent="7m1/Armature/Skeleton" index="1"]
-transform = Transform( -0.927546, 0.208829, -0.309917, -0.123084, 0.612319, 0.780971, 0.352857, 0.762532, -0.542251, 38.8346, -10.4961, -329.568 )
+[node name="Neck" parent="20m1/Armature/Skeleton" index="7"]
+transform = Transform( 0.905729, -0.240191, -0.349232, 0.316632, 0.931168, 0.180755, 0.281778, -0.274293, 0.919438, -193.276, 175.97, -1358.7 )
 
-[node name="RightLegUp" parent="7m1/Armature/Skeleton" index="2"]
-transform = Transform( -0.733494, -0.569727, -0.370679, -0.581191, 0.242929, 0.776664, -0.352434, 0.785109, -0.509305, -50.568, -48.7981, -329.839 )
+[node name="AnimationTree" parent="20m1" index="3"]
+tree_root = SubResource( 43 )
+parameters/playback = SubResource( 44 )
 
-[node name="LeftLeg" parent="7m1/Armature/Skeleton" index="3"]
-transform = Transform( -0.843775, 0.50143, 0.19134, 0.101764, -0.200572, 0.974379, 0.52696, 0.84163, 0.118209, 72.3365, 87.7369, -207.237 )
+[node name="FPSMeter" parent="." instance=ExtResource( 6 )]
 
-[node name="RightLeg" parent="7m1/Armature/Skeleton" index="4"]
-transform = Transform( -0.652697, -0.222329, -0.724266, -0.530768, -0.547986, 0.646531, -0.540626, 0.806402, 0.239661, -142.003, -9.8107, -203.837 )
+[editable path="DialogueBoxes/DA1"]
 
-[node name="Torso" parent="7m1/Armature/Skeleton" index="5"]
-transform = Transform( 0.89755, -0.0878056, -0.43208, 0.440612, 0.214708, 0.871643, 0.0162357, -0.972723, 0.231399, -10.5863, -18.3681, -382.229 )
+[editable path="DialogueBoxes/DA2"]
 
-[node name="Head" parent="7m1/Armature/Skeleton" index="6"]
-transform = Transform( 0.985665, 0.0759785, -0.15063, 0.135891, 0.171566, 0.975754, 0.0999799, -0.982238, 0.158781, -49.2938, 67.03, -532.801 )
+[editable path="DialogueBoxes/DA3"]
 
-[node name="Neck" parent="7m1/Armature/Skeleton" index="7"]
-transform = Transform( 0.869197, -0.222519, -0.441565, 0.485371, 0.554436, 0.676028, 0.0943905, -0.801926, 0.589919, -36.9272, 39.0785, -502.948 )
+[editable path="DialogueBoxes/DA4"]
 
-[node name="AnimationTree" parent="7m1" index="3"]
-tree_root = SubResource( 37 )
-parameters/playback = SubResource( 1 )
+[editable path="DialogueBoxes/DA5"]
 
-[editable path="7m1"]
+[editable path="DialogueBoxes/DA6"]
+
+[editable path="DialogueBoxes/DA7"]
+
+[editable path="DialogueBoxes/DA8"]
+
+[editable path="DialogueBoxes/DA9"]
+
+[editable path="DialogueBoxes/DA10"]
+
+[editable path="DialogueBoxes/DA11"]
+
+[editable path="DialogueBoxes/DA12"]
+
+[editable path="5m1"]
+
+[editable path="20m1"]
