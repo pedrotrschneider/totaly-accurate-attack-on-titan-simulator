@@ -21,6 +21,7 @@ mesh = SubResource( 1 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+collision_layer = 17
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )

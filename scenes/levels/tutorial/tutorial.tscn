@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://scenes/levels/tutorial/tutorial_level_geometry.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
@@ -8,8 +8,16 @@
 [ext_resource path="res://scenes/ui/fps_meter/fps_meter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/titans/20m/20m1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/levels/tutorial/tutorial_town.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/levels/tutorial/dialogue_area.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/levels/tutorial/sliding_door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/levels/tutorial/dialogue_area/dialogue_area.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/levels/tutorial/sliding_door/sliding_door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/levels/tutorial/killbox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/levels/tutorial/tutorial.gd" type="Script" id=12]
+
+[sub_resource type="BoxShape" id=46]
+extents = Vector3( 4, 4, 1 )
+
+[sub_resource type="BoxShape" id=45]
+extents = Vector3( 11, 1, 20 )
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "a1"
@@ -178,9 +186,19 @@ graph_offset = Vector2( -48, 31 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=44]
 
 [node name="Tutorial" type="Spatial"]
+script = ExtResource( 12 )
+finish = NodePath("Finish")
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 36.128 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31, -484.872 )
+
+[node name="Finish" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -509 )
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape" type="CollisionShape" parent="Finish"]
+shape = SubResource( 46 )
 
 [node name="TutorialTown" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 20, -440 )
@@ -321,6 +339,58 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 20, 
 [node name="SlidingDoor12" parent="SlidingDoors" instance=ExtResource( 10 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 20, -503 )
 
+[node name="KillBoxes" type="Spatial" parent="."]
+
+[node name="Killbox" parent="KillBoxes" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -52 )
+
+[node name="CollisionShape" parent="KillBoxes/Killbox" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+shape = SubResource( 45 )
+
+[node name="RespawnPos" parent="KillBoxes/Killbox" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 18 )
+
+[node name="Killbox2" parent="KillBoxes" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -104 )
+
+[node name="CollisionShape" parent="KillBoxes/Killbox2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+shape = SubResource( 45 )
+
+[node name="RespawnPos" parent="KillBoxes/Killbox2" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 18 )
+
+[node name="Killbox3" parent="KillBoxes" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -156 )
+
+[node name="CollisionShape" parent="KillBoxes/Killbox3" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+shape = SubResource( 45 )
+
+[node name="RespawnPos" parent="KillBoxes/Killbox3" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 18 )
+
+[node name="Killbox4" parent="KillBoxes" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -204 )
+
+[node name="CollisionShape" parent="KillBoxes/Killbox4" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+shape = SubResource( 45 )
+
+[node name="RespawnPos" parent="KillBoxes/Killbox4" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 15 )
+
+[node name="Killbox5" parent="KillBoxes" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -266 )
+
+[node name="CollisionShape" parent="KillBoxes/Killbox5" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
+shape = SubResource( 45 )
+
+[node name="RespawnPos" parent="KillBoxes/Killbox5" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 15 )
+
 [node name="TutorialLevelGeometry" parent="." instance=ExtResource( 1 )]
 
 [node name="Grapplable" type="CSGCombiner" parent="."]
@@ -410,29 +480,44 @@ height = 20.0
 depth = 4.0
 material = ExtResource( 3 )
 
+[node name="CSGBox17" type="CSGBox" parent="Grapplable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -509 )
+width = 10.0
+height = 10.0
+depth = 10.0
+material = ExtResource( 5 )
+
+[node name="CSGBox18" type="CSGBox" parent="Grapplable/CSGBox17"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
+operation = 2
+width = 8.0
+height = 8.0
+depth = 12.0
+material = ExtResource( 5 )
+
 [node name="5m1" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, -363 )
 
 [node name="LeftLegUp" parent="5m1/Armature/Skeleton" index="1"]
-transform = Transform( -0.906496, 0.287288, -0.309416, -0.043293, 0.66572, 0.744946, 0.42, 0.688683, -0.591032, 32.013, -3.65185, -217.647 )
+transform = Transform( -0.910762, 0.408179, -0.0625272, 0.142974, 0.453752, 0.879586, 0.387403, 0.792149, -0.471615, 26.5956, 23.8538, -230.455 )
 
 [node name="LeftLeg" parent="5m1/Armature/Skeleton" index="2"]
-transform = Transform( -0.857541, 0.471761, 0.205114, 0.110762, -0.220047, 0.969181, 0.502358, 0.853828, 0.136446, 66.171, 75.5009, -135.764 )
+transform = Transform( -0.813594, 0.422036, 0.399946, 0.285973, -0.308457, 0.907235, 0.506254, 0.85249, 0.130267, 75.1273, 77.8039, -136.27 )
 
 [node name="RightLegUp" parent="5m1/Armature/Skeleton" index="3"]
-transform = Transform( -0.740942, -0.62044, -0.257016, -0.505263, 0.262908, 0.821942, -0.442394, 0.738873, -0.508284, -25.5435, -24.7615, -219.112 )
+transform = Transform( -0.751148, -0.553589, -0.359604, -0.469187, 0.0645091, 0.88074, -0.46437, 0.830288, -0.308192, -33.7128, 13.6243, -226.122 )
 
 [node name="RightLeg" parent="5m1/Armature/Skeleton" index="4"]
-transform = Transform( -0.639386, -0.179962, -0.747529, -0.567472, -0.54556, 0.616716, -0.518808, 0.818521, 0.246701, -99.3306, 6.50535, -131.24 )
+transform = Transform( -0.558063, -0.198614, -0.805679, -0.582451, -0.597797, 0.550808, -0.591031, 0.776653, 0.217925, -99.5495, 21.2962, -127.378 )
 
 [node name="Torso" parent="5m1/Armature/Skeleton" index="5"]
-transform = Transform( 0.918791, -0.095518, -0.383014, 0.393297, 0.138491, 0.908921, -0.0337743, -0.985747, 0.164812, 1.81718, -7.57245, -257.947 )
+transform = Transform( 0.942248, -0.117772, -0.313525, 0.292709, -0.165344, 0.941797, -0.162757, -0.979179, -0.121322, -6.69414, 20.3314, -268.278 )
 
 [node name="Head" parent="5m1/Armature/Skeleton" index="6"]
-transform = Transform( 0.990001, 0.0313531, -0.13753, 0.139601, -0.0779448, 0.987135, 0.0202297, -0.996464, -0.0815414, -27.6698, 31.0251, -386.848 )
+transform = Transform( 0.903671, 0.385921, -0.185587, 0.279304, -0.202663, 0.938571, 0.324602, -0.899996, -0.290929, -27.436, -8.15304, -402.143 )
 
 [node name="Neck" parent="5m1/Armature/Skeleton" index="7"]
-transform = Transform( 0.907072, -0.210512, -0.36456, 0.412047, 0.266577, 0.871293, -0.0862343, -0.940543, 0.328547, -18.4201, 17.2099, -355.565 )
+transform = Transform( 0.895629, 0.00468042, -0.444777, 0.422092, -0.324367, 0.846536, -0.140309, -0.94592, -0.292487, -25.3178, -1.12655, -367.485 )
 
 [node name="AnimationTree" parent="5m1" index="3"]
 tree_root = SubResource( 21 )
@@ -445,25 +530,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 20, -391 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 10.055, 0 )
 
 [node name="LeftLegUp" parent="20m1/Armature/Skeleton" index="1"]
-transform = Transform( -0.953308, 0.205221, -0.221557, -0.0277874, 0.670916, 0.741012, 0.300718, 0.71257, -0.633888, -19.0203, -100.1, -909.017 )
+transform = Transform( -0.973665, 0.0926207, -0.208317, -0.0989915, 0.651355, 0.752288, 0.205366, 0.753099, -0.625034, 92.3646, -38.5487, -935.854 )
 
 [node name="RightLegUp" parent="20m1/Armature/Skeleton" index="2"]
-transform = Transform( -0.774415, -0.4835, -0.408058, -0.624267, 0.479117, 0.617039, -0.102831, 0.732581, -0.672868, -213.675, -195.953, -917.221 )
+transform = Transform( -0.719212, -0.527027, -0.452745, -0.668706, 0.348191, 0.656959, -0.188594, 0.775246, -0.602849, -98.006, -142.067, -949.577 )
 
 [node name="LeftLeg" parent="20m1/Armature/Skeleton" index="3"]
-transform = Transform( -0.938528, 0.342371, 0.0441258, 0.00758986, -0.107331, 0.994194, 0.345119, 0.933414, 0.0981337, 83.5446, 235.208, -552.891 )
+transform = Transform( -0.973037, 0.225332, 0.0492217, -0.00051745, -0.215543, 0.976494, 0.230645, 0.95014, 0.209847, 138.654, 286.984, -559.473 )
 
 [node name="RightLeg" parent="20m1/Armature/Skeleton" index="4"]
-transform = Transform( -0.781577, 0.15133, -0.605176, -0.616958, -0.330921, 0.714041, -0.0922099, 0.931446, 0.352003, -455.293, 43.4757, -551.129 )
+transform = Transform( -0.766085, -0.0444625, -0.641201, -0.59977, -0.309191, 0.738023, -0.231068, 0.94996, 0.210199, -361.377, 31.9337, -562.164 )
 
 [node name="Torso" parent="20m1/Armature/Skeleton" index="5"]
-transform = Transform( 0.888551, -0.0714002, -0.453189, 0.446991, 0.357209, 0.820122, 0.103326, -0.931292, 0.349314, -126.724, -112.974, -1076.64 )
+transform = Transform( 0.866964, -0.0604765, -0.494688, 0.486126, 0.321296, 0.812681, 0.109793, -0.945046, 0.307951, -9.01653, -57.1695, -1106.84 )
 
 [node name="Head" parent="20m1/Armature/Skeleton" index="6"]
-transform = Transform( 0.98971, -0.0916453, -0.109886, 0.137595, 0.820277, 0.555171, 0.039258, -0.564578, 0.824446, -224.785, 273.046, -1366.51 )
+transform = Transform( 0.988729, 0.0884895, -0.120766, 0.0753001, 0.403265, 0.91198, 0.129402, -0.910795, 0.392056, -117.195, 297.97, -1450 )
 
 [node name="Neck" parent="20m1/Armature/Skeleton" index="7"]
-transform = Transform( 0.905729, -0.240191, -0.349232, 0.316632, 0.931168, 0.180755, 0.281778, -0.274293, 0.919438, -193.276, 175.97, -1358.7 )
+transform = Transform( 0.877896, -0.228389, -0.420877, 0.406251, 0.820518, 0.402134, 0.253494, -0.524014, 0.813112, -85.3363, 207.239, -1414.92 )
 
 [node name="AnimationTree" parent="20m1" index="3"]
 tree_root = SubResource( 43 )
@@ -494,6 +579,16 @@ parameters/playback = SubResource( 44 )
 [editable path="DialogueBoxes/DA11"]
 
 [editable path="DialogueBoxes/DA12"]
+
+[editable path="KillBoxes/Killbox"]
+
+[editable path="KillBoxes/Killbox2"]
+
+[editable path="KillBoxes/Killbox3"]
+
+[editable path="KillBoxes/Killbox4"]
+
+[editable path="KillBoxes/Killbox5"]
 
 [editable path="5m1"]
 

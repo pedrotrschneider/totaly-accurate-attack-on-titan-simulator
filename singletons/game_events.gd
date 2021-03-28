@@ -4,11 +4,13 @@ extends Node
 # Game controll events
 signal main_menu_selected;
 signal arcade_mode_selected;
+signal tutorial_selected;
 signal quit_selected;
 signal game_over;
 
 # Player signals
 signal attack;
+signal respawn_player(position);
 
 # Enemy signals
 signal enemy_killed(object);
@@ -26,6 +28,10 @@ func emit_arcade_mode_selected_signal() -> void:
 	self.emit_signal("arcade_mode_selected");
 
 
+func emit_tutorial_selected_signal() -> void:
+	self.emit_signal("tutorial_selected");
+
+
 func emit_quit_selected_signal() -> void:
 	self.emit_signal("quit_selected");
 
@@ -36,6 +42,10 @@ func emit_game_over_signal() -> void:
 
 func emit_attack_signal() -> void:
 	self.emit_signal("attack");
+
+
+func emit_respawn_player_signal(position: Vector3) -> void:
+	self.emit_signal("respawn_player", position);
 
 
 func emit_enemy_killed_signal(object: Object) -> void:

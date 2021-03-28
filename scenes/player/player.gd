@@ -32,6 +32,8 @@ const GRAVITY: float = 9.8
 const MAX_GROUND_SPEED: float = 5.0
 const MAX_MOVEMENT_ACCELERATION: float = 200000.0;
 var movement_acceleration: float = MAX_MOVEMENT_ACCELERATION;
+var set_new_pos: bool = false;
+var new_pos: Vector3 = Vector3.ZERO;
 
 # Jump stuff
 var can_jump: bool = true;
@@ -123,6 +125,12 @@ func _input(event) -> void :
 
 
 func _integrate_forces(state):
+	# If we need to change the player's position
+	if(set_new_pos):
+		set_new_pos = false;
+		state.transform.origin = new_pos;
+		new_pos = Vector3.ZERO;
+	
 	# Add movement force
 	if(hook_1 != HOOK_STATES.REWINDING && hook_2 != HOOK_STATES.REWINDING):
 		self.add_central_force(movement_force);
@@ -158,6 +166,7 @@ func _integrate_forces(state):
 
 func _ready() -> void :
 	_garbage = GameEvents.connect("enemy_killed", self, "_on_enemy_killed");
+	_garbage = GameEvents.connect("respawn_player", self, "_on_respawn_player");
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED);
 	
@@ -210,17 +219,17 @@ func _physics_process(delta) -> void:
 
 func _on_enemy_killed(object: Object) -> void:
 	if(hook_1_grapple_position && object.is_a_parent_of(hook_1_grapple_position)):
-#		print("this is fine")
-#		hook_1_grapple_position.free();
-#		print("memory has been freed");
 		hook_1_release = true;
 		
 	if(hook_2_grapple_position && object.is_a_parent_of(hook_2_grapple_position)):
-#		hook_2_grapple_position.call_deferred("free");
 		hook_2_release = true;
 	
 	hook(0);
 
+
+func _on_respawn_player(position: Vector3) -> void:
+	set_new_pos = true;
+	new_pos = position
 
 ####################################
 #           Handlers               #
