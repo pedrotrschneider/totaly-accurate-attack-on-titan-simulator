@@ -149,14 +149,16 @@ func _integrate_forces(state):
 	tension_impulse = Vector3.ZERO;
 	
 	if(hook_1_grapple_position):
-		if((hook_1 == HOOK_STATES.GRAPPLED || hook_1 == HOOK_STATES.REWINDING) && activate_motor):
+		if((hook_1 == HOOK_STATES.GRAPPLED || hook_1 == HOOK_STATES.REWINDING)\
+			&& activate_motor && hook_2 != HOOK_STATES.REWINDING):
 			var dir: Vector3 = (hook_1_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
 			var partial_tension_impulse: Vector3 = dir.dot(state.linear_velocity) * (-dir);
 			if(partial_tension_impulse.normalized().dot(dir) > 0):
 				tension_impulse += partial_tension_impulse;
 	
 	if(hook_2_grapple_position):
-		if((hook_2 == HOOK_STATES.GRAPPLED || hook_2 == HOOK_STATES.REWINDING) && activate_motor):
+		if((hook_2 == HOOK_STATES.GRAPPLED || hook_2 == HOOK_STATES.REWINDING)\
+		&& activate_motor && hook_1 != HOOK_STATES.REWINDING):
 			var dir: Vector3 = (hook_2_grapple_position.global_transform.origin - self.global_transform.origin).normalized();
 			var partial_tension_impulse: Vector3 = dir.dot(state.linear_velocity) * (-dir);
 			if(partial_tension_impulse.normalized().dot(dir) > 0):
