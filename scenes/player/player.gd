@@ -2,19 +2,25 @@ extends RigidBody
 
 var _garbage;
 
-export (NodePath) onready  var head = get_node(head) as Position3D;
-export (NodePath) onready  var eye = get_node(eye) as Position3D;
-export (NodePath) onready  var capsule = get_node(capsule) as CollisionShape;
-export (NodePath) onready  var crosshair_position = get_node(crosshair_position) as Position3D;
-export (NodePath) onready  var hook_1_origin = get_node(hook_1_origin) as Position3D;
-export (NodePath) onready  var hook_2_origin = get_node(hook_2_origin) as Position3D;
+export (NodePath) onready var head = get_node(head) as Position3D;
+export (NodePath) onready var eye = get_node(eye) as Position3D;
+export (NodePath) onready var capsule = get_node(capsule) as CollisionShape;
+export (NodePath) onready var crosshair_position = get_node(crosshair_position) as Position3D;
+export (NodePath) onready var hook_1_origin = get_node(hook_1_origin) as Position3D;
+export (NodePath) onready var hook_2_origin = get_node(hook_2_origin) as Position3D;
+export (NodePath) onready var bullet_time_cooldown_timer = get_node(bullet_time_cooldown_timer) as Timer;
 
 # Mouse stuff
 var mouse_sensitivity: float = 0.08;
 
 # Bullet time stuff
+const MAX_BULLET_TIME_STAMINA: float = 100.0;
 const BULLET_TIME_SCALE: float = 0.1;
 var bullet_time: bool = false;
+var bullet_time_on_colldown: bool = false;
+var bullet_time_stamina: float = MAX_BULLET_TIME_STAMINA;
+var bullet_time_consuption: float = 0.1;
+var bullet_time_regeneration: float = 0.3;
 
 # Attack stuff
 var attack: bool = false;
@@ -169,6 +175,7 @@ func _integrate_forces(state):
 func _ready() -> void :
 	_garbage = GameEvents.connect("enemy_killed", self, "_on_enemy_killed");
 	_garbage = GameEvents.connect("respawn_player", self, "_on_respawn_player");
+	_garbage = bullet_time_cooldown_timer.connect("timeout", self, "_on_bullet_time_cooldown_timer_timeout");
 	
 	var physics_material:PhysicsMaterial = PhysicsMaterial.new();
 	physics_material.set_friction(2.0);
@@ -181,10 +188,17 @@ func _physics_process(delta) -> void:
 	get_input();
 	
 	# Handle bullet time
-	if(bullet_time):
-		Engine.time_scale = BULLET_TIME_SCALE;
-	else:
-		Engine.time_scale = 1.0;
+	Engine.time_scale = 1.0;
+	if(!bullet_time_on_colldown):
+		if(bullet_time):
+			Engine.time_scale = BULLET_TIME_SCALE;
+			bullet_time_stamina -= bullet_time_consuption;
+		else:
+			bullet_time_stamina += bullet_time_regeneration;
+			bullet_time_stamina = clamp(bullet_time_stamina, 0, MAX_BULLET_TIME_STAMINA);
+		if(bullet_time_stamina <= 0):
+			bullet_time_on_colldown = true;
+			bullet_time_cooldown_timer.start();
 	
 	# Handle attack
 	if(attack):
@@ -230,6 +244,10 @@ func _on_enemy_killed(object: Object) -> void:
 func _on_respawn_player(position: Vector3) -> void:
 	set_new_pos = true;
 	new_pos = position
+
+
+func _on_bullet_time_cooldown_timer_timeout() -> void:
+	bullet_time_on_colldown = false;
 
 ####################################
 #           Handlers               #

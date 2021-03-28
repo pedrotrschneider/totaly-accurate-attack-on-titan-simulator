@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=1]
 [ext_resource path="res://resources/assets/textures/crosshair.png" type="Texture" id=2]
 [ext_resource path="res://scenes/player/sword/sword.tscn" type="PackedScene" id=3]
-
+[ext_resource path="res://scenes/ui/player_ui/player_ui.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -27,6 +27,7 @@ capsule = NodePath("Shape")
 crosshair_position = NodePath("Head/CrosshairPosition")
 hook_1_origin = NodePath("HookOrigin1")
 hook_2_origin = NodePath("HookOrigin2")
+bullet_time_cooldown_timer = NodePath("BulletTimeCooldown")
 
 [node name="Shape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
@@ -80,3 +81,9 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="CanvasLayer/Crosshair"]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
+
+[node name="PlayerUI" parent="." instance=ExtResource( 4 )]
+
+[node name="BulletTimeCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
