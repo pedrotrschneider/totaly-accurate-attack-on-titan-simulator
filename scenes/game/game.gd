@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 	main_menu = main_menu_scene_res.instance()
 	self.add_child(main_menu);
-	self.get_parent().call_deferred("add_child", fps_meter_res.instance());
+#	self.get_parent().call_deferred("add_child", fps_meter_res.instance());
 	self.get_parent().call_deferred("add_child", audio_mananger_res.instance());
 	
 	yield(self.get_tree().create_timer(0.5), "timeout");
