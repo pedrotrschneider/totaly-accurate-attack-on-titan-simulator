@@ -17,8 +17,16 @@ var _nav: Navigation;
 
 var state: int;
 
-const move_speed: float = 4.0;
-const gravity: float = 9.8;
+var height_idx: int;
+const move_speed: Array = [
+	4.0,
+	6.0,
+	8.0,
+	10.0,
+	12.0
+]
+#const move_speed: float = 4.0;
+#const gravity: float = 9.8;
 
 var target_pos: Vector3;
 
@@ -58,7 +66,7 @@ func _physics_process(delta):
 				path_index += 1;
 			else:
 				smooth_look_at(path_position, delta);
-				_garbage = self.move_and_slide(move_dir.normalized() * move_speed);
+				_garbage = self.move_and_slide(move_dir.normalized() * move_speed[height_idx]);
 	elif(state == TITAN_STATES.ATTACK):
 		smooth_look_at(target_pos, delta);
 		if(_attack_timer.is_stopped()):

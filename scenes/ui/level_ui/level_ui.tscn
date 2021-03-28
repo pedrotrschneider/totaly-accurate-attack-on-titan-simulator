@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ui/level_ui/target_health.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/level_ui/minimap.gd" type="Script" id=2]
+[ext_resource path="res://resources/assets/fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/ui/level_ui/score.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
 
 [node name="LevelUI" type="CanvasLayer"]
 
@@ -34,3 +48,36 @@ color = Color( 0, 0, 0, 0.505882 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Score" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -90.5
+margin_top = 28.2843
+margin_right = 90.5
+margin_bottom = 72.2843
+alignment = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+time_label = NodePath("Time")
+titans_killed_label = NodePath("TitansKilled")
+
+[node name="Time" type="Label" parent="Score"]
+margin_right = 181.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 2 )
+text = "Time: "
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitansKilled" type="Label" parent="Score"]
+margin_top = 40.0
+margin_right = 181.0
+margin_bottom = 76.0
+custom_fonts/font = SubResource( 1 )
+text = "Kills: 12"
+align = 1

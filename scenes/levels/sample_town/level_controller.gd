@@ -6,6 +6,7 @@ const MAX_TARGET_HEALTH: int = 100;
 
 export(NodePath) onready var _spawn_positions_container = get_node(_spawn_positions_container) as Spatial;
 export(Array, NodePath) onready var _titan_targets_paths;
+export(NodePath) onready var _spawn_timer = get_node(_spawn_timer) as Timer;
 
 onready var _navmeshes: Array = [
 	preload("res://resources/nav_meshes/sample_town/5m.tres"),
@@ -43,7 +44,6 @@ onready var _titans_res: Array = [
 	]
 ];
 
-#onready var _titan_res: Resource = preload("res://scenes/titans/20m/20m3.tscn");
 
 var spawn_positions: Array = [];
 var titan_target_positions: Array = [];
@@ -51,6 +51,9 @@ var titan_pool: Array = [];
 var titans_in_target_area: int = 0;
 
 var target_health: float = MAX_TARGET_HEALTH;
+
+var total_time_ellapsed: float = 0.0;
+var titans_killed: int = 0;
 
 
 func _ready() -> void:
@@ -63,12 +66,17 @@ func _ready() -> void:
 	titan_pool.append([_titans_res[height_indx][titan_indx].instance(), height_indx]);
 	self.add_child(titan_pool[0][0]);
 	titan_pool[0][0].global_transform.origin = Vector3(1000, 1000, 1000);
+	titan_pool[0][0].height_idx = height_indx;
 	
 	for spawn_pos in _spawn_positions_container.get_children():
 		spawn_positions.append(spawn_pos.global_transform.origin);
 	
 	for target_pos in _titan_targets_paths:
 		titan_target_positions.append(self.get_tree().get_nodes_in_group("target")[0].global_transform.origin);
+
+
+func _process(delta):
+	total_time_ellapsed += delta;
 
 
 func _on_SpawnTitan_timeout() -> void:
@@ -92,6 +100,7 @@ func _on_SpawnTitan_timeout() -> void:
 		height_indx = titan_spawner[1];
 		titan_pool.remove(titan_pool.find(titan_spawner));
 	
+	titan_instance.height_idx = height_indx;
 	titan_instance.nav_mesh = _navmeshes[height_indx];
 	titan_instance.global_transform.origin = spawn_pos;
 	titan_instance.target_pos = target_pos;
@@ -110,5 +119,9 @@ func spawn_titan() -> Array:
 
 
 func _on_enemy_killed(enemy: Object) -> void:
+	titans_killed += 1;
 	enemy.call_deferred("free");
-#	self.remove_child(enemy);
+
+
+func _on_ReduceSpawnTime_timeout():
+	_spawn_timer.wait_time *= 0.8
